@@ -13,8 +13,19 @@ body {
 
 }
 
-
 header { 
     background-color: #2764ff;
     color: #ffffff;
+
+} nav a {
+    color: #ffffff;
+
+} nav li {
+    margin-right: 2rem;
+
+} nav ul {
+    margin:0;
+    padding:0;
+    list-style: none;
+    display:flex;
 }
