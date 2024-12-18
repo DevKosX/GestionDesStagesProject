@@ -29,3 +29,24 @@ header {
     list-style: none;
     display:flex;
 }
+
+.search-profile {
+    display: flex;
+    align-items: center;
+}
+
+.search-profile input {
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin-right: 1rem;
+}
+
+.profile-btn {
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
