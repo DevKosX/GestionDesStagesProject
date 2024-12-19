@@ -1,3 +1,4 @@
+/*Nouveau commit*/
 body {
     font-family: sans-serif;
     margin: 0;
@@ -12,7 +13,7 @@ body {
     align-items: center; 
 
 }
-
+/*Nouveau commit*/
 header { 
     background-color: #2764ff;
     color: #ffffff;
@@ -29,7 +30,7 @@ header {
     list-style: none;
     display:flex;
 }
-
+/*Nouveau commit*/
 .search-profile {
     display: flex;
     align-items: center;
@@ -49,4 +50,22 @@ header {
     width: 30px;
     height: 30px;
     cursor: pointer;
+}
+/*Nouveau commit*/
+.banner {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+
+} .banner img {
+    width: 50%;
+    height: auto;
+    margin-right: 2rem;  /* j'ai ajoute une marge entre l'image et le texte. */
+
+} .banner-content {
+    width: 50%;
+
+}.banner-content h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
