@@ -93,8 +93,11 @@ nav li {
 .logo img {
     max-width: 200px;
     height: auto;
+    transition: transform 0.2s ease;
 }
-
+.logo img:hover {
+    transform: scale(1.1); /*Effet de grossisement au survol */
+}
 /* Responsive Design */
 @media (max-width: 768px) {
 
