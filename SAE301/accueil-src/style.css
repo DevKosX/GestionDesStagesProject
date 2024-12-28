@@ -1,25 +1,26 @@
-/*Nouveau commit*/
+/* Nouveau Commit */
 body {
     font-family: sans-serif;
     margin: 0;
     line-height: 1.6;
+}
 
-} .container { 
-    
+.container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-items: center; 
-
+    align-items: center;
 }
-/*Nouveau commit*/
-header { 
+
+/* Nouveau Commit */
+header {
     background-color: #152d65; /* Nouvelle couleur de fond plus foncée */
     color: #ffffff;
     padding: 1em 0;
-    
+}
+
 nav {
     display: flex;
     align-items: center;
@@ -51,7 +52,6 @@ nav a.active {
 nav li {
     margin-right: 1.5em;
 }
-
 
 /* Bannière */
 .banner {
@@ -95,7 +95,7 @@ nav li {
     height: auto;
 }
 
-/* Responsive*/
+/* Responsive Design */
 @media (max-width: 768px) {
 
    .container {
