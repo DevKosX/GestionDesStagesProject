@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
               const linkText = this.textContent.trim();
 
                if (linkText === 'Tableau de bord') {
-                   window.location.href = 'tableaudebord.html';
+                   window.location.href = 'tableaudebord.php';
                } else if (linkText === 'Gestion des stages') {
-                   window.location.href = 'gestiondestages.html';
+                   window.location.href = 'gestiondestages.php';
                }
            });
     });
