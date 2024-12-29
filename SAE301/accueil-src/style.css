@@ -160,3 +160,52 @@ nav li {
 .profile img:hover{
     transform: scale(1.1);
 }
+
+/* Conteneur du menu de profil */
+.profile {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.profile-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-menu a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Affichage du menu lorsqu'il est actif */
+.profile.active .profile-menu {
+    display: block;
+}
+
+/* Style du logo */
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.profile img:hover {
+    transform: scale(1.1);
+}
