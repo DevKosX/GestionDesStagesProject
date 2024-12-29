@@ -141,3 +141,22 @@ nav li {
         max-width: 150px;
     }
 }
+
+/* Profil utilisateur */
+.profile{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.profile img:hover{
+    transform: scale(1.1);
+}
