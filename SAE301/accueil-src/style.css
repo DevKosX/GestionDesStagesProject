@@ -91,7 +91,7 @@ nav li {
 }
 
 .logo img {
-    max-width: 200px;
+    max-width: 500px;
     height: auto;
     transition: transform 0.2s ease;
 }
