@@ -7,6 +7,8 @@ body {
     min-height: 100vh;
     margin: 0;
 
+/*Texte : Connexion */
+
 } h1 {
     text-align: center;
     margin-bottom: 20px;
@@ -26,6 +28,7 @@ body {
     font-weight: bold;
 
 }
+
 
 input[type="email"], /*le style par défault*/
 input[type="password"] {
@@ -56,9 +59,42 @@ input[type="password"]:focus {
 
 } button[type="submit"]:hover {
     background-color: #152d65; 
+}
+/* messages d'erreur (tesr) */
 
-/* messages d'erreur (exemple de test) */
-} .error-message {
+.error-message {
     color: red;
     margin-bottom: 10px;
+}
+
+/*Nouveau commit je vais faire la partie*/
+
+.container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    background-color: white;
+
+
+/*Formulaire*/
+
+} .form-header {
+    display: flex;
+    flex-direction: column; /* élément vertical */
+    align-items: center; /* centrer les items horizontalement */
+    margin-bottom: 20px; /* l'espace necessaire que j'ai mis entre l'image et le formulaire */
+
+
+/*Image du profil*/
+
+} .profile-img {
+    width: 80px; /*taille de l'image*/
+    height: 80px;
+    border-radius: 50%; /* l'image sera ronde sur le rendu*/
+    margin-bottom: 10px; /*l'espace necessaire que j'ai mis entre l'image et le titre */
 }
