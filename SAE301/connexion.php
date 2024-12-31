@@ -7,15 +7,20 @@
     <title>Connexion</title>
 </head>
 <body>
-    <h1>Connexion</h1>
-    <form action="login.php" method="POST">
-        <label for="email">Email :</label>
-        <input type="email" name="email" id="email" required>
-        <br>
-        <label for="password">Mot de passe :</label>
-        <input type="password" name="password" id="password" required>
-        <br>
-        <button type="submit">Se connecter</button>
-    </form>
+    <div class="container">
+        <div class="form-header">
+            <img src="images/profile-icon.png" alt="Profil" class="profile-img">
+            <h1>Connexion</h1>
+        </div>
+        <form action="login.php" method="POST">
+            <label for="email">Email :</label>
+            <input type="email" name="email" id="email" required>
+            <br>
+            <label for="password">Mot de passe :</label>
+            <input type="password" name="password" id="password" required>
+            <br>
+            <button type="submit">Se connecter</button>
+        </form>
+    </div>
 </body>
 </html>
