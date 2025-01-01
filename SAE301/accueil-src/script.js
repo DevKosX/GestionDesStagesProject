@@ -2,8 +2,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // Début du JS pour le dernier commit CSS
 
     const navLinks = document.querySelectorAll('header nav ul li a');
+        const currentPath = window.location.pathname;
+        // Ajoute la classe active au lien accueil si la page actuelle est la page d'accueil
+
 
     navLinks.forEach(link => {
+        if(currentPath.includes('accueil.php') && link.textContent.trim() === 'Accueil'){
+            link.classList.add('active');
+}
 
       });
 
