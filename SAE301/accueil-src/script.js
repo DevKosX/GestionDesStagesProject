@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 if (data.success) {
                     alert(data.message);
-                    window.location.href = 'login.html'; // Redirection après déconnexion
+                    window.location.href = 'connexion.html'; // Redirection après déconnexion
                 } else {
                     alert("Erreur lors de la déconnexion.");
                 }
