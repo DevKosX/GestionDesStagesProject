@@ -20,7 +20,7 @@
             <img src="images/profile-icon.png" alt="Profil" id="profile-logo">
             <!-- Menu déroulant -->
             <div class="profile-menu" id="profile-menu">
-                <a href="profile.html">Voir le profil</a>
+                <a href="profile.php">Voir le profil</a>
                 <a href="#" id="logout-btn">Se déconnecter</a>
             </div>
         </div>
