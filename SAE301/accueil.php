@@ -11,8 +11,9 @@
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="#">Tableau de bord</a></li>
-                    <li><a href="#">Gestion des stages</a></li>
+                    <li><a href="accueil.php" class="active">Accueil</a></li>
+                    <li><a href="tableaudebord.php">Tableau de bord</a></li>
+                    <li><a href="gestiondestages.php">Gestion des stages</a></li>
                 </ul>
             </nav>
             <!-- Logo de profil -->
