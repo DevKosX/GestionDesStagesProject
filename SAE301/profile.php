@@ -1,11 +1,10 @@
 <?php
-// Démarrer la session
 session_start();
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user'])) {
     // Rediriger vers la page de connexion si non connecté
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -24,7 +23,7 @@ $user = $_SESSION['user']; // Exemple : ['nom' => 'John Doe', 'email' => 'john.d
     <header>
         <div class="container">
             <h1>Mon Profil</h1>
-            <a href="accueil.html">Retour à l'accueil</a>
+            <a href="accueil.php">Retour à l'accueil</a>
         </div>
     </header>
     <main>
@@ -37,7 +36,7 @@ $user = $_SESSION['user']; // Exemple : ['nom' => 'John Doe', 'email' => 'john.d
         </section>
         <section class="profile-actions">
             <h2>Actions</h2>
-            <a href="edit-profile.php" class="btn">Modifier mes informations</a>
+            <a href="profile.php" class="btn">Modifier mes informations</a>
             <a href="logout.php" class="btn btn-danger">Se déconnecter</a>
         </section>
     </main>
