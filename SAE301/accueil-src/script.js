@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
                    window.location.href = 'tableaudebord.php';
                } else if (linkText === 'Gestion des stages') {
                    window.location.href = 'gestiondestages.php';
+               } else if(linkText === 'Accueil'){
+                window.location.href = 'accueil.php'
                }
            });
     });
