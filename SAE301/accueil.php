@@ -22,6 +22,7 @@
             <!-- Menu déroulant -->
             <div class="profile-menu" id="profile-menu">
                 <a href="profile.php">Voir le profil</a>
+                <a href="login.php">Se connecter</a>
                 <a href="#" id="logout-btn">Se déconnecter</a>
             </div>
         </div>
