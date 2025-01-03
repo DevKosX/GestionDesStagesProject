@@ -3,10 +3,10 @@
 session_start();
 
 // Connexion à la base de données
-$host = "127.0.0.1";
+$host = "localhost";
 $dbname = "stage";
-$username = "root";
-$password = "";
+$username = "user";
+$password = "1234";
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
