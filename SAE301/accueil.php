@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plateforme de gestion de stages</title>
+    <title>Plateforme de gestion des stages</title>
     <link rel="stylesheet" href="accueil-src/style.css"> <!-- J'ai changer le chemin avec la nouvelle architecture-->
 </head>
 <body>
