@@ -1,0 +1,100 @@
+body {
+    font-family: sans-serif;
+    background-color: #f0f2f5; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+
+/*Texte : Connexion */
+
+} h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #152d65; 
+
+} form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+
+} label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+
+}
+
+
+input[type="email"], /*le style par défault*/
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+input[type="email"]:focus, /*le style lorsque le champ est clique*/
+input[type="password"]:focus {
+    outline: none;
+    border-color: #152d65; /* bleu plus foncé au focus */
+    box-shadow: 0 0 0 2px #e7f3ff; 
+
+
+} button[type="submit"] {
+    background-color: #152d65; /* bleu foncé pour le bouton */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+
+} button[type="submit"]:hover {
+    background-color: #152d65; 
+}
+/* messages d'erreur (tesr) */
+
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+}
+
+/*Nouveau commit je vais faire la partie*/
+
+.container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    background-color: white;
+
+
+/*Formulaire*/
+
+} .form-header {
+    display: flex;
+    flex-direction: column; /* élément vertical */
+    align-items: center; /* centrer les items horizontalement */
+    margin-bottom: 20px; /* l'espace necessaire que j'ai mis entre l'image et le formulaire */
+
+
+/*Image du profil*/
+
+} .profile-img {
+    width: 80px; /*taille de l'image*/
+    height: 80px;
+    border-radius: 50%; /* l'image sera ronde sur le rendu*/
+    margin-bottom: 10px; /*l'espace necessaire que j'ai mis entre l'image et le titre */
+}

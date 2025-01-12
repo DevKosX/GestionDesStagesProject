@@ -1,0 +1,182 @@
+/* Nouveau Commit */
+
+body {
+    font-family :'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+
+} .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+
+    /* Nouveau Commit */
+
+} header {
+    background-color: #152d65;  /*couleur de fond plus foncée ressemblant à l'ENT */
+    color: #fff;
+    padding: 1rem 0;
+
+} nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+
+} nav li {
+    margin-right: 1.5rem;
+
+} nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 1.5rem; /*Modif de la taille et de la police */
+    transition: background-color 0.3s ease;
+
+} nav a:hover, nav a.active {
+    background-color: #1b42a8;
+   
+} .profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+} .profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+} .profile img:hover {
+    transform: scale(1.1);
+
+} .profile-menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+    min-width: 150px;
+
+} .profile-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+
+} .profile-menu a:hover {
+    background-color: #f0f0f0;
+
+} .profile.active .profile-menu {
+    display: block;
+
+    /* Bannière */
+    /*Nouveau Commit*/
+
+} .banner {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+
+} .banner img {
+    width: auto;
+    height: auto;
+    max-width: 40%;
+
+} .banner-content {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    padding: 1rem;
+
+} .banner-content h1 {
+    font-size: 2em;
+    margin-bottom: 0.8em;
+    color: #152d65;
+
+} .banner-content p {
+    font-size: 1.1em;
+    font-family: sans-serif; /*sans serif on laisse ici*/
+    text-align: justify;
+
+} .logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+/* Logo */
+
+.logo img {
+    max-width: 500px;
+    height: auto;
+    transition: transform 0.2s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive Design Version 1*/
+/*Nouveau commit*/
+
+
+/*Res^ponsive Design deuxieme commit*/
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav li {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    nav a {
+        display: block;
+        width: 100%;
+    }
+
+    .banner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .banner img {
+        max-width: 80%;
+        margin-bottom: 1rem;
+    }
+
+    .banner-content {
+        min-width: 0;
+    }
+
+    .profile {
+        margin-top: 1rem;
+    }
+
+    .profile-menu {
+        top: 40px;
+    }
+}
