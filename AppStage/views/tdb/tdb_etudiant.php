@@ -22,15 +22,8 @@ try {
     die("Erreur : " . $e->getMessage());
 }
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de bord Étudiant</title>
-    <link rel="stylesheet" href="../public/css/tdb_etudiant.css">
-</head>
-<body>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -44,7 +37,7 @@ try {
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="../views/accueilConnect.php">Accueil</a></li>
+                    <li><a href="../views/accueil.php">Accueil</a></li>
                     <li><a href="../views/tableaudebord.php" class="active">Tableau de bord</a></li>
                     <li><a href="../views/gestiondestages.php">Gestion des stages</a></li>
                 </ul>
@@ -55,7 +48,8 @@ try {
                 <!-- Menu déroulant -->
                 <div class="profile-menu" id="profile-menu">
                     <a href="../views/profil.php">Voir le profil</a>
-                    <a href="#" id="logout-btn">Se déconnecter</a>
+                    <a href="../views/connexion.php">Se connecter</a>
+                    <a href="../views/logout.php" id="logout-btn">Se déconnecter</a>
                 </div>
             </div>
         </div>
