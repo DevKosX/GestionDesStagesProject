@@ -30,26 +30,34 @@ document.addEventListener('DOMContentLoaded', function () {
     const profileMenu = document.getElementById('profile-menu');
 
      // Afficher/masquer le menu de profil
-     if (profileLogo && profileMenu) {
-         profileLogo.addEventListener('click', function () {
-            profileMenu.classList.toggle('show');
-         });
-
-         document.addEventListener('click', function(event) {
-            if (!profileLogo.contains(event.target) && !profileMenu.contains(event.target)) {
-                profileMenu.classList.remove('show');
-            }
-        });
-    }
+    profileLogo?.addEventListener('click', function () {
+        const profile = this.parentElement;
+        profile.classList.toggle('active');
+    });
+    
     const logoutButton = document.getElementById('logout-btn');
 
      // Gérer la déconnexion
-     if (logoutButton){
-         logoutButton.addEventListener('click', function (event) {
-            event.preventDefault();
-             if (confirm("Voulez-vous vraiment vous déconnecter ?")) {
-                 window.location.href = '../logout.php';
-            }
-         });
-     }
+    logoutBtn?.addEventListener('click', function (event) {
+        event.preventDefault();
+        if (confirm("Voulez-vous vraiment vous déconnecter ?")) {
+            fetch('views/logout.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message);
+                        window.location.href = '../views/connexion.php';
+                    } else {
+                        alert("Erreur lors de la déconnexion.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Erreur API :", error);
+                    alert("Une erreur est survenue.");
+                });
+        }
+    });
 });
