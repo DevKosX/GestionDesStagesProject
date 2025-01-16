@@ -34,12 +34,13 @@ if ($_SESSION['user_role'] !== 'enseignant') {
                 <!-- Menu déroulant -->
                 <div class="profile-menu" id="profile-menu">
                     <a href="../views/profil.php">Voir le profil</a>
-                    <a href="#" id="logout-btn">Se déconnecter</a>
+                    <a href="../../logout.php" id="logout-btn">Se déconnecter</a>
                 </div>
             </div>
         </div>
     </header>
-    <h1>Bienvenue Enseignant, <?= htmlspecialchars($_SESSION['user_name']) ?></h1>
+        <main class="main-content">
+                <h1>Hi <?= htmlspecialchars($_SESSION['user_name']) ?> ! Welcome Back</h1>
     <p>Voici votre tableau de bord enseignant.</p>
     <script> src="../public/js/script_2.js"</script>
 </body>

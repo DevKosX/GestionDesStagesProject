@@ -3,24 +3,24 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Vérifier si l'utilisateur est connecté et est un étudiant
+// connecté ou pas 
 if ($_SESSION['user_role'] !== 'etudiant') {
-    header("Location: connexion.php");
-    exit();
+   header("Location: tableaudebord.php");
+  exit();
 }
 
-// Connexion à la base de données
-require_once '../includes/db_connect.php';
+// connexion bd
+// require_once '../includes/db_connect.php';
 
-try {
-    // Récupérer les informations du stage de l'étudiant
-    $stmt = $pdo->prepare("SELECT * FROM Stage WHERE Id_Etudiant = :id_etudiant");
-    $stmt->bindParam(':id_etudiant', $_SESSION['user_id'], PDO::PARAM_INT);
-    $stmt->execute();
-    $stage = $stmt->fetch(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    die("Erreur : " . $e->getMessage());
-}
+// try {
+    // LES info 
+  //  $stmt = $pdo->prepare("SELECT * FROM Stage WHERE Id_Etudiant = :id_etudiant");
+  //  $stmt->bindParam(':id_etudiant', $_SESSION['user_id'], PDO::PARAM_INT);
+  //  $stmt->execute();
+  //  $stage = $stmt->fetch(PDO::FETCH_ASSOC);
+//} catch (PDOException $e) {
+//    die("Erreur : " . $e->getMessage());
+//}
 ?>
 
 
@@ -39,7 +39,7 @@ try {
                 <ul>
                     <li><a href="../views/accueilConnect.php">Accueil</a></li>
                     <li><a href="../views/tableaudebord.php" class="active">Tableau de bord</a></li>
-                    <li><a href="../views/gestiondestages.php">Gestion des stages</a></li>
+                    <li><a href="../views/gestiondesstages.php">Gestion des stages</a></li>
                 </ul>
             </nav>
             <!-- Logo de profil -->
@@ -49,16 +49,14 @@ try {
                 <div class="profile-menu" id="profile-menu">
                     <a href="../views/profil.php">Voir le profil</a>
                     <a href="../views/connexion.php">Se connecter</a>
-                    <a href="../views/logout.php" id="logout-btn">Se déconnecter</a>
+                    <a href="../../logout.php" id="logout-btn">Se déconnecter</a>
                 </div>
             </div>
         </div>
     </header>
         <!-- Contenu principal -->
         <main class="main-content">
-            <header class="header">
                 <h1>Hi <?= htmlspecialchars($_SESSION['user_name']) ?> ! Welcome Back</h1>
-            </header>
     </div>
     <script src="../public/js/tdb_etudiant.js"></script>
 </body>
