@@ -55,8 +55,7 @@ try {
                 <!-- Menu déroulant -->
                 <div class="profile-menu" id="profile-menu">
                     <a href="../views/profil.php">Voir le profil</a>
-                    <a href="../views/connexion.php">Se connecter</a>
-                    <a href="../views/logout.php" id="logout-btn">Se déconnecter</a>
+                    <a href="#" id="logout-btn">Se déconnecter</a>
                 </div>
             </div>
         </div>
