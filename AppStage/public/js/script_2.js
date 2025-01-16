@@ -28,20 +28,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     const profileLogo = document.getElementById('profile-logo');
     const profileMenu = document.getElementById('profile-menu');
+    const logoutBtn = document.getElementById('logout-btn');
 
      // Afficher/masquer le menu de profil
     profileLogo?.addEventListener('click', function () {
         const profile = this.parentElement;
         profile.classList.toggle('active');
     });
-    
+
     const logoutButton = document.getElementById('logout-btn');
 
      // Gérer la déconnexion
     logoutBtn?.addEventListener('click', function (event) {
         event.preventDefault();
         if (confirm("Voulez-vous vraiment vous déconnecter ?")) {
-            fetch('views/logout.php', {
+            fetch('/GestionDesStagesProject/AppStage/views/logout.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             })
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                     if (data.success) {
                         alert(data.message);
-                        window.location.href = '../views/connexion.php';
+                        window.location.href = '/GestionDesStagesProject/AppStage/views/connexion.php';
                     } else {
                         alert("Erreur lors de la déconnexion.");
                     }
