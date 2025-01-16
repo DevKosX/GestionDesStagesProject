@@ -44,7 +44,7 @@ try {
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="../views/accueil.php">Accueil</a></li>
+                    <li><a href="../views/accueilConnect.php">Accueil</a></li>
                     <li><a href="../views/tableaudebord.php">Tableau de bord</a></li>
                     <li><a href="../views/gestiondestages.php" class="active">Gestion des stages</a></li>
                 </ul>
