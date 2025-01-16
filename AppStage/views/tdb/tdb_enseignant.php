@@ -23,7 +23,7 @@ if ($_SESSION['user_role'] !== 'enseignant') {
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="../views/accueil.php">Accueil</a></li>
+                    <li><a href="../views/accueilConnect.php">Accueil</a></li>
                     <li><a href="../views/tableaudebord.php" class="active">Tableau de bord</a></li>
                     <li><a href="../views/gestiondestages.php">Gestion des stages</a></li>
                 </ul>
