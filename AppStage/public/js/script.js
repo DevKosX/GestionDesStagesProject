@@ -18,12 +18,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const linkText = this.textContent.trim();
 
             if (linkText === 'Tableau de bord') {
-                window.location.href = 'tableaudebord.php';
+                window.location.href = '/GestionDesStagesProject/AppStage/views/connexion.php';
             } else if (linkText === 'Gestion des stages') {
-                window.location.href = 'gestiondestages.php';
+                window.location.href = '/GestionDesStagesProject/AppStage/views/connexion.php';
             } else if (linkText === 'Accueil') {
-                window.location.href = 'accueil.php';
+                window.location.href = '/GestionDesStagesProject/AppStage/index.php';
             }
+            
         });
     });
 
@@ -48,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                     if (data.success) {
                         alert(data.message);
-                        window.location.href = 'connexion.php';
+                        window.location.href = '../views/connexion.php';
                     } else {
                         alert("Erreur lors de la déconnexion.");
                     }
