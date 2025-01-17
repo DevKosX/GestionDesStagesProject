@@ -25,7 +25,7 @@ if ($_SESSION['user_role'] !== 'enseignant') {
                 <ul>
                     <li><a href="../views/accueilConnect.php">Accueil</a></li>
                     <li><a href="../views/tableaudebord.php" >Tableau de bord</a></li>
-                    <li><a href="../gestiondesstages.php" class="active">Gestion des stages</a></li>
+                    <li><a href="../views/gestiondesstages.php" class="active">Gestion des stages</a></li>
                 </ul>
             </nav>
             <!-- Logo de profil -->

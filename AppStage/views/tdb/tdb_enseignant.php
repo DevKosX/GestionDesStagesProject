@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Vérifier si l'utilisateur est connecté et est un enseignant
 if ($_SESSION['user_role'] !== 'enseignant') {
-    header("Location: tableaudebord.php");
+    header("Location: connexion.php");
     exit();
 }
 ?>
@@ -25,7 +25,7 @@ if ($_SESSION['user_role'] !== 'enseignant') {
                 <ul>
                     <li><a href="../views/accueilConnect.php">Accueil</a></li>
                     <li><a href="../views/tableaudebord.php" class="active">Tableau de bord</a></li>
-                    <li><a href="../views/gestiondestages.php">Gestion des stages</a></li>
+                    <li><a href="../views/gestiondesstages.php">Gestion des stages</a></li>
                 </ul>
             </nav>
             <!-- Logo de profil -->

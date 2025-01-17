@@ -36,9 +36,9 @@ if ($_SESSION['user_role'] !== 'etudiant') {
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="../accueilConnect.php">Accueil</a></li>
-                    <li><a href="../tableaudebord.php">Tableau de bord</a></li>
-                    <li><a href="../gestiondestages.php" class="active">Gestion desstages</a></li>
+                    <li><a href="../views/accueilConnect.php">Accueil</a></li>
+                    <li><a href="../views/tableaudebord.php">Tableau de bord</a></li>
+                    <li><a href="../views/gestiondesstages.php" class="active">Gestion des stages</a></li>
                 </ul>
             </nav>
             <!-- Logo de profil -->

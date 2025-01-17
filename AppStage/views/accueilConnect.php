@@ -23,7 +23,7 @@ if (!isset($_SESSION['user_id'])) {
             <ul>
                  <li><a href="../views/accueilConnect.php" class="active">Accueil</a></li>
                 <li><a href="../views/tableaudebord.php">Tableau de bord</a></li>
-                <li><a href="../views/gestiondestages.php">Gestion des stages</a></li>
+                <li><a href="gestiondesstages.php">Gestion des stages</a></li>
             </ul>
         </nav>
         <!-- Logo de profil -->
