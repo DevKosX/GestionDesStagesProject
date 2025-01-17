@@ -57,6 +57,8 @@ if ($_SESSION['user_role'] !== 'etudiant') {
         <main class="main-content">
                 <h1>Hi <?= htmlspecialchars($_SESSION['user_name']) ?> ! Welcome Back</h1>
     </div>
-     <script src="../../public/js/script_2.js"></script>
+    <div id="content-area"></div>
+    </main>
+    <script src="../../public/js/tdb_etudiant.js"></script>
 </body>
 </html>
