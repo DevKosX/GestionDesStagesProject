@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const contentArea = document.getElementById('content-area'); // Zone où les informations sont affichées
 
-    fetch('../../api/get_stage.php') 
+    fetch('../../api/get_stage.php') // Remplacez par le chemin correct de l'API
         .then(response => {
             if (!response.ok) {
                 throw new Error('Erreur lors de la récupération des données.');
