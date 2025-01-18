@@ -82,7 +82,7 @@ try {
         </nav>
         <!-- Logo de profil -->
         <div class="profile">
-            <img src="public/images/profile-icon.png" alt="Profil" id="profile-logo">
+            <img src="/GestionDesStagesProject/AppStage/public/images/profile-icon.png" alt="Profil" id="profile-logo">
             <!-- Menu déroulant -->
             <div class="profile-menu" id="profile-menu">
                 <a href="/GestionDesStagesProject/AppStage/views/profil.php">Voir le profil</a>

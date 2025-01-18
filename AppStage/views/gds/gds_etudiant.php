@@ -59,6 +59,6 @@ if ($_SESSION['user_role'] !== 'etudiant') {
     </div>
     <div id="content-area"></div>
     </main>
-    <script src="../../public/js/tdb_etudiant.js"></script>
+    <script src="../../public/js/script_2.js"></script>
 </body>
 </html>

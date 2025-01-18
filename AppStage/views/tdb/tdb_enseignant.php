@@ -42,6 +42,6 @@ if ($_SESSION['user_role'] !== 'enseignant') {
         <main class="main-content">
                 <h1>Hi <?= htmlspecialchars($_SESSION['user_name']) ?> ! Welcome Back</h1>
     <p>Voici votre tableau de bord enseignant.</p>
-    <script> src="../public/js/script_2.js"</script>
+    <script> src="/GestionDesStagesProject/AppStage/public/js/script_2.js"</script>
 </body>
 </html>

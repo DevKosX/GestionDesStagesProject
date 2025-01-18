@@ -89,19 +89,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert(data.message);
-                        window.location.href = '/GestionDesStagesProject/AppStage/views/connexion.php';
-                    } else {
-                        alert("Erreur lors de la déconnexion.");
-                    }
-                })
-                .catch(error => {
-                    console.error("Erreur API :", error);
-                    alert("Une erreur est survenue.");
-                });
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    window.location.href = '/GestionDesStagesProject/AppStage/index.php';
+                } else {
+                    alert("Erreur lors de la déconnexion.");
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                alert("Erreur lors de la déconnexion.");
+            });
         }
     });
 });
