@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+// Gérer la déconnexion directement dans profil.php
+if (isset($_GET['action']) && $_GET['action'] === 'logout') {
+    session_destroy();
+    header("Location: connexion.php");
+    exit();
+}
+
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
     // Rediriger vers la page de connexion si non connecté
@@ -19,52 +27,50 @@ $userName = $_SESSION['user_name'];
     <title>Mon Profil</title>
     <link rel="stylesheet" href="../public/css/style.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
         body {
-            background-color: #f4f4f9;
-            color: #333;
+            font-family :'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin: 0;
             line-height: 1.6;
+            background-color: #f4f4f4;
         }
 
         header {
-            background-color: #00274d;
+            background-color: #152d65;
             color: #fff;
             padding: 1rem 0;
         }
 
-        header .container {
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
-        header h1 {
-            font-size: 1.8rem;
-        }
-
-        nav {
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
             display: flex;
-            gap: 15px;
+        }
+
+        nav li {
+            margin-right: 1.5rem;
         }
 
         nav a {
             color: #fff;
             text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 1.5rem;
+            transition: background-color 0.3s ease;
         }
 
-        nav a:hover {
-            color: #ffcc00;
+        nav a:hover, nav a.active {
+            background-color: #1b42a8;
         }
 
         main {
@@ -83,11 +89,12 @@ $userName = $_SESSION['user_name'];
 
         .profile-details h2, .profile-actions h2 {
             margin-bottom: 15px;
-            color: #00274d;
+            color: #152d65;
         }
 
         .profile-details ul {
             list-style: none;
+            padding: 0;
         }
 
         .profile-details li {
@@ -98,14 +105,14 @@ $userName = $_SESSION['user_name'];
             display: inline-block;
             padding: 10px 15px;
             color: #fff;
-            background-color: #00274d;
+            background-color: #152d65;
             text-decoration: none;
             border-radius: 3px;
             transition: background-color 0.3s ease;
         }
 
         .btn:hover {
-            background-color: #ffcc00;
+            background-color: #1b42a8;
         }
 
         .btn-danger {
@@ -122,9 +129,11 @@ $userName = $_SESSION['user_name'];
     <div class="container">
         <h1>Mon Profil</h1>
         <nav>
-            <a href="../views/accueilConnect.php">Page d'accueil</a>
-            <a href="../views/tableaudebord.php">Tableau de bord</a>
-            <a href="../views/gestiondesstages.php">Gestion de stage</a>
+            <ul>
+                <li><a href="accueilConnect.php">Page d'accueil</a></li>
+                <li><a href="tableaudebord.php">Tableau de bord</a></li>
+                <li><a href="gestiondesstages.php">Gestion de stage</a></li>
+            </ul>
         </nav>
     </div>
 </header>
@@ -137,8 +146,8 @@ $userName = $_SESSION['user_name'];
     </section>
     <section class="profile-actions">
         <h2>Actions</h2>
-        <a href="views/profil.php" class="btn">Modifier mes informations</a>
-        <a href="views/logout.php" class="btn btn-danger">Se déconnecter</a>
+        <a href="profil.php" class="btn">Modifier mes informations</a>
+        <a href="?action=logout" class="btn btn-danger">Se déconnecter</a>
     </section>
 </main>
 </body>
