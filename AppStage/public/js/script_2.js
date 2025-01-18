@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (linkText === 'Tableau de bord') {
                 window.location.href = '../AppStage/views/tableaudebord.php';
             } else if (linkText === 'Gestion des stages') {
-                window.location.href = '../AppStage/views/gestiondestages.php';
+                window.location.href = '../views/gestiondestages.php';
             } else if (linkText === 'Accueil') {
                 window.location.href = '../AppStage/views/accueilConnect.php';
             }
@@ -71,27 +71,37 @@ document.addEventListener('DOMContentLoaded', function () {
     // Gestion du menu profil
     const profileLogo = document.getElementById('profile-logo');
     const profileMenu = document.getElementById('profile-menu');
+    const logoutBtn = document.getElementById('logout-btn');
 
-    if (profileLogo && profileMenu) {
-        profileLogo.addEventListener('click', function () {
-            profileMenu.classList.toggle('show');
-        });
+     // Afficher/masquer le menu de profil
+    profileLogo?.addEventListener('click', function () {
+        const profile = this.parentElement;
+        profile.classList.toggle('active');
+    });
 
-        document.addEventListener('click', function (event) {
-            if (!profileLogo.contains(event.target) && !profileMenu.contains(event.target)) {
-                profileMenu.classList.remove('show');
-            }
-        });
-    }
-
-    // Gestion de la déconnexion
     const logoutButton = document.getElementById('logout-btn');
-    if (logoutButton) {
-        logoutButton.addEventListener('click', function (event) {
-            event.preventDefault();
-            if (confirm("Voulez-vous vraiment vous déconnecter ?")) {
-                window.location.href = 'connexion.php';
-            }
-        });
-    }
+
+     // Gérer la déconnexion
+    logoutBtn?.addEventListener('click', function (event) {
+        event.preventDefault();
+        if (confirm("Voulez-vous vraiment vous déconnecter ?")) {
+            fetch('/GestionDesStagesProject/AppStage/views/logout.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message);
+                        window.location.href = '/GestionDesStagesProject/AppStage/views/connexion.php';
+                    } else {
+                        alert("Erreur lors de la déconnexion.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Erreur API :", error);
+                    alert("Une erreur est survenue.");
+                });
+        }
+    });
 });

@@ -1,15 +1,15 @@
 <?php
     session_start();
-    // Vérifiez si l'utilisateur est connecté
+    // connecté ou pas
     if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role'])) {
         header("Location: connexion.php");
         exit();
     }
 
-    // Récupérez le rôle de l'utilisateur
+    // on recupere le rôle de l'utilisateur pour lui faire choisir sa vue ensuite
     $role = $_SESSION['user_role'];
 
-    // Afficher une vue en fonction du rôle
+    // je compte faire afficher les vues avec le fameux switch ($role)
     switch ($role) {
         case 'etudiant':
             include 'gds/gds_etudiant.php';

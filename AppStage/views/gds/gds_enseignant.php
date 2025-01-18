@@ -1,36 +1,15 @@
-<?php 
+<?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Vérifier si l'utilisateur est connecté et est un étudiant
-if ($_SESSION['user_role'] !== 'etudiant') {
+// Vérifier si l'utilisateur est connecté et est un enseignant
+if ($_SESSION['user_role'] !== 'enseignant') {
     header("Location: connexion.php");
     exit();
 }
-
-// Connexion à la base de données
-require_once '../includes/db_connect.php';
-
-try {
-    // Récupérer les informations du stage de l'étudiant
-    $stmt = $pdo->prepare("SELECT * FROM Stage WHERE Id_Etudiant = :id_etudiant");
-    $stmt->bindParam(':id_etudiant', $_SESSION['user_id'], PDO::PARAM_INT);
-    $stmt->execute();
-    $stage = $stmt->fetch(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    die("Erreur : " . $e->getMessage());
-}
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de bord Étudiant</title>
-    <link rel="stylesheet" href="../public/css/tdb_etudiant.css">
-</head>
-<body>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -45,8 +24,8 @@ try {
             <nav>
                 <ul>
                     <li><a href="../views/accueilConnect.php">Accueil</a></li>
-                    <li><a href="../views/tableaudebord.php">Tableau de bord</a></li>
-                    <li><a href="../views/gestiondestages.php" class="active">Gestion des stages</a></li>
+                    <li><a href="../views/tableaudebord.php" >Tableau de bord</a></li>
+                    <li><a href="../views/gestiondesstages.php" class="active">Gestion des stages</a></li>
                 </ul>
             </nav>
             <!-- Logo de profil -->
@@ -55,19 +34,13 @@ try {
                 <!-- Menu déroulant -->
                 <div class="profile-menu" id="profile-menu">
                     <a href="../views/profil.php">Voir le profil</a>
-                    <a href="../views/connexion.php">Se connecter</a>
-                    <a href="../views/logout.php" id="logout-btn">Se déconnecter</a>
+                    <a href="../../../logoutphp">Se déconnecter</a>
                 </div>
             </div>
         </div>
     </header>
-        <!-- Contenu principal -->
-        <main class="main-content">
-            <header class="header">
-                <h1>Hi <?= htmlspecialchars($_SESSION['user_name']) ?> ! Welcome Back</h1>
-            </header>
-    </div>
-    <script src="../public/js/tdb_etudiant.js"></script>
+    <h1>Bienvenue Enseignant, <?= htmlspecialchars($_SESSION['user_name']) ?></h1>
+    <p>Voici votre tableau de bord enseignant.</p>
+    <script> src="../public/js/script_2.js"></script>
 </body>
 </html>
-
