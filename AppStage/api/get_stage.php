@@ -18,13 +18,26 @@ try {
     // Récupérer les informations du stage de l'étudiant
     $stmt = $pdo->prepare("
         SELECT Stage.mission, Stage.date_debut, Stage.date_fin, Entreprise.adresse, Entreprise.ville,
+         Entreprise.tel AS telEntreprise,
          Utilisateur.nom AS NomTuteurEntreprise,
         Utilisateur.telephone AS TelTuteurEntreprise,
-         Utilisateur.email AS EmailTuteurEntreprise
+         Utilisateur.email AS EmailTuteurEntreprise,
+         utilisateur2.nom AS nomTuteurPedagogique,
+         utilisateur2.prenom AS prenomTuteurPedagogique,
+          utilisateur2.email AS EmailTuteurPedagogique,
+          Stage.date_soutenance,Stage.salle_Soutenance,
+        Etudiant.Id_Etudiant,
+        Utilisateur3.nom AS nomEtudiant,
+        Utilisateur3.prenom AS prenomEtudiant
+
         FROM Stage
         JOIN Tuteur_Entreprise ON Stage.Id_TuteurEntreprise = Tuteur_Entreprise.Id_TuteurEntreprise
         JOIN Entreprise ON Tuteur_Entreprise.Id_Entreprise = Entreprise.Id_Entreprise
          JOIN Utilisateur ON Tuteur_Entreprise.Id_TuteurEntreprise = Utilisateur.Id
+         JOIN Utilisateur AS utilisateur2 ON Stage.Id_Enseignant = utilisateur2.Id
+          JOIN Etudiant ON Stage.Id_Etudiant = Etudiant.Id_Etudiant
+           JOIN Utilisateur AS utilisateur3 ON Etudiant.Id_Etudiant = utilisateur3.Id
+
         WHERE Stage.Id_Etudiant = :id_etudiant
     ");
     $stmt->bindParam(':id_etudiant', $_SESSION['user_id'], PDO::PARAM_INT);
