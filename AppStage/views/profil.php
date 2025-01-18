@@ -33,11 +33,6 @@ $userName = $_SESSION['user_name']; // Exemple : ['nom' => 'John Doe', 'email' =
             <li><strong>Nom :</strong> <?php echo htmlspecialchars($userName); ?></li>
         </ul>
     </section>
-    <section class="profile-actions">
-        <h2>Actions</h2>
-        <a href="views/profil.php" class="btn">Modifier mes informations</a>
-        <a href="views/logout.php" class="btn btn-danger">Se déconnecter</a>
-    </section>
 </main>
 </body>
 </html>
