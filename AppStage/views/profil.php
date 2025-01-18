@@ -123,8 +123,8 @@ $userName = $_SESSION['user_name'];
         <h1>Mon Profil</h1>
         <nav>
             <a href="../views/accueilConnect.php">Page d'accueil</a>
-            <a href="../views/dashboard.php">Tableau de bord</a>
-            <a href="../views/gestionStage.php">Gestion de stage</a>
+            <a href="../views/tableaudebord.php">Tableau de bord</a>
+            <a href="../views/gestiondesstages.php">Gestion de stage</a>
         </nav>
     </div>
 </header>
