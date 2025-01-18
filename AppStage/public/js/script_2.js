@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const logoutButton = document.getElementById('logout-btn');
 
-     // Gérer la déconnexion
+    // Gérer la déconnexion
     logoutBtn?.addEventListener('click', function (event) {
         event.preventDefault();
         if (confirm("Voulez-vous vraiment vous déconnecter ?")) {

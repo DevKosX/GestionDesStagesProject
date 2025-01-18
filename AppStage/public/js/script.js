@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                     if (data.success) {
                         alert(data.message);
-                        window.location.href = '../views/connexion.php';
+                        window.location.href = '/GestionDesStagesProject/AppStage/views/connexion.php';
                     } else {
                         alert("Erreur lors de la déconnexion.");
                     }

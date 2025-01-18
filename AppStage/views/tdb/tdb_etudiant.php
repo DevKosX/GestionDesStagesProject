@@ -80,11 +80,13 @@ try {
                 <li><a href="../gestiondestages.php">Gestion des stages</a></li>
             </ul>
         </nav>
+        <!-- Logo de profil -->
         <div class="profile">
-            <img src="../../public/images/profile-icon.png" alt="Profil" id="profile-logo">
+            <img src="public/images/profile-icon.png" alt="Profil" id="profile-logo">
+            <!-- Menu déroulant -->
             <div class="profile-menu" id="profile-menu">
-                <a href="../profil.php">Voir le profil</a>
-                <a href="../connexion.php" id="logout-btn">Se déconnecter</a>
+                <a href="/GestionDesStagesProject/AppStage/views/profil.php">Voir le profil</a>
+                <a href="/GestionDesStagesProject/AppStage/views/connexion.php" id="logout-btn">Se déconnecter</a>
             </div>
         </div>
     </div>
@@ -129,7 +131,7 @@ try {
     </div>
 </main>
 
-<script src="/GestionDesStagesProject/AppStage/public/js/tdb_etudiant.js"></script>
+<script src="/GestionDesStagesProject/AppStage/public/js/script_2.js"></script>
 
 </body>
 </html>

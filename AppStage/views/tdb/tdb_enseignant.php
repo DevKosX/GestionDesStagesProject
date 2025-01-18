@@ -30,11 +30,11 @@ if ($_SESSION['user_role'] !== 'enseignant') {
             </nav>
             <!-- Logo de profil -->
             <div class="profile">
-                <img src="../public/images/profile-icon.png" alt="Profil" id="profile-logo">
+                <img src="/GestionDesStagesProject/AppStage/public/images/profile-icon.png" alt="Profil" id="profile-logo">
                 <!-- Menu déroulant -->
                 <div class="profile-menu" id="profile-menu">
-                    <a href="../views/profil.php">Voir le profil</a>
-                    <a href="../../logout.php" id="logout-btn">Se déconnecter</a>
+                    <a href="/GestionDesStagesProject/AppStage/views/profil.php">Voir le profil</a>
+                    <a href="/GestionDesStagesProject/AppStage/views/logout.php" id="logout-btn">Se déconnecter</a>
                 </div>
             </div>
         </div>
