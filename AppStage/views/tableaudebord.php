@@ -17,7 +17,7 @@
         case 'enseignant':
             include 'tdb/tdb_enseignant.php';
             break;
-        case 'admin':
+        case 'administrateur':
             include 'tdb/tdb_admin.php';
             break;
         default:
