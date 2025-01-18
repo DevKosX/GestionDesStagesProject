@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (linkText === 'Tableau de bord') {
                 window.location.href = '../views/tableaudebord.php';
             } else if (linkText === 'Gestion des stages') {
-                window.location.href = '../views/gestiondestages.php';
+                window.location.href = '../views/gestiondesstages.php';
             } else if (linkText === 'Accueil') {
                 window.location.href = '../views/accueilConnect.php';
             }

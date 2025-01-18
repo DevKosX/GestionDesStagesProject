@@ -21,8 +21,8 @@ if (!isset($_SESSION['user_id'])) {
     <div class="container">
         <nav>
             <ul>
-                 <li><a href="../views/accueilConnect.php" class="active">Accueil</a></li>
-                <li><a href="../views/tableaudebord.php">Tableau de bord</a></li>
+                 <li><a href="accueilConnect.php" class="active">Accueil</a></li>
+                <li><a href="tableaudebord.php">Tableau de bord</a></li>
                 <li><a href="gestiondesstages.php">Gestion des stages</a></li>
             </ul>
         </nav>
