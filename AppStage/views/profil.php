@@ -63,14 +63,12 @@ $userName = $_SESSION['user_name'];
         nav a {
             color: #fff;
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-size: 1.5rem;
-            transition: background-color 0.3s ease;
+            font-size: 1rem;
+            transition: color 0.3s ease;
         }
 
-        nav a:hover, nav a.active {
-            background-color: #1b42a8;
+        nav a:hover {
+            color: #ffcc00;
         }
 
         main {
@@ -89,12 +87,11 @@ $userName = $_SESSION['user_name'];
 
         .profile-details h2, .profile-actions h2 {
             margin-bottom: 15px;
-            color: #152d65;
+            color: #00274d;
         }
 
         .profile-details ul {
             list-style: none;
-            padding: 0;
         }
 
         .profile-details li {
@@ -105,14 +102,14 @@ $userName = $_SESSION['user_name'];
             display: inline-block;
             padding: 10px 15px;
             color: #fff;
-            background-color: #152d65;
+            background-color: #00274d;
             text-decoration: none;
             border-radius: 3px;
             transition: background-color 0.3s ease;
         }
 
         .btn:hover {
-            background-color: #1b42a8;
+            background-color: #ffcc00;
         }
 
         .btn-danger {
