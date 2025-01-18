@@ -1,4 +1,4 @@
-<?php 
+<?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -15,23 +15,18 @@ if ($_SESSION['user_role'] !== 'etudiant') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de bord Étudiant</title>
-    <link rel="stylesheet" href="../../public/css/tdb_etudiant.css">
+       <link rel="stylesheet" href="../../public/css/gds_etudiant.css">
+       <link rel="stylesheet" href="../../public/css/accueil.css">
+       
+         
 </head>
-<body>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plateforme de gestion des stages</title>
-    <link rel="stylesheet" href="../../public/css/accueil.css">
-</head>
+
 <body>
     <header>
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="../accueilConnect.php">Accueil</a></li>
+                     <li><a href="../accueilConnect.php">Accueil</a></li>
                     <li><a href="../tableaudebord.php">Tableau de bord</a></li>
                     <li><a href="../gestiondestages.php" class="active">Gestion des stages</a></li>
                 </ul>
@@ -49,7 +44,7 @@ if ($_SESSION['user_role'] !== 'etudiant') {
     </header>
         <!-- Contenu principal -->
         <main class="main-content">
-            <header class="header">
+            
                  <h1>Gestion des Stages(point de vue étudiant)</h1>
                  <div id="content-area"></div>
              </header>

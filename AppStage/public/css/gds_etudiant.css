@@ -1,0 +1,83 @@
+/* Style général */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+
+}
+
+/* Conteneur principal */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Contenu principal */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    color: #152d65;
+    font-size: 2em;
+    text-align: center;
+}
+
+/* Section informations */
+.stage-info {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stage-info h2 {
+    color: #152d65;
+    margin-bottom: 15px;
+    text-align: left;
+    font-size: 1.5em;
+}
+.stage-info h3 {
+    color: #152d65;
+    margin-bottom: 15px;
+    text-align: left;
+     font-size: 1.2em;
+}
+.stage-info ul{
+    list-style-type: none;
+    text-align: left;
+}
+
+.stage-info ul li{
+  margin-bottom: 5px;
+}
+
+
+.stage-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.stage-table th,
+.stage-table td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.stage-table th {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.stage-table td {
+    background-color: #fff;
+    color: #555;
+}
