@@ -1,49 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const contentArea = document.getElementById('content-area'); // Zone où les informations sont affichées
-    const monStageBtn = document.getElementById('mon-stage-btn'); // Bouton pour afficher "Votre stage"
-    const deposerRapportBtn = document.getElementById('deposer-rapport-btn'); // Bouton pour afficher "Déposer le rapport"
+    const notificationDiv = document.getElementById('notifications');
+    const notificationList = document.getElementById('notification-list');
 
-    // Fonction pour afficher les informations du stage
-    monStageBtn.addEventListener('click', function (event) {
-        event.preventDefault(); // Empêche le comportement par défaut du lien
-        fetch('../views/api_stage.php') // Remplacez par le chemin correct de l'API
+    // Fonction pour charger les notifications
+    function loadNotifications() {
+        fetch('/GestionDesStagesProject/AppStage/api/get_notifications.php')
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Erreur lors de la récupération des données.');
+                    throw new Error('Erreur lors de la récupération des notifications.');
                 }
                 return response.json();
             })
             .then(data => {
+                console.log(data); // Debugging
                 if (data.error) {
-                    contentArea.innerHTML = `<p>${data.error}</p>`;
+                    console.error(data.error);
+                } else if (data.length > 0) {
+                    // Afficher les notifications
+                    notificationDiv.style.display = 'block';
+                    notificationList.innerHTML = ''; // Efface les anciennes notifications
+                    data.forEach(notification => {
+                        const li = document.createElement('li');
+                        li.textContent = `${notification.action} à réaliser avant le ${notification.date_echeance}`;
+                        notificationList.appendChild(li);
+                    });
                 } else {
-                    // Afficher les informations du stage dans le contentArea
-                    contentArea.innerHTML = `
-                        <h2>Votre stage</h2>
-                        <p><strong>Mission :</strong> ${data.mission}</p>
-                        <p><strong>Date de début :</strong> ${data.date_debut}</p>
-                        <p><strong>Date de fin :</strong> ${data.date_fin}</p>
-                        <p><strong>Adresse :</strong> ${data.adresse}, ${data.ville}</p>
-                    `;
+                    // Cacher les notifications s'il n'y en a pas
+                    notificationDiv.style.display = 'none';
                 }
             })
             .catch(error => {
-                console.error('Erreur lors du chargement des données :', error);
-                contentArea.innerHTML = `<p>Une erreur est survenue. Veuillez réessayer plus tard.</p>`;
+                console.error('Erreur lors du chargement des notifications :', error);
             });
-    });
+    }
 
-    // Fonction pour afficher le formulaire de dépôt de rapport
-    deposerRapportBtn.addEventListener('click', function (event) {
-        event.preventDefault(); // Empêche le comportement par défaut du lien
-        contentArea.innerHTML = `
-            <h2>Déposer votre rapport</h2>
-            <form action="../views/deposer_rapport.php" method="POST" enctype="multipart/form-data">
-                <label for="rapport">Télécharger votre rapport :</label>
-                <input type="file" id="rapport" name="rapport" required>
-                <br><br>
-                <button type="submit">Déposer</button>
-            </form>
-        `;
-    });
+    // Charger les notifications lors du chargement de la page
+    loadNotifications();
+
+    // Rafraîchir les notifications toutes les 30 secondes
+    setInterval(loadNotifications, 30000);
 });
