@@ -76,5 +76,10 @@ L'application permet de gérer le cycle de vie complet d'un stage :
 
 *   David, Mohamed, Mohamed, Mohamed, Yacine, Moilim
 
+## Mots de passe
+* Nous avons 3 vues, 
+* Le compte de l'étudiant est jean.dupont@example.com et le mot de passe est 123
+* Le compte de l'enseignant est sophie.martin@example.com et le mot de passe est 123
+* Le compte de l'adminstrateur est fatou.poirier@example.com et le mot de passe est 123
 
 
