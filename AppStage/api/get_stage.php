@@ -15,6 +15,17 @@ if ($_SESSION['user_role'] !== 'etudiant' && $_SESSION['user_role'] !== 'adminis
 require_once '../includes/db_connect.php';
 
 try {
+     // Déterminer l'ID de l'étudiant à utiliser
+     if ($_SESSION['user_role'] === 'administrateur') {
+        if (!isset($_GET['Id_Etudiant'])) {
+            echo json_encode(['error' => 'ID étudiant manquant.']);
+            exit();
+        }
+        $id_etudiant = $_GET['Id_Etudiant'];
+    } else {
+        $id_etudiant = $_SESSION['user_id'];
+    }
+
     // Récupérer les informations du stage de l'étudiant
     $stmt = $pdo->prepare("
        SELECT Stage.mission, Stage.date_debut, Stage.date_fin, Entreprise.adresse, Entreprise.ville,
@@ -39,7 +50,7 @@ try {
            JOIN Utilisateur AS utilisateur3 ON Etudiant.Id_Etudiant = utilisateur3.Id
         WHERE Stage.Id_Etudiant = :id_etudiant
     ");
-    $stmt->bindParam(':id_etudiant', $_SESSION['user_id'], PDO::PARAM_INT);
+    $stmt->bindParam(':id_etudiant', $id_etudiant, PDO::PARAM_INT);
     $stmt->execute();
     $stage = $stmt->fetch(PDO::FETCH_ASSOC);
 
