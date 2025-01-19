@@ -3,8 +3,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Vérifier si l'utilisateur est connecté et est un enseignant
-if ($_SESSION['user_role'] !== 'enseignant') {
+// Vérifier si l'utilisateur est connecté et est un administrateur
+if ($_SESSION['user_role'] !== 'administrateur') {
     header("Location: connexion.php");
     exit();
 }
@@ -34,13 +34,13 @@ if ($_SESSION['user_role'] !== 'enseignant') {
                 <!-- Menu déroulant -->
                 <div class="profile-menu" id="profile-menu">
                     <a href="../views/profil.php">Voir le profil</a>
-                    <a href="../logoutphp">Se déconnecter</a>
+                    <a href="../../../logoutphp">Se déconnecter</a>
                 </div>
             </div>
         </div>
     </header>
-    <h1>Bienvenue Enseignant, <?= htmlspecialchars($_SESSION['user_name']) ?></h1>
-    <p>Voici votre tableau de bord enseignant.</p>
+    <h1>Bienvenue Administrateur, <?= htmlspecialchars($_SESSION['user_name']) ?></h1>
+    <p>Voici votre espace de gestion des stages.</p>
     <script src="../public/js/script_2.js"></script>
 </body>
 </html>

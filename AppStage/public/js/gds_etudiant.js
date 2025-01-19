@@ -19,31 +19,23 @@ document.addEventListener('DOMContentLoaded', function () {
                          <br>
                         <h3>Coordonnées de l'entreprise :</h3>
                          <ul>
-                              <li><strong>Nom de l'entreprise :</strong> Thales</li>
+                              
                                 <li><strong>Adresse :</strong> ${data.adresse}, ${data.ville} </li>
-                                 <li><strong>Télépone :</strong> +33 1 23 45 67 89</li>
-                                <li><strong>Email :</strong> contact@techninnov-solutions.com</li>
+                                <li><strong>Téléphone :</strong> ${data.telEntreprise}</li>
                                  <li><strong>Nom du tuteur en entreprise :</strong> ${data.NomTuteurEntreprise}</li>
-                                <li><strong>Poste :</strong> Responsable des Projets Numériques</li>
-                                 <li><strong>Téléphone :</strong> ${data.TelTuteurEntreprise}</li>
+                                 <li><strong>Téléphone du Tuteur Entreprise :</strong> ${data.TelTuteurEntreprise}</li>
                                  <li><strong>Email :</strong> ${data.EmailTuteurEntreprise}</li>
                         </ul>
                     <br>
                         <h3>Historique de stage :</h3>
                          <ul>
-                                <li><strong>Éudiant :</strong> Marie Lefebvre</li>
-                                <li><strong>Entreprise :</strong> TechInnov Solutions</li>
-                                <li><strong>Période :</strong> 01 Mars 2023 – 15 Juin 2023 (Semestre 4)</li>
-                                <li><strong>Missions :</strong> Participation au développement d’une plateforme web de gestion des ressources humaines.</li>
+                                <li><strong>Éudiant :</strong> ${data.prenomEtudiant} ${data.nomEtudiant}</li>
+                                <li><strong>Période :</strong> ${data.date_debut} – ${data.date_fin}</li>
+                                <li><strong>Missions :</strong> ${data.mission}</li>
                                  <br>
                              <li><strong>Avancement :</strong></li>
                                 <ul>
-                                  <li>  <strong>Compte rendu d'installation :</strong> Réalisé le 05 Mars 2023.</li>
-                                    <li> <strong>Prise de contact avec l'entreprise :</strong> Effectuée le 08 Mars 2023.</li>
-                                    <li> <strong>Entretien de mi-parcours :</strong> Réalisé en visioconférence le 20 Avril 2023.</li>
-                                  <li><strong>Rapport de stage :</strong> Déposé le 10 Juin 2023.</li>
-                                  <li><strong>Soutenance :</strong> Prévue le 18 Juin 2023.</li>
-                                  <li><strong>Évaluation finale :</strong> Très bon (17/20), bonne intégration dans l'entreprise.</li>
+                                <li><strong>Soutenance :</strong> Prévue le ${data.date_soutenance} en ${data.salle_Soutenance}</li>
                              </ul>
                          </ul>
                     `;
@@ -53,4 +45,41 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Erreur lors du chargement des données :', error);
                 contentArea.innerHTML = `<p>Une erreur est survenue. Veuillez réessayer plus tard.</p>`;
             });
+
+    // Gestion du menu profil
+    const profileLogo = document.getElementById('profile-logo');
+    const profileMenu = document.getElementById('profile-menu');
+    const logoutBtn = document.getElementById('logout-btn');
+
+     // Afficher/masquer le menu de profil
+    profileLogo?.addEventListener('click', function () {
+        const profile = this.parentElement;
+        profile.classList.toggle('active');
+    });
+
+    const logoutButton = document.getElementById('logout-btn');
+
+    // Gérer la déconnexion
+    logoutBtn?.addEventListener('click', function (event) {
+        event.preventDefault();
+        if (confirm("Voulez-vous vraiment vous déconnecter ?")) {
+            fetch('/GestionDesStagesProject/AppStage/views/logout.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    window.location.href = '/GestionDesStagesProject/AppStage/index.php';
+                } else {
+                    alert("Erreur lors de la déconnexion.");
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                alert("Erreur lors de la déconnexion.");
+            });
+        }
+    });
 });

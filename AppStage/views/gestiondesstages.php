@@ -17,7 +17,7 @@
         case 'enseignant':
             include 'gds/gds_enseignant.php';
             break;
-        case 'admin':
+        case 'administrateur':
             include 'gds/gds_admin.php';
             break;
         default:
