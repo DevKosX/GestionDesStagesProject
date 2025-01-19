@@ -37,8 +37,38 @@ document.addEventListener('DOMContentLoaded', function () {
     // Charger les notifications lors du chargement de la page
     loadNotifications();
 
-    // Rafraîchir les notifications toutes les 30 secondes
-    setInterval(loadNotifications, 30000);
+    // Rafraîchir les notifications toutes les 20 secondes
+    setInterval(loadNotifications, 15000);
+
+    // Gestion des notifications pour l'enseignant
+    const teacherNotificationDiv = document.getElementById('teacher-notifications');
+    const teacherNotificationList = document.getElementById('teacher-notification-list');
+
+    function loadTeacherNotifications() {
+        console.log('Chargement des notifications pour l\'enseignant...');
+        fetch('/GestionDesStagesProject/AppStage/api/get_notifications_enseignant.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error('Erreur lors du chargement des notifications :', data.error);
+                } else if (data.length > 0) {
+                    teacherNotificationDiv.style.display = 'block';
+                    teacherNotificationList.innerHTML = '';
+                    data.forEach(notification => {
+                        const li = document.createElement('li');
+                        li.textContent = `${notification.student_name} a déposé un fichier pour ${notification.action_name}`;
+                        teacherNotificationList.appendChild(li);
+                    });
+                } else {
+                    console.log('Aucune notification pour l\'enseignant.');
+                    teacherNotificationDiv.style.display = 'none';
+                }
+            })
+            .catch(error => console.error('Erreur lors du chargement des notifications :', error));
+    }
+
+    // Charger les notifications pour l'enseignant au chargement de la page
+    loadTeacherNotifications();
 
     // Gestion des liens de navigation
     const navLinks = document.querySelectorAll('header nav ul li a');
