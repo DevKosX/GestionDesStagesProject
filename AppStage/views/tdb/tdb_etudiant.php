@@ -3,6 +3,11 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Activer l'affichage des erreurs pour le débogage
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Vérifier si l'utilisateur est connecté et est un étudiant
 if ($_SESSION['user_role'] !== 'etudiant') {
     header("Location: ../connexion.php");
@@ -11,6 +16,19 @@ if ($_SESSION['user_role'] !== 'etudiant') {
 
 // Connexion à la base de données
 require_once $_SERVER['DOCUMENT_ROOT'] . '/GestionDesStagesProject/AppStage/includes/db_connect.php';
+
+// Réinitialiser est_notifie à 0 pour l'étudiant connecté
+try {
+    $resetStmt = $pdo->prepare("
+        UPDATE action 
+        SET est_notifie = 0 
+        WHERE Id_Etudiant = :id_etudiant
+    ");
+    $resetStmt->bindParam(':id_etudiant', $_SESSION['user_id'], PDO::PARAM_INT);
+    $resetStmt->execute();
+} catch (PDOException $e) {
+    die("Erreur lors de la réinitialisation des notifications : " . $e->getMessage());
+}
 
 $upload_message = null;
 
@@ -80,7 +98,7 @@ try {
             </ul>
         </nav>
         <div class="profile">
-            <img src="../public/images/profile-icon.png" alt="Profil" id="profile-logo">
+            <img src="/GestionDesStagesProject/AppStage/public/images/profile-icon.png" alt="Profil" id="profile-logo">
             <div class="profile-menu" id="profile-menu">
                 <a href="../views/profil.php">Voir le profil</a>
                 <a href="../views/connexion.php" id="logout-btn">Se déconnecter</a>
@@ -90,7 +108,11 @@ try {
 </header>
 
 <main class="main-content">
-    <h1>Bienvenue, <?= htmlspecialchars($_SESSION['user_name']) ?> !</h1>
+    <!-- Notifications -->
+    <div id="notifications" style="display: none; background-color: #f9f9f9; padding: 10px; margin-bottom: 20px;">
+        <h2>Notifications</h2>
+        <ul id="notification-list"></ul>
+    </div>
 
     <div id="content-area">
         <h2>Mes Actions</h2>
@@ -99,8 +121,8 @@ try {
                 <?php foreach ($actions as $action): ?>
                     <li>
                         <h3><?= htmlspecialchars($action['libelle']) ?></h3>
-                        <p>Date de rendu : <?= htmlspecialchars($action['date_realisation']) ?></p>
-                        <p>Envoyé le : <?= !empty($action['lienDocument']) ? 'Fichier envoyé' : 'Non rendu' ?></p>
+                        <p>Date de rendu : <?= !empty($action['date_realisation']) ? htmlspecialchars($action['date_realisation']) : 'Non défini' ?></p>
+                        <p>Etat : <?= !empty($action['lienDocument']) ? 'Fichier envoyé' : 'Non rendu' ?></p>
                         <form action="/GestionDesStagesProject/AppStage/views/tdb/tdb_etudiant.php" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="Id_Action" value="<?= htmlspecialchars($action['Id_Action']) ?>">
                             <label for="lienDocument">Joindre un fichier :</label>
@@ -122,6 +144,6 @@ try {
     </div>
 </main>
 
-<script src="../public/js/script_2.js"></script>
+<script src="/GestionDesStagesProject/AppStage/public/js/script_2.js"></script>
 </body>
 </html>

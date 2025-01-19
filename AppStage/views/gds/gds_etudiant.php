@@ -45,9 +45,9 @@ if ($_SESSION['user_role'] !== 'etudiant') {
         <!-- Contenu principal -->
         <main class="main-content">
             
-                 <h1>Gestion des Stages(point de vue étudiant)</h1>
+                 <h1>Gestion des Stages</h1>
                  <div id="content-area"></div>
-                 <img src="../../public/images/image.png" alt="image de téléphone" style="position: absolute; top: 120px; right: 20px; width: 30%; height: auto;">
+                 <img src="../public/images/image.png" alt="image de téléphone" style="position: absolute; top: 120px; right: 20px; width: 30%; height: auto;">
              </header>
         </main>
     <script src="../public/js/gds_etudiant.js"></script>

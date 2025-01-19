@@ -116,6 +116,6 @@ catch (PDOException $e) {
                  </div>
                 <?php endif; ?>
     </div>
-    <script src="../../public/js/script_2.js"></script>
+    <script src="/GestionDesStagesProject/AppStage/public/js/script_2.js"></script>
 </body>
 </html>
