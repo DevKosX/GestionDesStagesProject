@@ -17,7 +17,7 @@ require_once '../includes/db_connect.php';
 try {
     // Récupérer les informations du stage de l'étudiant
     $stmt = $pdo->prepare("
-        SELECT Stage.mission, Stage.date_debut, Stage.date_fin, Entreprise.adresse, Entreprise.ville,
+       SELECT Stage.mission, Stage.date_debut, Stage.date_fin, Entreprise.adresse, Entreprise.ville,
          Entreprise.tel AS telEntreprise,
          Utilisateur.nom AS NomTuteurEntreprise,
         Utilisateur.telephone AS TelTuteurEntreprise,
@@ -37,7 +37,6 @@ try {
          JOIN Utilisateur AS utilisateur2 ON Stage.Id_Enseignant = utilisateur2.Id
           JOIN Etudiant ON Stage.Id_Etudiant = Etudiant.Id_Etudiant
            JOIN Utilisateur AS utilisateur3 ON Etudiant.Id_Etudiant = utilisateur3.Id
-
         WHERE Stage.Id_Etudiant = :id_etudiant
     ");
     $stmt->bindParam(':id_etudiant', $_SESSION['user_id'], PDO::PARAM_INT);
