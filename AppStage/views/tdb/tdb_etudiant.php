@@ -74,16 +74,16 @@ try {
     <div class="container">
         <nav>
             <ul>
-                <li><a href="/GestionDesStagesProject/AppStage/views/accueilConnect.php">Accueil</a></li>
-                <li><a href="/GestionDesStagesProject/AppStage/views/tableaudebord.php" class="active">Tableau de bord</a></li>
-                <li><a href="/GestionDesStagesProject/AppStage/views/gestiondestages.php">Gestion des stages</a></li>
+                <li><a href="../views/accueilConnect.php">Accueil</a></li>
+                <li><a href="../views/tableaudebord.php" class="active">Tableau de bord</a></li>
+                <li><a href="../views/gestiondestages.php">Gestion des stages</a></li>
             </ul>
         </nav>
         <div class="profile">
-            <img src="/GestionDesStagesProject/AppStage/public/images/profile-icon.png" alt="Profil" id="profile-logo">
+            <img src="../public/images/profile-icon.png" alt="Profil" id="profile-logo">
             <div class="profile-menu" id="profile-menu">
-                <a href="/GestionDesStagesProject/AppStage/views/profil.php">Voir le profil</a>
-                <a href="/GestionDesStagesProject/AppStage/views/connexion.php" id="logout-btn">Se déconnecter</a>
+                <a href="../views/profil.php">Voir le profil</a>
+                <a href="../views/connexion.php" id="logout-btn">Se déconnecter</a>
             </div>
         </div>
     </div>
@@ -122,6 +122,6 @@ try {
     </div>
 </main>
 
-<script src="/GestionDesStagesProject/AppStage/public/js/script_2.js"></script>
+<script src="../public/js/script_2.js"></script>
 </body>
 </html>

@@ -34,7 +34,7 @@ if ($_SESSION['user_role'] !== 'enseignant') {
                 <!-- Menu déroulant -->
                 <div class="profile-menu" id="profile-menu">
                     <a href="../views/profil.php">Voir le profil</a>
-                    <a href="../../../logoutphp">Se déconnecter</a>
+                    <a href="../logoutphp">Se déconnecter</a>
                 </div>
             </div>
         </div>
