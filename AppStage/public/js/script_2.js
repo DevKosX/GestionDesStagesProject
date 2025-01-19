@@ -59,11 +59,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const linkText = this.textContent.trim();
 
             if (linkText === 'Tableau de bord') {
-                window.location.href = '../views/tableaudebord.php';
+                window.location.href = '/GestionDesStagesProject/AppStage/views/tableaudebord.php';
             } else if (linkText === 'Gestion des stages') {
-                window.location.href = '../views/gestiondesstages.php';
+                window.location.href = '/GestionDesStagesProject/AppStage/views/gestiondesstages.php';
             } else if (linkText === 'Accueil') {
-                window.location.href = '../views/accueilConnect.php';
+                window.location.href = '/GestionDesStagesProject/AppStage/views/accueilConnect.php';
             }
         });
     });
