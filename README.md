@@ -39,7 +39,7 @@ L'application permet de gérer le cycle de vie complet d'un stage :
     ```
 
 2.  **Créer la base de données :**
-    *   Utilise le script SQL fourni dans le fichier `bdd.sql` pour créer la base de données sur ton serveur phpMyAdmin.
+    *   Utilise le script SQL fourni dans le fichier `stage.sql` pour créer la base de données sur ton serveur phpMyAdmin.
   
       
 ## Comment Exécuter le Projet
