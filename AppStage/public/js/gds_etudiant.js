@@ -53,4 +53,41 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Erreur lors du chargement des données :', error);
                 contentArea.innerHTML = `<p>Une erreur est survenue. Veuillez réessayer plus tard.</p>`;
             });
+
+    // Gestion du menu profil
+    const profileLogo = document.getElementById('profile-logo');
+    const profileMenu = document.getElementById('profile-menu');
+    const logoutBtn = document.getElementById('logout-btn');
+
+     // Afficher/masquer le menu de profil
+    profileLogo?.addEventListener('click', function () {
+        const profile = this.parentElement;
+        profile.classList.toggle('active');
+    });
+
+    const logoutButton = document.getElementById('logout-btn');
+
+    // Gérer la déconnexion
+    logoutBtn?.addEventListener('click', function (event) {
+        event.preventDefault();
+        if (confirm("Voulez-vous vraiment vous déconnecter ?")) {
+            fetch('/GestionDesStagesProject/AppStage/views/logout.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    window.location.href = '/GestionDesStagesProject/AppStage/index.php';
+                } else {
+                    alert("Erreur lors de la déconnexion.");
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                alert("Erreur lors de la déconnexion.");
+            });
+        }
+    });
 });
