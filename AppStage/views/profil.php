@@ -28,7 +28,7 @@ $userName = $_SESSION['user_name'];
     <link rel="stylesheet" href="../public/css/style.css">
     <style>
         body {
-            font-family :'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             margin: 0;
             line-height: 1.6;
             background-color: #f4f4f4;
@@ -63,12 +63,14 @@ $userName = $_SESSION['user_name'];
         nav a {
             color: #fff;
             text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 1.5rem;
+            transition: background-color 0.3s ease;
         }
 
-        nav a:hover {
-            color: #ffcc00;
+        nav a:hover, nav a.active {
+            background-color: #1b42a8;
         }
 
         main {
@@ -77,7 +79,7 @@ $userName = $_SESSION['user_name'];
             padding: 0 20px;
         }
 
-        .profile-details, .profile-actions {
+        .profile-details, .profile-actions, .password-update {
             background: #fff;
             padding: 20px;
             margin-bottom: 20px;
@@ -85,13 +87,14 @@ $userName = $_SESSION['user_name'];
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .profile-details h2, .profile-actions h2 {
+        .profile-details h2, .profile-actions h2, .password-update h2 {
             margin-bottom: 15px;
-            color: #00274d;
+            color: #152d65;
         }
 
         .profile-details ul {
             list-style: none;
+            padding: 0;
         }
 
         .profile-details li {
@@ -102,14 +105,14 @@ $userName = $_SESSION['user_name'];
             display: inline-block;
             padding: 10px 15px;
             color: #fff;
-            background-color: #00274d;
+            background-color: #152d65;
             text-decoration: none;
             border-radius: 3px;
             transition: background-color 0.3s ease;
         }
 
         .btn:hover {
-            background-color: #ffcc00;
+            background-color: #1b42a8;
         }
 
         .btn-danger {
@@ -118,6 +121,33 @@ $userName = $_SESSION['user_name'];
 
         .btn-danger:hover {
             background-color: #c0392b;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            padding: 10px 15px;
+            background-color: #152d65;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #1b42a8;
         }
     </style>
 </head>
@@ -145,6 +175,18 @@ $userName = $_SESSION['user_name'];
         <h2>Actions</h2>
         <a href="profil.php" class="btn">Modifier mes informations</a>
         <a href="?action=logout" class="btn btn-danger">Se déconnecter</a>
+    </section>
+    <section class="password-update">
+        <h2>Modifier mon mot de passe</h2>
+        <form action="update_password.php" method="POST">
+            <label for="current-password">Mot de passe actuel :</label>
+            <input type="password" id="current-password" name="current_password" required>
+            <label for="new-password">Nouveau mot de passe :</label>
+            <input type="password" id="new-password" name="new_password" required>
+            <label for="confirm-password">Confirmer le nouveau mot de passe :</label>
+            <input type="password" id="confirm-password" name="confirm_password" required>
+            <button type="submit">Mettre à jour</button>
+        </form>
     </section>
 </main>
 </body>
