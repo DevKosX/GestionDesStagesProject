@@ -11,15 +11,6 @@ if ($_SESSION['user_role'] !== 'etudiant' && $_SESSION['user_role'] !== 'adminis
     exit();
 }
 
-// Vérifiez si l'ID de l'étudiant est passé en paramètre
-if (!isset($_GET['Id_Etudiant'])) {
-    echo json_encode(['error' => 'ID étudiant manquant.']);
-    exit();
-}
-
-$id_etudiant = $_GET['Id_Etudiant'];
-error_log("ID étudiant: $id_etudiant");
-
 // Connexion à la base de données
 require_once '../includes/db_connect.php';
 
@@ -48,7 +39,7 @@ try {
            JOIN Utilisateur AS utilisateur3 ON Etudiant.Id_Etudiant = utilisateur3.Id
         WHERE Stage.Id_Etudiant = :id_etudiant
     ");
-    $stmt->bindParam(':id_etudiant', $id_etudiant, PDO::PARAM_INT);
+    $stmt->bindParam(':id_etudiant', $_SESSION['user_id'], PDO::PARAM_INT);
     $stmt->execute();
     $stage = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -58,7 +49,6 @@ try {
         echo json_encode(['error' => 'Aucune information de stage trouvée.']);
     }
 } catch (PDOException $e) {
-    error_log("Erreur lors de la récupération des données: " . $e->getMessage());
-    echo json_encode(['error' => 'Erreur lors de la récupération des données.']);
+    echo json_encode(['error' => 'Erreur interne : ' . $e->getMessage()]);
 }
 ?>
