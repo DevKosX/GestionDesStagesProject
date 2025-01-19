@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Vérifier si l'utilisateur est connecté et est un administrateur
-if ($_SESSION['user_role'] !== 'administrateur') {
+if ($_SESSION['user_role'] !== 'admin') {
     header("Location: connexion.php");
     exit();
 }
