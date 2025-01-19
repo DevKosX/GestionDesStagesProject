@@ -19,3 +19,4 @@ L'application permet de gérer le cycle de vie complet d'un stage :
 ## Technologies Utilisées
 
 *   **Langages :** PHP, JavaScript, HTML, CSS
+*   **Base de données :** phpMyAdmin
