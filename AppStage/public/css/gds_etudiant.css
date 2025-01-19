@@ -3,7 +3,6 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-
 }
 
 /* Conteneur principal */
@@ -18,6 +17,10 @@ body {
     padding: 20px;
     background-color: white;
     box-sizing: border-box;
+     display: flex;
+   flex-direction: row;
+   align-items: flex-start;
+    justify-content: space-between;
 }
 
 .header {
@@ -31,6 +34,10 @@ body {
 }
 
 /* Section informations */
+#content-area {
+     flex-grow: 1;
+    margin-right: 2rem;
+}
 .stage-info {
     background-color: #f8f8f8;
     padding: 20px;
@@ -80,4 +87,17 @@ body {
 .stage-table td {
     background-color: #fff;
     color: #555;
+}
+.image-container {
+    width: 40%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+   align-items: flex-start; /* On garde cette propriété pour aligner l'image */
+    
+}
+.image-container img{
+    width: 80%;
+    height: auto;
+    margin-right: 2rem;
 }
