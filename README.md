@@ -20,3 +20,52 @@ L'application permet de gérer le cycle de vie complet d'un stage :
 
 *   **Langages :** PHP, JavaScript, HTML, CSS
 *   **Base de données :** phpMyAdmin
+
+*   ## Installation et Configuration
+
+1.  **Cloner le dépôt (si le projet est sur GitHub ou autre) :**
+    ```bash
+    git clone https://github.com/DevKosX/GestionDesStagesProject.git
+
+    ```
+
+2.  **Créer la base de données :**
+    *   Utilise le script SQL fourni dans le fichier `bdd.sql` pour créer la base de données sur ton serveur phpMyAdmin.
+  
+    *   
+## Comment Exécuter le Projet
+
+1.  **Ouvre** ton navigateur web.
+2.  **Accède** à l'URL du projet, cela devrait lancer le fichier `index.php` qui sert de point d'entré.
+3.   Si tu n'es pas connecté, tu seras redirigé vers la page de connexion.
+
+## Accès aux différentes pages :
+
+1.  **Page d'accueil (index.php):**
+   * Affichage de la page d'accueil pour les non connectés, sinon redirige vers la page d'acceuil connecté.
+
+2.  **Page de connexion (connexion.php):**
+    *   Formulaire pour se connecter à la plateforme (récupération du role en cas de succès).
+
+3.  **Page d'accueil connectée (accueilConnect.php) :**
+    *   Page d'accueil principale, pour tout les utilisateur qui sont connectés.
+
+4.  **Tableau de bord (tableaudebord.php):**
+    *   Affiche le tableau de bord spécifique à chaque rôle (`tdb_etudiant.php`, `tdb_enseignant.php`, etc.) en fonction du rôle de l'utilisateur connecté.
+
+5.  **Gestion des stages (gestiondestages.php) :**
+    *   Affiche la page de gestion des stages spécifique à chaque rôle (`gds_etudiant.php`, `gds_enseignant.php`, etc.).
+
+6.  **Page de profil (profil.php):**
+    *  Affiche les information du profile de l'utilisateur.
+
+## Informations de sécurité
+
+*   **Mots de passe :** Les mots de passe sont stockés sous forme de hash avec la fonction `password_hash()` de PHP.
+
+*   ## Membres de l'équipe
+
+*   David, Mohamed, Mohamed, Mohamed, Yacine, Moilim
+
+
+
