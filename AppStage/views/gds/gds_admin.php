@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Vérifier si l'utilisateur est connecté et est un administrateur
-if ($_SESSION['user_role'] !== 'admin') {
+if ($_SESSION['user_role'] !== 'administrateur') {
     header("Location: connexion.php");
     exit();
 }
@@ -40,7 +40,7 @@ if ($_SESSION['user_role'] !== 'admin') {
         </div>
     </header>
     <h1>Bienvenue Administrateur, <?= htmlspecialchars($_SESSION['user_name']) ?></h1>
-    <p>Voici votre espace pour gérer les stages.</p>
+    <p>Voici votre espace de gestion des stages.</p>
     <script src="../public/js/script_2.js"></script>
 </body>
 </html>
