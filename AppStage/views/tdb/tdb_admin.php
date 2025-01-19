@@ -96,11 +96,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p style="color: green;"><?= htmlspecialchars($message) ?></p>
     <?php endif; ?>
 
-    <form action="tdb_admin.php" method="post">
-        <label for="Id_Annee">Année :</label>
+    <form action="/GestionDesStagesProject/AppStage/views/tdb/tdb_admin.php" method="post">
+        <label for="Id_Annee">iD Année :</label>
         <input type="number" id="Id_Annee" name="Id_Annee" required>
 
-        <label for="Id_Departement">Département :</label>
+        <label for="Id_Departement">ID Département :</label>
         <input type="number" id="Id_Departement" name="Id_Departement" required>
 
         <label for="numSemestre">Numéro du Semestre :</label>
