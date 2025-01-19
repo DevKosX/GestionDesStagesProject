@@ -173,7 +173,6 @@ $userName = $_SESSION['user_name'];
     </section>
     <section class="profile-actions">
         <h2>Actions</h2>
-        <a href="profil.php" class="btn">Modifier mes informations</a>
         <a href="?action=logout" class="btn btn-danger">Se déconnecter</a>
     </section>
     <section class="password-update">
