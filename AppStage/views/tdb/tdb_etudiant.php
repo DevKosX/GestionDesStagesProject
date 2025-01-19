@@ -90,7 +90,13 @@ try {
 </header>
 
 <main class="main-content">
-    <h1>Bienvenue, <?= htmlspecialchars($_SESSION['user_name']) ?> !</h1>
+    
+
+    <!-- Notifications -->
+    <div id="notifications" style="display: none; background-color: #f9f9f9; padding: 10px; margin-bottom: 20px;">
+        <h2>Notifications</h2>
+        <ul id="notification-list"></ul>
+    </div>
 
     <div id="content-area">
         <h2>Mes Actions</h2>
@@ -114,7 +120,7 @@ try {
                 <?php endforeach; ?>
             </ul>
             <?php if (!empty($upload_message)): ?>
-                <p class="success-message" style="color: green;"><?= htmlspecialchars($upload_message) ?></p>
+                <p class="success-message" style="color: green;"> <?= htmlspecialchars($upload_message) ?> </p>
             <?php endif; ?>
         <?php else : ?>
             <p>Aucune action pour le moment.</p>
@@ -122,6 +128,6 @@ try {
     </div>
 </main>
 
-<script src="../public/js/script_2.js"></script>
+<script src="/GestionDesStagesProject/AppStage/public/js/script_2.js"></script>
 </body>
 </html>
