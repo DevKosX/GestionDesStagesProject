@@ -11,7 +11,6 @@ if (!isset($_SESSION['user_id'])) {
 // Connexion à la base de données
 require_once $_SERVER['DOCUMENT_ROOT'] . '/GestionDesStagesProject/AppStage/includes/db_connect.php';
 
-
 try {
     // Récupérer les notifications non lues pour l'utilisateur
     $stmt = $pdo->prepare("
@@ -27,6 +26,7 @@ try {
         INNER JOIN stage s ON a.Id_Stage = s.Id_Stage
         WHERE a.Id_Etudiant = :id_etudiant 
           AND a.est_notifie = 0
+          AND a.lienDocument IS NULL
     ");
     $stmt->bindParam(':id_etudiant', $_SESSION['user_id'], PDO::PARAM_INT);
     $stmt->execute();
@@ -37,7 +37,7 @@ try {
         $updateStmt = $pdo->prepare("
             UPDATE action 
             SET est_notifie = 1 
-            WHERE Id_Etudiant = :id_etudiant AND est_notifie = 0
+            WHERE Id_Etudiant = :id_etudiant AND est_notifie = 0 AND lienDocument IS NULL
         ");
         $updateStmt->bindParam(':id_etudiant', $_SESSION['user_id'], PDO::PARAM_INT);
         $updateStmt->execute();
