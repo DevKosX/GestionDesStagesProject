@@ -3,6 +3,11 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Activer l'affichage des erreurs pour le débogage
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Vérifier si l'utilisateur est connecté et est un étudiant
 if ($_SESSION['user_role'] !== 'etudiant') {
     header("Location: ../connexion.php");
@@ -11,6 +16,19 @@ if ($_SESSION['user_role'] !== 'etudiant') {
 
 // Connexion à la base de données
 require_once $_SERVER['DOCUMENT_ROOT'] . '/GestionDesStagesProject/AppStage/includes/db_connect.php';
+
+// Réinitialiser est_notifie à 0 pour l'étudiant connecté
+try {
+    $resetStmt = $pdo->prepare("
+        UPDATE action 
+        SET est_notifie = 0 
+        WHERE Id_Etudiant = :id_etudiant
+    ");
+    $resetStmt->bindParam(':id_etudiant', $_SESSION['user_id'], PDO::PARAM_INT);
+    $resetStmt->execute();
+} catch (PDOException $e) {
+    die("Erreur lors de la réinitialisation des notifications : " . $e->getMessage());
+}
 
 $upload_message = null;
 
@@ -90,8 +108,6 @@ try {
 </header>
 
 <main class="main-content">
-    
-
     <!-- Notifications -->
     <div id="notifications" style="display: none; background-color: #f9f9f9; padding: 10px; margin-bottom: 20px;">
         <h2>Notifications</h2>
@@ -120,7 +136,7 @@ try {
                 <?php endforeach; ?>
             </ul>
             <?php if (!empty($upload_message)): ?>
-                <p class="success-message" style="color: green;"> <?= htmlspecialchars($upload_message) ?> </p>
+                <p class="success-message" style="color: green;"><?= htmlspecialchars($upload_message) ?></p>
             <?php endif; ?>
         <?php else : ?>
             <p>Aucune action pour le moment.</p>
