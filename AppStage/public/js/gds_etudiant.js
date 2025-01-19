@@ -19,31 +19,23 @@ document.addEventListener('DOMContentLoaded', function () {
                          <br>
                         <h3>Coordonnées de l'entreprise :</h3>
                          <ul>
-                              <li><strong>Nom de l'entreprise :</strong> Thales</li>
+                              
                                 <li><strong>Adresse :</strong> ${data.adresse}, ${data.ville} </li>
-                                 <li><strong>Télépone :</strong> +33 1 23 45 67 89</li>
-                                <li><strong>Email :</strong> contact@techninnov-solutions.com</li>
+                                <li><strong>Téléphone :</strong> ${data.telEntreprise}</li>
                                  <li><strong>Nom du tuteur en entreprise :</strong> ${data.NomTuteurEntreprise}</li>
-                                <li><strong>Poste :</strong> Responsable des Projets Numériques</li>
-                                 <li><strong>Téléphone :</strong> ${data.TelTuteurEntreprise}</li>
+                                 <li><strong>Téléphone du Tuteur Entreprise :</strong> ${data.TelTuteurEntreprise}</li>
                                  <li><strong>Email :</strong> ${data.EmailTuteurEntreprise}</li>
                         </ul>
                     <br>
                         <h3>Historique de stage :</h3>
                          <ul>
                                 <li><strong>Éudiant :</strong> ${data.prenomEtudiant} ${data.nomEtudiant}</li>
-                                <li><strong>Entreprise :</strong> TechInnov Solutions</li>
                                 <li><strong>Période :</strong> ${data.date_debut} – ${data.date_fin}</li>
                                 <li><strong>Missions :</strong> ${data.mission}</li>
                                  <br>
                              <li><strong>Avancement :</strong></li>
                                 <ul>
-                                  <li>  <strong>Compte rendu d'installation :</strong> Réalisé le 05 Mars 2023.</li>
-                                    <li> <strong>Prise de contact avec l'entreprise :</strong> Effectuée le 08 Mars 2023.</li>
-                                    <li> <strong>Entretien de mi-parcours :</strong> Réalisé en visioconférence le 20 Avril 2023.</li>
-                                  <li><strong>Rapport de stage :</strong> Déposé le 10 Juin 2023.</li>
-                                <li><strong>Soutenance :</strong> Prévue le ${data.date_soutenance}</li>
-                                  <li><strong>Évaluation finale :</strong> Très bon (17/20), bonne intégration dans l'entreprise.</li>
+                                <li><strong>Soutenance :</strong> Prévue le ${data.date_soutenance} en ${data.salle_Soutenance}</li>
                              </ul>
                          </ul>
                     `;
