@@ -98,7 +98,7 @@ try {
             </ul>
         </nav>
         <div class="profile">
-            <img src="../public/images/profile-icon.png" alt="Profil" id="profile-logo">
+            <img src="/GestionDesStagesProject/AppStage/public/images/profile-icon.png" alt="Profil" id="profile-logo">
             <div class="profile-menu" id="profile-menu">
                 <a href="../views/profil.php">Voir le profil</a>
                 <a href="../views/connexion.php" id="logout-btn">Se déconnecter</a>
@@ -121,8 +121,8 @@ try {
                 <?php foreach ($actions as $action): ?>
                     <li>
                         <h3><?= htmlspecialchars($action['libelle']) ?></h3>
-                        <p>Date de rendu : <?= htmlspecialchars($action['date_realisation']) ?></p>
-                        <p>Envoyé le : <?= !empty($action['lienDocument']) ? 'Fichier envoyé' : 'Non rendu' ?></p>
+                        <p>Date de rendu : <?= !empty($action['date_realisation']) ? htmlspecialchars($action['date_realisation']) : 'Non défini' ?></p>
+                        <p>Etat : <?= !empty($action['lienDocument']) ? 'Fichier envoyé' : 'Non rendu' ?></p>
                         <form action="/GestionDesStagesProject/AppStage/views/tdb/tdb_etudiant.php" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="Id_Action" value="<?= htmlspecialchars($action['Id_Action']) ?>">
                             <label for="lienDocument">Joindre un fichier :</label>
