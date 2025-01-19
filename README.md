@@ -15,6 +15,11 @@ L'application permet de gérer le cycle de vie complet d'un stage :
 *   Pendant le stage : contact tuteur-entreprise;
 *   À la fin du stage : planification de la soutenance, dépôt du rapport de stage.
 
+*   **Arborescence du projet :**
+* Il est important de noter que pendant la réalisation de cette SAÉ, l'arborescence du projet a été refaite à partir du dossier `AppStage`, cela afin de mieux correspondre à la structure de la base de données. 
+*  Une arborescence précédent se situait dans un dossier nommé `Ancien_projet`, qui n'a pas été gardé.
+*  Cette documentation est donc faite en considérant l'arborescence actuelle et non celle qui était au départ.
+
 
 ## Technologies Utilisées
 
