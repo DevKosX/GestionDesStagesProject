@@ -74,7 +74,7 @@ L'application permet de gérer le cycle de vie complet d'un stage :
 
 *   ## Membres de l'équipe
 
-*   David, Mohamed, Mohamed, Mohamed, Yacine, Moilim
+*   Mohamed Kosbar, David Diema, Mohammed Ben Jillani, Mohamed Essaoudi, Yacine Rachidi, Moilim Abdallah
 
 ## Mots de passe
 * Nous avons 3 vues, 
