@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 19 jan. 2025 à 21:51
+-- Généré le : lun. 02 juin 2025 à 12:39
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -37,7 +37,7 @@ CREATE TABLE `action` (
   `Id_TypeAction` int(11) DEFAULT NULL,
   `date_realisation` date DEFAULT NULL,
   `lienDocument` text DEFAULT NULL,
-  `est_notifie` tinyint(1) NOT NULL DEFAULT 0
+  `est_notifie` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -45,8 +45,10 @@ CREATE TABLE `action` (
 --
 
 INSERT INTO `action` (`Id_Action`, `Id_Annee`, `Id_Departement`, `numSemestre`, `Id_Etudiant`, `Id_Stage`, `Id_TypeAction`, `date_realisation`, `lienDocument`, `est_notifie`) VALUES
-(1, 1, 1, 4, 1, 1, 1, NULL, NULL, 1),
-(2, 1, 1, 4, 1, 1, 2, NULL, NULL, 1);
+(1, 1, 1, 4, 1, 1, 1, NULL, '/GestionDesStagesProject/AppStage/public/uploads/678ef368b9752-Présentation projet SI Yacine RACHIDI.pdf', 0),
+(2, 1, 1, 4, 1, 1, 2, NULL, '/GestionDesStagesProject/AppStage/public/uploads/6800bb086e9da-qqq.txt', 0),
+(3, 1, 1, 1, 6, 1, 1, NULL, NULL, 1),
+(4, 1, 1, 1, 6, 1, 2, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -158,7 +160,8 @@ CREATE TABLE `etudiant` (
 --
 
 INSERT INTO `etudiant` (`Id_Etudiant`) VALUES
-(1);
+(1),
+(6);
 
 -- --------------------------------------------------------
 
@@ -179,6 +182,29 @@ CREATE TABLE `inscription` (
 
 INSERT INTO `inscription` (`Id_Annee`, `numSemestre`, `Id_Departement`, `Id_Etudiant`) VALUES
 (1, 4, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `message`
+--
+
+CREATE TABLE `message` (
+  `id` int(11) NOT NULL,
+  `expediteur_id` int(11) NOT NULL,
+  `destinataire_id` int(11) NOT NULL,
+  `contenu` text NOT NULL,
+  `date_envoi` datetime NOT NULL DEFAULT current_timestamp(),
+  `lu` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Déchargement des données de la table `message`
+--
+
+INSERT INTO `message` (`id`, `expediteur_id`, `destinataire_id`, `contenu`, `date_envoi`, `lu`) VALUES
+(1, 1, 2, 'abc', '2025-06-02 11:31:01', 0),
+(2, 1, 2, 'ntm', '2025-06-02 11:33:18', 0);
 
 -- --------------------------------------------------------
 
@@ -237,7 +263,8 @@ CREATE TABLE `stage` (
 --
 
 INSERT INTO `stage` (`Id_Stage`, `Id_Annee`, `Id_Departement`, `numSemestre`, `Id_Etudiant`, `date_debut`, `date_fin`, `mission`, `date_soutenance`, `salle_Soutenance`, `Id_Enseignant`, `Id_TuteurEntreprise`) VALUES
-(1, 1, 1, 4, 1, '2024-01-15', '2024-03-15', 'Développement d\'une application web', '2024-03-20', 'Salle A101', 2, 4);
+(1, 1, 1, 4, 1, '2024-01-15', '2024-03-15', 'Développement d\'une application web', '2024-03-20', 'Salle A101', 2, 4),
+(4, 1, 1, 1, 6, '2024-02-01', '2024-05-01', 'Développement d\'une application mobile', '2024-05-15', 'Salle B102', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -305,8 +332,9 @@ CREATE TABLE `utilisateur` (
 INSERT INTO `utilisateur` (`Id`, `nom`, `prenom`, `email`, `telephone`, `login`, `mot_de_passe`) VALUES
 (1, 'Dupont', 'Jean', 'jean.dupont@example.com', '0612345678', 'jdupont', '$2y$10$wgyib0zO5Abs9autJALdGu/fNWMPR03O3vHWsojPiCitujjBJbtmC'),
 (2, 'Martin', 'Sophie', 'sophie.martin@example.com', '0611223344', 'smartin', '$2y$10$pGDUZTi3HaY1Cjcvk4wzd.sfdxNNvP3xi4yPaCLDxVjS7SwK6yORC'),
-(3, 'Poirier', 'Fatou', 'fatou.poirier@example.com', '0600000000', 'admin', '$2y$10$CPivxshAcBttHZf9H9jekehP45lTBR59CwOmk3CGlcMpklUmE/eqS'),
-(4, 'ab', 'pierre', 'ab.pierre@example.com', '0123456789', 'pab', '123');
+(3, 'Admin', 'Root', 'admin@example.com', '0600000000', 'admin', '$2y$10$CPivxshAcBttHZf9H9jekehP45lTBR59CwOmk3CGlcMpklUmE/eqS'),
+(4, 'ab', 'pierre', 'ab.pierre@example.com', '0123456789', 'pab', '123'),
+(6, 'Doe', 'John', 'john.doe@example.com', '0654321098', 'jdoe', '$2y$10$abcd1234hashedpasswordexample');
 
 --
 -- Index pour les tables déchargées
@@ -367,6 +395,14 @@ ALTER TABLE `inscription`
   ADD KEY `numSemestre` (`numSemestre`,`Id_Departement`);
 
 --
+-- Index pour la table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `expediteur_id` (`expediteur_id`),
+  ADD KEY `destinataire_id` (`destinataire_id`);
+
+--
 -- Index pour la table `secretaire`
 --
 ALTER TABLE `secretaire`
@@ -420,7 +456,7 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `action`
 --
 ALTER TABLE `action`
-  MODIFY `Id_Action` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id_Action` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `annee`
@@ -441,10 +477,16 @@ ALTER TABLE `entreprise`
   MODIFY `Id_Entreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT pour la table `message`
+--
+ALTER TABLE `message`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT pour la table `stage`
 --
 ALTER TABLE `stage`
-  MODIFY `Id_Stage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id_Stage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `tuteur_entreprise`
@@ -462,7 +504,7 @@ ALTER TABLE `typeaction`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Contraintes pour les tables déchargées
@@ -502,6 +544,13 @@ ALTER TABLE `inscription`
   ADD CONSTRAINT `inscription_ibfk_1` FOREIGN KEY (`Id_Etudiant`) REFERENCES `etudiant` (`Id_Etudiant`),
   ADD CONSTRAINT `inscription_ibfk_2` FOREIGN KEY (`numSemestre`,`Id_Departement`) REFERENCES `semestre` (`numSemestre`, `Id_Departement`),
   ADD CONSTRAINT `inscription_ibfk_3` FOREIGN KEY (`Id_Annee`) REFERENCES `annee` (`Id_Annee`);
+
+--
+-- Contraintes pour la table `message`
+--
+ALTER TABLE `message`
+  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`expediteur_id`) REFERENCES `utilisateur` (`Id`),
+  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`destinataire_id`) REFERENCES `utilisateur` (`Id`);
 
 --
 -- Contraintes pour la table `secretaire`
