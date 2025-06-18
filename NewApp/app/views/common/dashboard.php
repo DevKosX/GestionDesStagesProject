@@ -32,6 +32,14 @@
                 <a href="#documents" class="nav-item" onclick="showSection('documents')">
                     <i class="fas fa-file-alt"></i> Documents
                 </a>
+                <?php if (in_array($role, ['eleve', 'enseignant', 'tuteur', 'tuteur_entreprise', 'admin'])): ?>
+                <a href="#suivi-stages" class="nav-item" onclick="showSection('suivi-stages')">
+                    <i class="fas fa-briefcase"></i> Suivi des stages
+                    <?php if ($role === 'eleve' && isset($stats['stages_actifs']) && $stats['stages_actifs'] > 0): ?>
+                        <span class="badge"><?php echo $stats['stages_actifs']; ?></span>
+                    <?php endif; ?>
+                </a>
+                <?php endif; ?>
                 <a href="#calendrier" class="nav-item" onclick="showSection('calendrier')">
                     <i class="fas fa-calendar"></i> Calendrier
                 </a>
@@ -514,6 +522,456 @@
                     </div>
                 </div>
             </div>
+
+            <!-- SECTION SUIVI DES STAGES -->
+            <?php if (in_array($role, ['eleve', 'enseignant', 'tuteur', 'tuteur_entreprise', 'admin'])): ?>
+            <div id="suivi-stages-section" class="content-section" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <?php 
+                        switch($role) {
+                            case 'eleve':
+                                echo 'Mes stages';
+                                break;
+                            case 'enseignant':
+                            case 'tuteur':
+                                echo 'Stages de mes étudiants';
+                                break;
+                            case 'tuteur_entreprise':
+                                echo 'Stages dans mon entreprise';
+                                break;
+                            case 'admin':
+                                echo 'Gestion des stages';
+                                break;
+                            default:
+                                echo 'Suivi des stages';
+                        }
+                        ?>
+                    </h1>
+                    <p class="page-subtitle">
+                        <?php 
+                        switch($role) {
+                            case 'eleve':
+                                echo 'Consultez vos stages classés par année universitaire';
+                                break;
+                            case 'enseignant':
+                            case 'tuteur':
+                                echo 'Suivez les stages des étudiants sous votre supervision';
+                                break;
+                            case 'tuteur_entreprise':
+                                echo 'Gérez les stagiaires accueillis dans votre entreprise';
+                                break;
+                            case 'admin':
+                                echo 'Vue d\'ensemble de tous les stages de l\'établissement';
+                                break;
+                            default:
+                                echo 'Informations sur les stages';
+                        }
+                        ?>
+                    </p>
+                </div>
+
+                <?php if ($role === 'eleve'): ?>
+                    <!-- Vue Étudiant : Stages classés par année -->
+                    <?php 
+                    $stages_par_annee = [];
+                    if (!empty($mes_stages)) {
+                        foreach ($mes_stages as $stage) {
+                            // Déterminer l'année BUT selon le semestre (utiliser numSemestre de la table stage)
+                            $annee_but = 'BUT1'; // Par défaut
+                            if (isset($stage['numSemestre'])) {
+                                if (in_array($stage['numSemestre'], [1, 2])) $annee_but = 'BUT1';
+                                elseif (in_array($stage['numSemestre'], [3, 4])) $annee_but = 'BUT2';
+                                elseif (in_array($stage['numSemestre'], [5, 6])) $annee_but = 'BUT3';
+                            }
+                            $stages_par_annee[$annee_but][] = $stage;
+                        }
+                    }
+                    ?>
+                    
+                    <?php if (!empty($stages_par_annee)): ?>
+                        <?php foreach (['BUT1', 'BUT2', 'BUT3'] as $annee): ?>
+                            <?php if (isset($stages_par_annee[$annee])): ?>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-icon">
+                                            <i class="fas fa-graduation-cap"></i>
+                                        </div>
+                                        <h3 class="card-title"><?php echo $annee; ?> - <?php echo count($stages_par_annee[$annee]); ?> stage(s)</h3>
+                                    </div>
+                                    
+                                    <div class="stages-list">
+                                        <?php foreach ($stages_par_annee[$annee] as $stage): ?>
+                                                                        <div class="stage-item">
+                                <div class="stage-header">
+                                    <h4 class="stage-title"><?php echo htmlspecialchars($stage['mission'] ?? 'Stage non défini'); ?></h4>
+                                    <span class="stage-status status-<?php echo $stage['statut'] ?? 'en_cours'; ?>">
+                                        <?php 
+                                        switch($stage['statut'] ?? 'en_cours') {
+                                            case 'termine': echo 'Terminé'; break;
+                                            case 'en_cours': echo 'En cours'; break;
+                                            case 'planifie': echo 'Planifié'; break;
+                                            default: echo 'Non défini';
+                                        }
+                                        ?>
+                                    </span>
+                                </div>
+                                
+                                <div class="stage-details">
+                                    <div class="stage-info">
+                                        <div class="info-group">
+                                            <span class="info-label">Semestre :</span>
+                                            <span class="info-value">S<?php echo $stage['numSemestre'] ?? 'N/A'; ?></span>
+                                        </div>
+                                        <div class="info-group">
+                                            <span class="info-label">Année universitaire :</span>
+                                            <span class="info-value"><?php echo htmlspecialchars($stage['annee_libelle'] ?? 'N/A'); ?></span>
+                                        </div>
+                                        <div class="info-group">
+                                            <span class="info-label">Département :</span>
+                                            <span class="info-value"><?php echo htmlspecialchars($stage['departement'] ?? 'N/A'); ?></span>
+                                        </div>
+                                        <div class="info-group">
+                                            <span class="info-label">Entreprise :</span>
+                                            <span class="info-value">
+                                                <?php if (!empty($stage['entreprise_ville'])): ?>
+                                                    <?php echo htmlspecialchars($stage['entreprise_ville']); ?>
+                                                    <?php if (!empty($stage['entreprise_adresse'])): ?>
+                                                        <br><small><?php echo htmlspecialchars($stage['entreprise_adresse']); ?></small>
+                                                    <?php endif; ?>
+                                                    <?php if (!empty($stage['entreprise_tel'])): ?>
+                                                        <br><small><i class="fas fa-phone"></i> <?php echo htmlspecialchars($stage['entreprise_tel']); ?></small>
+                                                    <?php endif; ?>
+                                                <?php else: ?>
+                                                    Non définie
+                                                <?php endif; ?>
+                                            </span>
+                                        </div>
+                                        <div class="info-group">
+                                            <span class="info-label">Tuteur universitaire :</span>
+                                            <span class="info-value">
+                                                <?php if (!empty($stage['tuteur_nom'])): ?>
+                                                    <?php echo htmlspecialchars(($stage['tuteur_prenom'] ?? '') . ' ' . ($stage['tuteur_nom'] ?? '')); ?>
+                                                    <?php if (!empty($stage['tuteur_email'])): ?>
+                                                        <br><small><i class="fas fa-envelope"></i> <?php echo htmlspecialchars($stage['tuteur_email']); ?></small>
+                                                    <?php endif; ?>
+                                                    <?php if (!empty($stage['tuteur_bureau'])): ?>
+                                                        <br><small><i class="fas fa-map-marker-alt"></i> <?php echo htmlspecialchars($stage['tuteur_bureau']); ?></small>
+                                                    <?php endif; ?>
+                                                <?php else: ?>
+                                                    Non défini
+                                                <?php endif; ?>
+                                            </span>
+                                        </div>
+                                        <div class="info-group">
+                                            <span class="info-label">Tuteur entreprise :</span>
+                                            <span class="info-value">
+                                                <?php if (!empty($stage['tuteur_ent_nom'])): ?>
+                                                    <?php echo htmlspecialchars(($stage['tuteur_ent_prenom'] ?? '') . ' ' . ($stage['tuteur_ent_nom'] ?? '')); ?>
+                                                    <?php if (!empty($stage['tuteur_ent_email'])): ?>
+                                                        <br><small><i class="fas fa-envelope"></i> <?php echo htmlspecialchars($stage['tuteur_ent_email']); ?></small>
+                                                    <?php endif; ?>
+                                                <?php else: ?>
+                                                    Non défini
+                                                <?php endif; ?>
+                                            </span>
+                                        </div>
+                                        <div class="info-group">
+                                            <span class="info-label">Période :</span>
+                                            <span class="info-value">
+                                                <?php 
+                                                if ($stage['date_debut'] && $stage['date_fin']) {
+                                                    echo 'Du ' . date('d/m/Y', strtotime($stage['date_debut'])) . ' au ' . date('d/m/Y', strtotime($stage['date_fin']));
+                                                } else {
+                                                    echo 'Dates non définies';
+                                                }
+                                                ?>
+                                            </span>
+                                        </div>
+                                        <?php if (!empty($stage['date_soutenance'])): ?>
+                                        <div class="info-group">
+                                            <span class="info-label">Soutenance :</span>
+                                            <span class="info-value">
+                                                <?php echo date('d/m/Y', strtotime($stage['date_soutenance'])); ?>
+                                                <?php if (!empty($stage['salle_Soutenance'])): ?>
+                                                    <br><small><i class="fas fa-map-marker-alt"></i> <?php echo htmlspecialchars($stage['salle_Soutenance']); ?></small>
+                                                <?php endif; ?>
+                                            </span>
+                                        </div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="card">
+                            <div class="empty-state">
+                                <i class="fas fa-briefcase"></i>
+                                <h3>Aucun stage enregistré</h3>
+                                <p>Vos stages apparaîtront ici une fois qu'ils seront créés dans le système</p>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                <?php elseif (in_array($role, ['enseignant', 'tuteur'])): ?>
+                    <!-- Vue Tuteur/Enseignant : Stages des étudiants supervisés -->
+                    <?php if (!empty($stages_supervises)): ?>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h3 class="card-title">Étudiants supervisés - <?php echo count($stages_supervises); ?> stage(s)</h3>
+                            </div>
+                            
+                            <div class="stages-list">
+                                <?php foreach ($stages_supervises as $stage): ?>
+                                    <div class="stage-item">
+                                        <div class="stage-header">
+                                            <h4 class="stage-title">
+                                                <?php echo htmlspecialchars(($stage['etudiant_prenom'] ?? '') . ' ' . ($stage['etudiant_nom'] ?? '')); ?>
+                                                - <?php echo htmlspecialchars($stage['mission'] ?? 'Stage non défini'); ?>
+                                            </h4>
+                                            <span class="stage-status status-<?php echo $stage['statut'] ?? 'en_cours'; ?>">
+                                                <?php 
+                                                switch($stage['statut'] ?? 'en_cours') {
+                                                    case 'termine': echo 'Terminé'; break;
+                                                    case 'en_cours': echo 'En cours'; break;
+                                                    case 'planifie': echo 'Planifié'; break;
+                                                    default: echo 'Non défini';
+                                                }
+                                                ?>
+                                            </span>
+                                        </div>
+                                        
+                                        <div class="stage-details">
+                                            <div class="stage-info">
+                                                <div class="info-group">
+                                                    <span class="info-label">Entreprise :</span>
+                                                    <span class="info-value">
+                                                        <?php if (!empty($stage['entreprise_ville'])): ?>
+                                                            <?php echo htmlspecialchars($stage['entreprise_ville']); ?>
+                                                            <?php if (!empty($stage['entreprise_adresse'])): ?>
+                                                                <br><small><?php echo htmlspecialchars($stage['entreprise_adresse']); ?></small>
+                                                            <?php endif; ?>
+                                                        <?php else: ?>
+                                                            Non définie
+                                                        <?php endif; ?>
+                                                    </span>
+                                                </div>
+                                                <div class="info-group">
+                                                    <span class="info-label">Contact étudiant :</span>
+                                                    <span class="info-value"><?php echo htmlspecialchars($stage['etudiant_email'] ?? ''); ?></span>
+                                                </div>
+                                                <div class="info-group">
+                                                    <span class="info-label">Période :</span>
+                                                    <span class="info-value">
+                                                        <?php 
+                                                        if ($stage['date_debut'] && $stage['date_fin']) {
+                                                            echo date('d/m/Y', strtotime($stage['date_debut'])) . ' au ' . date('d/m/Y', strtotime($stage['date_fin']));
+                                                        } else {
+                                                            echo 'Dates non définies';
+                                                        }
+                                                        ?>
+                                                    </span>
+                                                </div>
+                                                <?php if (isset($stage['note_finale']) && $stage['note_finale']): ?>
+                                                <div class="info-group">
+                                                    <span class="info-label">Note finale :</span>
+                                                    <span class="info-value note-finale"><?php echo htmlspecialchars($stage['note_finale']); ?>/20</span>
+                                                </div>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <div class="card">
+                            <div class="empty-state">
+                                <i class="fas fa-user-graduate"></i>
+                                <h3>Aucun étudiant à superviser</h3>
+                                <p>Les stages des étudiants sous votre supervision apparaîtront ici</p>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                <?php elseif ($role === 'tuteur_entreprise'): ?>
+                    <!-- Vue Tuteur Entreprise : Stages dans son entreprise -->
+                    <?php if (!empty($stages_entreprise)): ?>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <h3 class="card-title">Stagiaires accueillis - <?php echo count($stages_entreprise); ?> stage(s)</h3>
+                            </div>
+                            
+                            <div class="stages-list">
+                                <?php foreach ($stages_entreprise as $stage): ?>
+                                    <div class="stage-item">
+                                        <div class="stage-header">
+                                            <h4 class="stage-title">
+                                                <?php echo htmlspecialchars(($stage['etudiant_prenom'] ?? '') . ' ' . ($stage['etudiant_nom'] ?? '')); ?>
+                                                - <?php echo htmlspecialchars($stage['mission'] ?? 'Stage non défini'); ?>
+                                            </h4>
+                                            <span class="stage-status status-<?php echo $stage['statut'] ?? 'en_cours'; ?>">
+                                                <?php 
+                                                switch($stage['statut'] ?? 'en_cours') {
+                                                    case 'termine': echo 'Terminé'; break;
+                                                    case 'en_cours': echo 'En cours'; break;
+                                                    case 'planifie': echo 'Planifié'; break;
+                                                    default: echo 'Non défini';
+                                                }
+                                                ?>
+                                            </span>
+                                        </div>
+                                        
+                                        <div class="stage-details">
+                                            <div class="stage-info">
+                                                <div class="info-group">
+                                                    <span class="info-label">Tuteur universitaire :</span>
+                                                    <span class="info-value"><?php echo htmlspecialchars(($stage['tuteur_nom'] ?? '') . ' ' . ($stage['tuteur_prenom'] ?? '')); ?></span>
+                                                </div>
+                                                <div class="info-group">
+                                                    <span class="info-label">Contact étudiant :</span>
+                                                    <span class="info-value"><?php echo htmlspecialchars($stage['etudiant_email'] ?? ''); ?></span>
+                                                </div>
+                                                <div class="info-group">
+                                                    <span class="info-label">Période :</span>
+                                                    <span class="info-value">
+                                                        <?php 
+                                                        if ($stage['date_debut'] && $stage['date_fin']) {
+                                                            echo date('d/m/Y', strtotime($stage['date_debut'])) . ' au ' . date('d/m/Y', strtotime($stage['date_fin']));
+                                                        } else {
+                                                            echo 'Dates non définies';
+                                                        }
+                                                        ?>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <div class="card">
+                            <div class="empty-state">
+                                <i class="fas fa-building"></i>
+                                <h3>Aucun stagiaire actuellement</h3>
+                                <p>Les stagiaires accueillis dans votre entreprise apparaîtront ici</p>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                <?php elseif ($role === 'admin'): ?>
+                    <!-- Vue Admin : Tous les stages -->
+                    <?php if (!empty($tous_stages)): ?>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <h3 class="card-title">Tous les stages - <?php echo count($tous_stages); ?> stage(s)</h3>
+                            </div>
+                            
+                            <!-- Filtres pour l'admin -->
+                            <div class="stage-filters">
+                                <button class="filter-btn active" onclick="filterStages('all')">
+                                    <i class="fas fa-list"></i> Tous
+                                </button>
+                                <button class="filter-btn" onclick="filterStages('en_cours')">
+                                    <i class="fas fa-play"></i> En cours
+                                </button>
+                                <button class="filter-btn" onclick="filterStages('termine')">
+                                    <i class="fas fa-check"></i> Terminés
+                                </button>
+                                <button class="filter-btn" onclick="filterStages('planifie')">
+                                    <i class="fas fa-calendar"></i> Planifiés
+                                </button>
+                            </div>
+                            
+                            <div class="stages-list">
+                                <?php foreach ($tous_stages as $stage): ?>
+                                    <div class="stage-item" data-status="<?php echo $stage['statut'] ?? 'en_cours'; ?>">
+                                        <div class="stage-header">
+                                            <h4 class="stage-title">
+                                                <?php echo htmlspecialchars(($stage['etudiant_prenom'] ?? '') . ' ' . ($stage['etudiant_nom'] ?? '')); ?>
+                                                - <?php echo htmlspecialchars($stage['mission'] ?? 'Stage non défini'); ?>
+                                            </h4>
+                                            <span class="stage-status status-<?php echo $stage['statut'] ?? 'en_cours'; ?>">
+                                                <?php 
+                                                switch($stage['statut'] ?? 'en_cours') {
+                                                    case 'termine': echo 'Terminé'; break;
+                                                    case 'en_cours': echo 'En cours'; break;
+                                                    case 'planifie': echo 'Planifié'; break;
+                                                    default: echo 'Non défini';
+                                                }
+                                                ?>
+                                            </span>
+                                        </div>
+                                        
+                                        <div class="stage-details">
+                                            <div class="stage-info">
+                                                <div class="info-group">
+                                                    <span class="info-label">Entreprise :</span>
+                                                    <span class="info-value">
+                                                        <?php if (!empty($stage['entreprise_ville'])): ?>
+                                                            <?php echo htmlspecialchars($stage['entreprise_ville']); ?>
+                                                            <?php if (!empty($stage['entreprise_adresse'])): ?>
+                                                                <br><small><?php echo htmlspecialchars($stage['entreprise_adresse']); ?></small>
+                                                            <?php endif; ?>
+                                                        <?php else: ?>
+                                                            Non définie
+                                                        <?php endif; ?>
+                                                    </span>
+                                                </div>
+                                                <div class="info-group">
+                                                    <span class="info-label">Tuteur universitaire :</span>
+                                                    <span class="info-value"><?php echo htmlspecialchars(($stage['tuteur_nom'] ?? '') . ' ' . ($stage['tuteur_prenom'] ?? '')); ?></span>
+                                                </div>
+                                                <div class="info-group">
+                                                    <span class="info-label">Période :</span>
+                                                    <span class="info-value">
+                                                        <?php 
+                                                        if ($stage['date_debut'] && $stage['date_fin']) {
+                                                            echo date('d/m/Y', strtotime($stage['date_debut'])) . ' au ' . date('d/m/Y', strtotime($stage['date_fin']));
+                                                        } else {
+                                                            echo 'Dates non définies';
+                                                        }
+                                                        ?>
+                                                    </span>
+                                                </div>
+                                                <?php if (isset($stage['note_finale']) && $stage['note_finale']): ?>
+                                                <div class="info-group">
+                                                    <span class="info-label">Note finale :</span>
+                                                    <span class="info-value note-finale"><?php echo htmlspecialchars($stage['note_finale']); ?>/20</span>
+                                                </div>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <div class="card">
+                            <div class="empty-state">
+                                <i class="fas fa-briefcase"></i>
+                                <h3>Aucun stage enregistré</h3>
+                                <p>Les stages des étudiants apparaîtront ici une fois créés</p>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </div>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -601,10 +1059,58 @@
             }
         }
 
+        // Fonction de filtrage des stages pour l'admin
+        function filterStages(filterType) {
+            const stageItems = document.querySelectorAll('.stage-item');
+            const filterButtons = document.querySelectorAll('.stage-filters .filter-btn');
+            
+            // Mettre à jour les boutons actifs
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Afficher/masquer les stages selon le filtre
+            stageItems.forEach(item => {
+                const stageStatus = item.getAttribute('data-status');
+                
+                if (filterType === 'all') {
+                    item.style.display = 'block';
+                } else if (filterType === stageStatus) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Vérifier s'il y a des stages visibles
+            const visibleStages = document.querySelectorAll('.stage-item[style*="block"], .stage-item:not([style])');
+            const stagesList = document.querySelector('.stages-list');
+            
+            if (visibleStages.length === 0 && stagesList) {
+                // Créer un message temporaire si aucun stage n'est visible
+                const existingEmpty = stagesList.querySelector('.temp-empty');
+                if (!existingEmpty) {
+                    const tempEmpty = document.createElement('div');
+                    tempEmpty.className = 'empty-state temp-empty';
+                    tempEmpty.innerHTML = `
+                        <i class="fas fa-filter"></i>
+                        <h3>Aucun stage de ce type</h3>
+                        <p>Aucun stage ne correspond au filtre sélectionné</p>
+                    `;
+                    stagesList.appendChild(tempEmpty);
+                }
+            } else {
+                // Supprimer le message temporaire s'il existe
+                const tempEmpty = stagesList.querySelector('.temp-empty');
+                if (tempEmpty) {
+                    tempEmpty.remove();
+                }
+            }
+        }
+
         // Gérer le chargement initial et les changements de hash
         function handleHashChange() {
             const hash = window.location.hash.substring(1); // Enlever le #
-            if (hash && ['dashboard', 'messagerie', 'documents', 'calendrier'].includes(hash)) {
+            if (hash && ['dashboard', 'messagerie', 'documents', 'calendrier', 'suivi-stages'].includes(hash)) {
                 showSection(hash);
             } else {
                 showSection('dashboard'); // Section par défaut
