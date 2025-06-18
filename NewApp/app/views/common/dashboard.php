@@ -115,17 +115,102 @@
                             <h3 class="card-title">Événements prochains</h3>
                         </div>
                         
+                                            <div class="events-list">
                         <?php if (!empty($evenements_prochains)): ?>
                             <?php foreach ($evenements_prochains as $event): ?>
-                                <div class="event-item <?php echo $event['type_evenement'] === 'urgent' ? 'event-urgent' : ''; ?>">
-                                    <div class="event-date"><?php echo date('d/m/Y', strtotime($event['date_evenement'])); ?></div>
+                                    <div class="event-item event-<?php echo $event['type_evenement']; ?>" data-type="<?php echo $event['type_evenement']; ?>">
+                                        <div class="event-icon">
+                                            <?php
+                                            $icon = 'fas fa-calendar';
+                                            switch($event['type_evenement']) {
+                                                case 'soutenance':
+                                                    $icon = 'fas fa-graduation-cap';
+                                                    break;
+                                                case 'urgent':
+                                                    $icon = 'fas fa-exclamation-triangle';
+                                                    break;
+                                                case 'retard':
+                                                    $icon = 'fas fa-clock';
+                                                    break;
+                                                case 'termine':
+                                                    $icon = 'fas fa-check-circle';
+                                                    break;
+                                                case 'action':
+                                                default:
+                                                    $icon = 'fas fa-tasks';
+                                                    break;
+                                            }
+                                            ?>
+                                            <i class="<?php echo $icon; ?>"></i>
+                                        </div>
+                                        
+                                        <div class="event-content">
+                                            <div class="event-date">
+                                                <i class="fas fa-calendar-day"></i>
+                                                <?php echo date('d/m/Y', strtotime($event['date_evenement'])); ?>
+                                                
+                                                <?php if (isset($event['jours_restants'])): ?>
+                                                    <?php if ($event['jours_restants'] < 0): ?>
+                                                        <span class="event-badge badge-retard">
+                                                            <i class="fas fa-exclamation"></i>
+                                                            <?php echo abs($event['jours_restants']); ?> jour(s) de retard
+                                                        </span>
+                                                    <?php elseif ($event['jours_restants'] == 0): ?>
+                                                        <span class="event-badge badge-urgent">
+                                                            <i class="fas fa-clock"></i>
+                                                            Aujourd'hui
+                                                        </span>
+                                                    <?php elseif ($event['jours_restants'] <= 3): ?>
+                                                        <span class="event-badge badge-urgent">
+                                                            <i class="fas fa-hourglass-half"></i>
+                                                            Dans <?php echo $event['jours_restants']; ?> jour(s)
+                                                        </span>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php if (isset($event['est_realise']) && $event['est_realise']): ?>
+                                                    <span class="event-badge badge-termine">
+                                                        <i class="fas fa-check"></i>
+                                                        Terminé
+                                                    </span>
+                                                <?php endif; ?>
+                                            </div>
+                                            
                                     <div class="event-title"><?php echo htmlspecialchars($event['titre']); ?></div>
                                     <div class="event-description"><?php echo htmlspecialchars($event['description']); ?></div>
+                                            
+                                            <?php if ($role !== 'eleve' && (isset($event['executant']) || isset($event['requisDoc']))): ?>
+                                                <div class="event-meta">
+                                                    <?php if (isset($event['executant'])): ?>
+                                                        <span><i class="fas fa-user"></i> <?php echo htmlspecialchars($event['executant']); ?></span>
+                                                    <?php endif; ?>
+                                                    
+                                                    <?php if (isset($event['requisDoc']) && $event['requisDoc']): ?>
+                                                        <span class="event-badge badge-doc-requis">
+                                                            <i class="fas fa-file-alt"></i>
+                                                            Document requis
+                                                        </span>
+                                                    <?php endif; ?>
+                                                    
+                                                    <?php if (isset($event['lienDocument']) && !empty($event['lienDocument'])): ?>
+                                                        <a href="<?php echo htmlspecialchars($event['lienDocument']); ?>" class="event-badge badge-doc-requis" style="text-decoration: none;">
+                                                            <i class="fas fa-download"></i>
+                                                            Télécharger
+                                                        </a>
+                                                    <?php endif; ?>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
                                 </div>
                             <?php endforeach; ?>
                         <?php else: ?>
-                            <p>Aucun événement à venir</p>
+                                <div class="empty-state">
+                                    <i class="fas fa-calendar-check"></i>
+                                    <h3>Aucun événement programmé</h3>
+                                    <p>Tous vos événements et actions apparaîtront ici</p>
+                                </div>
                         <?php endif; ?>
+                        </div>
                     </div>
 
                     <!-- STATISTIQUES -->
@@ -298,7 +383,7 @@
             <div id="calendrier-section" class="content-section" style="display: none;">
                 <div class="page-header">
                     <h1 class="page-title">Calendrier</h1>
-                    <p class="page-subtitle">Événements et dates importantes</p>
+                    <p class="page-subtitle">Actions à effectuer et événements à venir</p>
                 </div>
 
                 <div class="card">
@@ -306,20 +391,125 @@
                         <div class="card-icon">
                             <i class="fas fa-calendar-alt"></i>
                         </div>
-                        <h3 class="card-title">Événements à venir</h3>
+                        <h3 class="card-title">Événements et actions</h3>
+                    </div>
+
+                    <!-- Filtres -->
+                    <div class="calendar-filters">
+                        <button class="filter-btn active" onclick="filterEvents('all')">
+                            <i class="fas fa-list"></i> Tout
+                        </button>
+                        <button class="filter-btn" onclick="filterEvents('soutenance')">
+                            <i class="fas fa-graduation-cap"></i> Soutenances
+                        </button>
+                        <button class="filter-btn" onclick="filterEvents('action')">
+                            <i class="fas fa-tasks"></i> Actions
+                        </button>
+                        <button class="filter-btn" onclick="filterEvents('urgent')">
+                            <i class="fas fa-exclamation-triangle"></i> Urgent
+                        </button>
+                        <button class="filter-btn" onclick="filterEvents('retard')">
+                            <i class="fas fa-clock"></i> En retard
+                        </button>
+                        <button class="filter-btn" onclick="filterEvents('termine')">
+                            <i class="fas fa-check-circle"></i> Terminé
+                        </button>
                     </div>
 
                     <div class="events-list">
+                        <?php if (!empty($evenements_prochains)): ?>
                         <?php foreach ($evenements_prochains as $event): ?>
-                            <div class="event-item <?php echo $event['type_evenement'] === 'urgent' ? 'event-urgent' : ''; ?>">
-                                <div class="event-date"><?php echo date('d/m/Y', strtotime($event['date_evenement'])); ?></div>
+                                <div class="event-item event-<?php echo $event['type_evenement']; ?>" data-type="<?php echo $event['type_evenement']; ?>">
+                                    <div class="event-icon">
+                                        <?php
+                                        $icon = 'fas fa-calendar';
+                                        switch($event['type_evenement']) {
+                                            case 'soutenance':
+                                                $icon = 'fas fa-graduation-cap';
+                                                break;
+                                            case 'urgent':
+                                                $icon = 'fas fa-exclamation-triangle';
+                                                break;
+                                            case 'retard':
+                                                $icon = 'fas fa-clock';
+                                                break;
+                                            case 'termine':
+                                                $icon = 'fas fa-check-circle';
+                                                break;
+                                            case 'action':
+                                            default:
+                                                $icon = 'fas fa-tasks';
+                                                break;
+                                        }
+                                        ?>
+                                        <i class="<?php echo $icon; ?>"></i>
+                                    </div>
+                                    
+                                    <div class="event-content">
+                                        <div class="event-date">
+                                            <i class="fas fa-calendar-day"></i>
+                                            <?php echo date('d/m/Y', strtotime($event['date_evenement'])); ?>
+                                            
+                                            <?php if (isset($event['jours_restants'])): ?>
+                                                <?php if ($event['jours_restants'] < 0): ?>
+                                                    <span class="event-badge badge-retard">
+                                                        <i class="fas fa-exclamation"></i>
+                                                        <?php echo abs($event['jours_restants']); ?> jour(s) de retard
+                                                    </span>
+                                                <?php elseif ($event['jours_restants'] == 0): ?>
+                                                    <span class="event-badge badge-urgent">
+                                                        <i class="fas fa-clock"></i>
+                                                        Aujourd'hui
+                                                    </span>
+                                                <?php elseif ($event['jours_restants'] <= 3): ?>
+                                                    <span class="event-badge badge-urgent">
+                                                        <i class="fas fa-hourglass-half"></i>
+                                                        Dans <?php echo $event['jours_restants']; ?> jour(s)
+                                                    </span>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+
+                                            <?php if (isset($event['est_realise']) && $event['est_realise']): ?>
+                                                <span class="event-badge badge-termine">
+                                                    <i class="fas fa-check"></i>
+                                                    Terminé
+                                                </span>
+                                            <?php endif; ?>
+                                        </div>
+                                        
                                 <div class="event-title"><?php echo htmlspecialchars($event['titre']); ?></div>
                                 <div class="event-description"><?php echo htmlspecialchars($event['description']); ?></div>
+                                        
+                                        <?php if ($role !== 'eleve' && (isset($event['executant']) || isset($event['requisDoc']))): ?>
+                                            <div class="event-meta">
+                                                <?php if (isset($event['executant'])): ?>
+                                                    <span><i class="fas fa-user"></i> <?php echo htmlspecialchars($event['executant']); ?></span>
+                                                <?php endif; ?>
+                                                
+                                                <?php if (isset($event['requisDoc']) && $event['requisDoc']): ?>
+                                                    <span class="event-badge badge-doc-requis">
+                                                        <i class="fas fa-file-alt"></i>
+                                                        Document requis
+                                                    </span>
+                                                <?php endif; ?>
+                                                
+                                                <?php if (isset($event['lienDocument']) && !empty($event['lienDocument'])): ?>
+                                                    <a href="<?php echo htmlspecialchars($event['lienDocument']); ?>" class="event-badge badge-doc-requis" style="text-decoration: none;">
+                                                        <i class="fas fa-download"></i>
+                                                        Télécharger
+                                                    </a>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <div class="empty-state">
+                                <i class="fas fa-calendar-check"></i>
+                                <h3>Aucun événement programmé</h3>
+                                <p>Tous vos événements et actions apparaîtront ici</p>
                             </div>
-                        <?php endforeach; ?>
-
-                        <?php if (empty($evenements_prochains)): ?>
-                            <p style="text-align: center; color: #6b7280; padding: 40px;">Aucun événement programmé</p>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -363,6 +553,54 @@
             }
         }
 
+        // Fonction de filtrage des événements du calendrier
+        function filterEvents(filterType) {
+            const eventItems = document.querySelectorAll('.event-item');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            // Mettre à jour les boutons actifs
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Afficher/masquer les événements selon le filtre
+            eventItems.forEach(item => {
+                const eventType = item.getAttribute('data-type');
+                
+                if (filterType === 'all') {
+                    item.style.display = 'flex';
+                } else if (filterType === eventType) {
+                    item.style.display = 'flex';
+                } else if (filterType === 'action' && ['action', 'urgent', 'retard', 'termine'].includes(eventType)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Vérifier s'il y a des événements visibles
+            const visibleEvents = document.querySelectorAll('.event-item[style*="flex"]');
+            const emptyState = document.querySelector('.empty-state');
+            const eventsList = document.querySelector('.events-list');
+            
+            if (visibleEvents.length === 0 && !emptyState) {
+                // Créer un message temporaire si aucun événement n'est visible
+                const tempEmpty = document.createElement('div');
+                tempEmpty.className = 'empty-state temp-empty';
+                tempEmpty.innerHTML = `
+                    <i class="fas fa-filter"></i>
+                    <h3>Aucun événement de ce type</h3>
+                    <p>Aucun événement ne correspond au filtre sélectionné</p>
+                `;
+                eventsList.appendChild(tempEmpty);
+            } else if (visibleEvents.length > 0) {
+                // Supprimer le message temporaire s'il existe
+                const tempEmpty = document.querySelector('.temp-empty');
+                if (tempEmpty) {
+                    tempEmpty.remove();
+                }
+            }
+        }
+
         // Gérer le chargement initial et les changements de hash
         function handleHashChange() {
             const hash = window.location.hash.substring(1); // Enlever le #
@@ -373,24 +611,96 @@
             }
         }
 
+        // Animation d'entrée pour les événements
+        function animateEvents() {
+            const eventItems = document.querySelectorAll('.event-item');
+            eventItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    item.style.transition = 'all 0.3s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+
         // Écouter les changements de hash
         window.addEventListener('hashchange', handleHashChange);
 
         // Initialiser au chargement de la page
         document.addEventListener('DOMContentLoaded', function() {
             handleHashChange();
+            
+            // Animer les événements après un court délai
+            setTimeout(animateEvents, 500);
+            
+            // Ajouter des événements de hover pour les cartes
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.1)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                });
+            });
         });
 
         // Afficher les messages de succès/erreur s'il y en a
         <?php if (isset($_SESSION['success_message'])): ?>
-            alert('<?php echo addslashes($_SESSION['success_message']); ?>');
+            // Créer une notification toast au lieu d'une alerte
+            showToast('<?php echo addslashes($_SESSION['success_message']); ?>', 'success');
             <?php unset($_SESSION['success_message']); ?>
         <?php endif; ?>
 
         <?php if (isset($_SESSION['error_message'])): ?>
-            alert('<?php echo addslashes($_SESSION['error_message']); ?>');
+            showToast('<?php echo addslashes($_SESSION['error_message']); ?>', 'error');
             <?php unset($_SESSION['error_message']); ?>
         <?php endif; ?>
+
+        // Fonction pour afficher des notifications toast
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 20px;
+                background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+                color: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+                font-size: 14px;
+            `;
+            toast.textContent = message;
+            
+            document.body.appendChild(toast);
+            
+            // Animation d'entrée
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Animation de sortie et suppression
+            setTimeout(() => {
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
     </script>
 </body>
 </html> 
