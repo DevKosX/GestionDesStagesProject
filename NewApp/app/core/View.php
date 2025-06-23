@@ -4,6 +4,9 @@ class View {
      * Rend une vue avec les données fournies
      */
     public static function render($view, $data = []) {
+        // Inclure les helpers d'URL
+        require_once __DIR__ . '/../helpers/url_helper.php';
+        
         // Vérifier que la vue existe
         $viewPath = __DIR__ . '/../views/' . $view . '.php';
         

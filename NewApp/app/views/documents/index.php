@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Documents</title>
-    <link rel="stylesheet" href="/GestionDesStagesProject/NewApp/public/assets/css/dashboard.css">
+    <link rel="stylesheet" href="<?= asset('css/dashboard.css') ?>">
     <style>
         .documents-container {
             max-width: 1200px;
@@ -188,7 +188,7 @@
         <!-- Section d'upload -->
         <div class="upload-section">
             <h2>📤 Partager un Document</h2>
-            <form class="upload-form" action="/GestionDesStagesProject/NewApp/public/index.php/documents/upload" method="post" enctype="multipart/form-data">
+            <form class="upload-form" action="<?= url('documents/upload') ?>" method="post" enctype="multipart/form-data">
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                     <div class="form-group">
                         <label for="titre">Titre du document</label>
@@ -239,7 +239,7 @@
                                 </div>
                             </div>
                             <div class="document-actions">
-                                <a href="/GestionDesStagesProject/NewApp/public/index.php/documents/download?id=<?= $doc['id'] ?>" class="btn btn-download">⬇️ Télécharger</a>
+                                <a href="<?= url('documents/download?id=' . $doc['id']) ?>" class="btn btn-download">⬇️ Télécharger</a>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -263,7 +263,7 @@
                                 </div>
                             </div>
                             <div class="document-actions">
-                                <a href="/GestionDesStagesProject/NewApp/public/index.php/documents/download?id=<?= $doc['id'] ?>" class="btn btn-download">⬇️ Télécharger</a>
+                                <a href="<?= url('documents/download?id=' . $doc['id']) ?>" class="btn btn-download">⬇️ Télécharger</a>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -274,7 +274,7 @@
         </div>
         
         <div style="text-align: center; margin-top: 30px;">
-            <a href="/GestionDesStagesProject/NewApp/public/index.php/dashboard" class="btn btn-primary">🏠 Retour au Dashboard</a>
+            <a href="<?= url('dashboard') ?>" class="btn btn-primary">🏠 Retour au Dashboard</a>
         </div>
     </div>
     

@@ -1,70 +1,53 @@
 <?php
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Message.php';
-require_once __DIR__ . '/../core/View.php';
+require_once __DIR__ . '/../core/Controller.php';
 
-class MessageController {
+class MessageController extends Controller {
     public function index() {
-        if (!isset($_SESSION['user'])) {
-            header('Location: /GestionDesStagesProject/NewApp/public/index.php/login');
-            exit;
-        }
-        $user_id = $_SESSION['user']->Id;
+        $this->requireAuth();
+        $user_id = $this->user->Id;
         $messages_recus = Message::messagesRecus($user_id);
         $messages_envoyes = Message::messagesEnvoyes($user_id);
-        View::render('messages/index', [
+        $this->render('messages/index', [
             'messages_recus' => $messages_recus,
             'messages_envoyes' => $messages_envoyes
         ]);
     }
 
     public function envoyer() {
-        if (!isset($_SESSION['user'])) {
-            header('Location: /GestionDesStagesProject/NewApp/public/index.php/login');
-            exit;
-        }
+        $this->requireAuth();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email_destinataire'] ?? '';
             $contenu = $_POST['contenu'] ?? '';
-            $expediteur_id = $_SESSION['user']->Id;
+            $expediteur_id = $this->user->Id;
             $destinataire_id = Message::trouverDestinataireParEmail($email);
             if ($destinataire_id && $contenu) {
                 Message::envoyer($expediteur_id, $destinataire_id, $contenu);
-                $_SESSION['success_message'] = 'Message envoyé avec succès !';
-                header('Location: /GestionDesStagesProject/NewApp/public/index.php/dashboard#messagerie');
-                exit;
+                $this->redirectWithMessage('dashboard#messagerie', 'success', 'Message envoyé avec succès !');
             } else {
-                $_SESSION['error_message'] = 'Destinataire ou contenu invalide.';
-                header('Location: /GestionDesStagesProject/NewApp/public/index.php/dashboard#messagerie');
-                exit;
+                $this->redirectWithMessage('dashboard#messagerie', 'error', 'Destinataire ou contenu invalide.');
             }
         }
         // Si pas de POST, rediriger vers le dashboard
-        header('Location: /GestionDesStagesProject/NewApp/public/index.php/dashboard#messagerie');
+        header('Location: dashboard#messagerie');
         exit;
     }
 
     public function repondre() {
-        if (!isset($_SESSION['user'])) {
-            header('Location: /GestionDesStagesProject/NewApp/public/index.php/login');
-            exit;
-        }
+        $this->requireAuth();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $destinataire_id = $_POST['destinataire_id'] ?? null;
             $contenu = $_POST['contenu'] ?? '';
-            $expediteur_id = $_SESSION['user']->Id;
+            $expediteur_id = $this->user->Id;
             if ($destinataire_id && $contenu) {
                 Message::envoyer($expediteur_id, $destinataire_id, $contenu);
-                $_SESSION['success_message'] = 'Réponse envoyée avec succès !';
-                header('Location: /GestionDesStagesProject/NewApp/public/index.php/dashboard#messagerie');
-                exit;
+                $this->redirectWithMessage('dashboard#messagerie', 'success', 'Réponse envoyée avec succès !');
             } else {
-                $_SESSION['error_message'] = 'Destinataire ou contenu invalide.';
-                header('Location: /GestionDesStagesProject/NewApp/public/index.php/dashboard#messagerie');
-                exit;
+                $this->redirectWithMessage('dashboard#messagerie', 'error', 'Destinataire ou contenu invalide.');
             }
         }
-        header('Location: /GestionDesStagesProject/NewApp/public/index.php/dashboard#messagerie');
+        header('Location: dashboard#messagerie');
         exit;
     }
 } 

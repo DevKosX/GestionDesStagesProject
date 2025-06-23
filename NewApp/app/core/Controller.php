@@ -21,7 +21,7 @@ class Controller {
      */
     protected function requireAuth() {
         if (!$this->user || !$this->role) {
-            View::redirect('/GestionDesStagesProject/NewApp/public/index.php/auth/connexion');
+            View::redirect('login');
         }
     }
     
@@ -33,7 +33,7 @@ class Controller {
         
         if ($this->role !== $requiredRole) {
             View::setFlash('error', 'Accès non autorisé');
-            View::redirect('/GestionDesStagesProject/NewApp/public/index.php/dashboard');
+            View::redirect('dashboard');
         }
     }
     
@@ -45,7 +45,7 @@ class Controller {
         
         if (!in_array($this->role, $allowedRoles)) {
             View::setFlash('error', 'Accès non autorisé');
-            View::redirect('/GestionDesStagesProject/NewApp/public/index.php/dashboard');
+            View::redirect('dashboard');
         }
     }
     

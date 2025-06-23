@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord - Gestion des Stages</title>
-    <link rel="stylesheet" href="/GestionDesStagesProject/NewApp/public/assets/css/dashboard.css">
+    <link rel="stylesheet" href="<?= asset('css/dashboard.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -43,7 +43,7 @@
                 <a href="#calendrier" class="nav-item" onclick="showSection('calendrier')">
                     <i class="fas fa-calendar"></i> Calendrier
                 </a>
-                <a href="/GestionDesStagesProject/NewApp/public/index.php/logout" class="nav-item">
+                <a href="<?= url('logout') ?>" class="nav-item">
                     <i class="fas fa-sign-out-alt"></i> Déconnexion
                 </a>
             </nav>
@@ -103,7 +103,7 @@
                                             <?php echo date('d/m/Y', strtotime($document['date_upload'])); ?>
                                         </div>
                                     </div>
-                                    <a href="/GestionDesStagesProject/NewApp/public/index.php/documents/download?id=<?php echo $document['id']; ?>" class="btn-download">
+                                    <a href="<?= url('documents/download?id=' . $document['id']) ?>" class="btn-download">
                                         <i class="fas fa-download"></i>
                                     </a>
                                 </div>
@@ -259,7 +259,7 @@
                         <h3 class="card-title">Nouveau message</h3>
                     </div>
 
-                    <form action="/GestionDesStagesProject/NewApp/public/index.php/messages/envoyer" method="POST">
+                                            <form action="<?= url('messages/envoyer') ?>" method="POST">
                         <div class="document-form">
                             <div class="form-group">
                                 <label class="form-label">Destinataire</label>
@@ -324,7 +324,7 @@
                         <h3 class="card-title">Envoyer un document</h3>
                     </div>
 
-                    <form action="/GestionDesStagesProject/NewApp/public/index.php/documents/upload" method="POST" enctype="multipart/form-data">
+                                            <form action="<?= url('documents/upload') ?>" method="POST" enctype="multipart/form-data">
                         <div class="upload-zone" onclick="document.getElementById('file-input').click()">
                             <div class="upload-icon">
                                 <i class="fas fa-cloud-upload-alt"></i>
@@ -378,7 +378,7 @@
                                         <?php echo round($document['taille'] / 1024, 1); ?> KB
                                     </div>
                                 </div>
-                                <a href="/GestionDesStagesProject/NewApp/public/index.php/documents/download?id=<?php echo $document['id']; ?>" class="btn-download">
+                                                                    <a href="<?= url('documents/download?id=' . $document['id']) ?>" class="btn-download">
                                     <i class="fas fa-download"></i> Télécharger
                                 </a>
                             </div>

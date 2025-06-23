@@ -1,20 +1,16 @@
 <?php
 require_once __DIR__ . '/../models/Document.php';
-require_once __DIR__ . '/../core/View.php';
+require_once __DIR__ . '/../core/Controller.php';
 
-class DocumentController {
+class DocumentController extends Controller {
     public function index() {
-        if (!isset($_SESSION['user'])) {
-            header('Location: /GestionDesStagesProject/NewApp/public/index.php/login');
-            exit;
-        }
-        
-        $user_id = $_SESSION['user']->Id;
+        $this->requireAuth();        
+        $user_id = $this->user->Id;
         $documents_envoyes = Document::getDocumentsEnvoyes($user_id);
         $documents_recus = Document::getDocumentsRecus($user_id);
         $users = Document::getAllUsers();
         
-        View::render('documents/index', [
+        $this->render('documents/index', [
             'documents_envoyes' => $documents_envoyes,
             'documents_recus' => $documents_recus,
             'users' => $users
@@ -22,66 +18,49 @@ class DocumentController {
     }
     
     public function upload() {
-        if (!isset($_SESSION['user'])) {
-            header('Location: /GestionDesStagesProject/NewApp/public/index.php/login');
-            exit;
-        }
+        $this->requireAuth();
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $expediteur_id = $_SESSION['user']->Id;
+            $expediteur_id = $this->user->Id;
             $destinataire_id = $_POST['destinataire_id'] ?? null;
             $titre = $_POST['titre'] ?? '';
             
             if (!isset($_FILES['document']) || $_FILES['document']['error'] !== UPLOAD_ERR_OK) {
-                $_SESSION['error_message'] = 'Aucun fichier sélectionné ou erreur lors de l\'upload';
-                header('Location: /GestionDesStagesProject/NewApp/public/index.php/dashboard#documents');
-                exit;
+                $this->redirectWithMessage('dashboard#documents', 'error', 'Aucun fichier sélectionné ou erreur lors de l\'upload');
             }
             
             if (!$destinataire_id || !$titre) {
-                $_SESSION['error_message'] = 'Veuillez remplir tous les champs';
-                header('Location: /GestionDesStagesProject/NewApp/public/index.php/dashboard#documents');
-                exit;
+                $this->redirectWithMessage('dashboard#documents', 'error', 'Veuillez remplir tous les champs');
             }
             
             $result = Document::upload($expediteur_id, $destinataire_id, $titre, $_FILES['document']);
             
             if ($result['success']) {
-                $_SESSION['success_message'] = $result['message'];
+                $this->redirectWithMessage('dashboard#documents', 'success', $result['message']);
             } else {
-                $_SESSION['error_message'] = $result['error'];
+                $this->redirectWithMessage('dashboard#documents', 'error', $result['error']);
             }
-            
-            header('Location: /GestionDesStagesProject/NewApp/public/index.php/dashboard#documents');
-            exit;
         }
         
         // Si pas de POST, rediriger vers le dashboard
-        header('Location: /GestionDesStagesProject/NewApp/public/index.php/dashboard#documents');
+        header('Location: dashboard#documents');
         exit;
     }
     
     public function download() {
-        if (!isset($_SESSION['user'])) {
-            header('Location: /GestionDesStagesProject/NewApp/public/index.php/login');
-            exit;
-        }
+        $this->requireAuth();
         
         $document_id = $_GET['id'] ?? null;
-        $user_id = $_SESSION['user']->Id;
+        $user_id = $this->user->Id;
         
         if (!$document_id) {
-            $_SESSION['error_message'] = 'Document non spécifié';
-            header('Location: /GestionDesStagesProject/NewApp/public/index.php/dashboard#documents');
-            exit;
+            $this->redirectWithMessage('dashboard#documents', 'error', 'Document non spécifié');
         }
         
         $result = Document::downloadDocument($document_id, $user_id);
         
         if (!$result['success']) {
-            $_SESSION['error_message'] = $result['error'];
-            header('Location: /GestionDesStagesProject/NewApp/public/index.php/dashboard#documents');
-            exit;
+            $this->redirectWithMessage('dashboard#documents', 'error', $result['error']);
         }
         
         // Forcer le téléchargement

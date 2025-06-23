@@ -1,15 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Connexion - Plateforme de stage</title>
-    <link rel="stylesheet" href="/GestionDesStagesProject/NewApp/public/assets/css/connexion.css">
+    <link rel="stylesheet" href="<?= asset('css/connexion.css') ?>">
 </head>
 <body>
     <div class="login-bg">
         <div class="login-container">
             <div class="login-header">
-                <img src="/GestionDesStagesProject/NewApp/public/assets/images/profile-icon.png" alt="Profil" class="profile-img">
+                <img src="<?= asset('images/profile-icon.png') ?>" alt="Profil" class="profile-img">
                 <h1>Connexion</h1>
             </div>
             <?php if (!empty($error)) echo "<p class='error-message'>".htmlspecialchars($error)."</p>"; ?>

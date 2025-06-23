@@ -12,7 +12,7 @@ require_once __DIR__ . '/../../models/User.php';
     <p>Bonjour, <?php echo htmlspecialchars(isset(
         $user->email
     ) ? $user->email : ''); ?> !</p>
-    <a href="/GestionDesStagesProject/NewApp/public/index.php/login">Se déconnecter</a>
-    <a href="/GestionDesStagesProject/NewApp/public/index.php/messages">Messagerie</a>
+    <a href="<?= url('logout') ?>">Se déconnecter</a>
+<a href="<?= url('messages') ?>">Messagerie</a>
 </body>
 </html> 
