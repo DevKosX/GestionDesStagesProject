@@ -1,0 +1,32 @@
+# Sécurité : Empêcher l'accès direct aux fichiers sensibles
+<Files "*.sql">
+    Require all denied
+</Files>
+
+<Files "*.log">
+    Require all denied
+</Files>
+
+<Files "config.php">
+    Require all denied
+</Files>
+
+# Empêcher l'affichage des répertoires
+Options -Indexes
+
+# Sécurité des headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Gestion des erreurs
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Rediriger toutes les requêtes vers public/index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/index.php [QSA,L]
+</IfModule>
