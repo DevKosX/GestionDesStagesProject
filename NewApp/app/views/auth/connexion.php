@@ -10,7 +10,7 @@
     <div class="login-bg">
         <div class="login-container">
             <div class="login-header">
-                <img src="<?= asset('images/profile-icon.png') ?>" alt="Profil" class="profile-img">
+                <img src="<?= asset('images/pp.avif') ?>" alt="Profil" class="profile-img">
                 <h1>Connexion</h1>
             </div>
             <?php if (!empty($error)) echo "<p class='error-message'>".htmlspecialchars($error)."</p>"; ?>

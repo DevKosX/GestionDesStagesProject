@@ -18,7 +18,7 @@ body {
 /* SIDEBAR */
 .sidebar {
     width: 280px;
-    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, #152d65 0%, #152d65 100%);
     color: white;
     padding: 0;
     box-shadow: 2px 0 10px rgba(0,0,0,0.1);
@@ -112,7 +112,7 @@ body {
 .page-title {
     font-size: 28px;
     font-weight: 700;
-    color: #1e40af;
+    color: #152d65;
     margin-bottom: 10px;
 }
 
@@ -159,7 +159,7 @@ body {
 .card-icon {
     width: 40px;
     height: 40px;
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    background: linear-gradient(135deg, #152d65, #152d65);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -213,7 +213,7 @@ body {
 }
 
 .btn-compose {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    background: linear-gradient(135deg, #152d65, #152d65);
     color: white;
     border: none;
     padding: 12px 24px;
@@ -232,7 +232,7 @@ body {
 
 /* DOCUMENTS */
 .upload-zone {
-    border: 2px dashed #3b82f6;
+    border: 2px dashed #152d65;
     border-radius: 12px;
     padding: 40px;
     text-align: center;
@@ -243,13 +243,13 @@ body {
 }
 
 .upload-zone:hover {
-    border-color: #2563eb;
+    border-color: #152d65;
     background: #f0f7ff;
 }
 
 .upload-icon {
     font-size: 48px;
-    color: #3b82f6;
+    color: #152d65;
     margin-bottom: 15px;
 }
 
@@ -280,12 +280,12 @@ body {
 
 .form-input:focus, .form-select:focus {
     outline: none;
-    border-color: #3b82f6;
+    border-color: #152d65;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .btn-upload {
-    background: #10b981;
+    background: #152d65;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -333,7 +333,7 @@ body {
 }
 
 .btn-download {
-    background: #3b82f6;
+    background: #152d65;
     color: white;
     border: none;
     padding: 8px 16px;
@@ -348,7 +348,7 @@ body {
 }
 
 .btn-download:hover {
-    background: #2563eb;
+    background: #152d65;
     color: white;
 }
 
@@ -458,17 +458,17 @@ body {
 
 /* Actions terminées */
 .event-item.event-termine {
-    border-left-color: #10b981;
+    border-left-color: #152d65;
     background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
 }
 
 .event-termine .event-icon {
-    background: #10b981;
+    background: #152d65;
     color: white;
 }
 
 .event-termine .event-date {
-    color: #10b981;
+    color: #152d65;
 }
 
 .event-termine:hover {
@@ -515,17 +515,17 @@ body {
 
 /* Actions normales */
 .event-item.event-action {
-    border-left-color: #3b82f6;
+    border-left-color: #152d65;
     background: linear-gradient(135deg, #f8faff 0%, #e0f2fe 100%);
 }
 
 .event-action .event-icon {
-    background: #3b82f6;
+    background: #152d65;
     color: white;
 }
 
 .event-action .event-date {
-    color: #3b82f6;
+    color: #152d65;
 }
 
 .event-action:hover {
@@ -615,7 +615,7 @@ body {
 }
 
 .filter-btn.active {
-    background: #3b82f6;
+    background: #152d65;
     color: white;
 }
 
@@ -624,7 +624,7 @@ body {
 }
 
 .filter-btn.active:hover {
-    background: #2563eb;
+    background: #152d65;
 }
 
 /* État vide amélioré */
@@ -724,7 +724,7 @@ body {
     left: 50%;
     width: 20px;
     height: 20px;
-    border: 2px solid #3b82f6;
+    border: 2px solid #152d65;
     border-radius: 50%;
     border-top-color: transparent;
     animation: spin 1s linear infinite;
@@ -781,7 +781,7 @@ body {
 
 .status-en_cours {
     background: #dbeafe;
-    color: #1e40af;
+    color: #152d65;
 }
 
 .status-termine {
@@ -874,7 +874,7 @@ body {
 }
 
 .stage-filters .filter-btn.active {
-    background: #3b82f6;
+    background: #152d65;
     color: white;
 }
 
@@ -883,7 +883,7 @@ body {
 }
 
 .stage-filters .filter-btn.active:hover {
-    background: #2563eb;
+    background: #152d65;
 }
 
 /* Responsive pour les stages */
@@ -938,7 +938,7 @@ body {
 .stage-section h5 {
     margin: 0;
     padding: 15px 20px;
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    background: linear-gradient(135deg, #152d65, #1d4ed8);
     color: white;
     font-size: 14px;
     font-weight: 600;
@@ -971,7 +971,7 @@ body {
     background: #f8fafc;
     padding: 12px;
     border-radius: 6px;
-    border-left: 3px solid #3b82f6;
+    border-left: 3px solid #152d65;
 }
 
 .stage-details .info-label {
@@ -1000,7 +1000,7 @@ body {
 
 .stage-details .info-value small i {
     margin-right: 6px;
-    color: #3b82f6;
+    color: #152d65;
     width: 12px;
 }
 
@@ -1037,7 +1037,7 @@ body {
 }
 
 .stat-item.success::before {
-    background: linear-gradient(90deg, #10b981, #059669);
+    background: linear-gradient(90deg, #152d65, #059669);
 }
 
 .stat-item.warning::before {
@@ -1100,7 +1100,7 @@ body {
 }
 
 .action-item.status-realise::before {
-    background: linear-gradient(180deg, #10b981, #059669);
+    background: linear-gradient(180deg, #152d65, #059669);
 }
 
 .action-item.status-en_attente {
@@ -1143,7 +1143,7 @@ body {
 }
 
 .action-title i.fa-check-circle {
-    color: #10b981;
+    color: #152d65;
 }
 
 .action-title i.fa-clock {

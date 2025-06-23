@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
     <div class="container">
         <div class="form-header">
-            <img src="../public/images/profile-icon.png" alt="Profil" class="profile-img">
+            <img src="../public/images/pp.avif" alt="Profil" class="profile-img">
             <h1>Connexion</h1>
         </div>
         <?php if (!empty($error_message)): ?>

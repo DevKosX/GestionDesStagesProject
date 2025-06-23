@@ -232,11 +232,11 @@
                         
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                             <div style="text-align: center; padding: 15px; background: #f8faff; border-radius: 8px;">
-                                <div style="font-size: 24px; font-weight: bold; color: #3b82f6;"><?php echo $stats['messages_recus'] ?? 0; ?></div>
+                                <div style="font-size: 24px; font-weight: bold; color: #152d65;"><?php echo $stats['messages_recus'] ?? 0; ?></div>
                                 <div style="font-size: 12px; color: #6b7280;">Messages reçus</div>
                             </div>
                             <div style="text-align: center; padding: 15px; background: #f0f9ff; border-radius: 8px;">
-                                <div style="font-size: 24px; font-weight: bold; color: #10b981;"><?php echo $stats['documents_recus'] ?? 0; ?></div>
+                                <div style="font-size: 24px; font-weight: bold; color: #152d65;"><?php echo $stats['documents_recus'] ?? 0; ?></div>
                                 <div style="font-size: 12px; color: #6b7280;">Documents reçus</div>
                             </div>
                         </div>
@@ -334,7 +334,7 @@
                         </div>
                         
                         <input type="file" id="file-input" name="document" style="display: none;" required onchange="updateFileName(this)">
-                        <div id="file-name" style="margin-bottom: 15px; font-weight: 600; color: #3b82f6;"></div>
+                        <div id="file-name" style="margin-bottom: 15px; font-weight: 600; color: #152d65;"></div>
 
                         <div class="document-form">
                             <div class="form-group">
@@ -1178,7 +1178,7 @@
                 top: 20px;
                 right: 20px;
                 padding: 15px 20px;
-                background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+                background: ${type === 'success' ? '#152d65' : type === 'error' ? '#ef4444' : '#152d65'};
                 color: white;
                 border-radius: 8px;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
