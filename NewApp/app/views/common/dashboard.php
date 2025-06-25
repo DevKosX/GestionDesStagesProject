@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord - Gestion des Stages</title>
     <link rel="stylesheet" href="<?= asset('css/dashboard.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/dashboard-test.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -230,14 +231,22 @@
                             <h3 class="card-title">Mes statistiques</h3>
                         </div>
                         
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 15px;">
                             <div style="text-align: center; padding: 15px; background: #f8faff; border-radius: 8px;">
-                                <div style="font-size: 24px; font-weight: bold; color: #3b82f6;"><?php echo $stats['messages_recus'] ?? 0; ?></div>
-                                <div style="font-size: 12px; color: #6b7280;">Messages reçus</div>
+                                <div style="font-size: 20px; font-weight: bold; color: #3b82f6;"><?php echo $stats['messages_recus'] ?? 0; ?></div>
+                                <div style="font-size: 11px; color: #6b7280;">Messages reçus</div>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: #ecfdf5; border-radius: 8px;">
+                                <div style="font-size: 20px; font-weight: bold; color: #059669;"><?php echo $stats['messages_envoyes'] ?? 0; ?></div>
+                                <div style="font-size: 11px; color: #6b7280;">Messages envoyés</div>
                             </div>
                             <div style="text-align: center; padding: 15px; background: #f0f9ff; border-radius: 8px;">
-                                <div style="font-size: 24px; font-weight: bold; color: #10b981;"><?php echo $stats['documents_recus'] ?? 0; ?></div>
-                                <div style="font-size: 12px; color: #6b7280;">Documents reçus</div>
+                                <div style="font-size: 20px; font-weight: bold; color: #10b981;"><?php echo $stats['documents_recus'] ?? 0; ?></div>
+                                <div style="font-size: 11px; color: #6b7280;">Documents reçus</div>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                                <div style="font-size: 20px; font-weight: bold; color: #d97706;"><?php echo $stats['documents_envoyes'] ?? 0; ?></div>
+                                <div style="font-size: 11px; color: #6b7280;">Documents envoyés</div>
                             </div>
                         </div>
                     </div>
@@ -245,7 +254,7 @@
             </div>
 
             <!-- SECTION MESSAGERIE -->
-            <div id="messagerie-section" class="content-section" style="display: none;">
+            <div id="messagerie-section" class="content-section messagerie-section" style="display: none;">
                 <div class="page-header">
                     <h1 class="page-title">Messagerie</h1>
                     <p class="page-subtitle">Gérez vos messages et conversations</p>
@@ -283,34 +292,79 @@
                     </form>
                 </div>
 
+                <!-- Onglets pour les messages -->
                 <div class="card">
                     <div class="card-header">
                         <div class="card-icon">
                             <i class="fas fa-inbox"></i>
                         </div>
-                        <h3 class="card-title">Messages reçus</h3>
+                        <h3 class="card-title">Mes messages</h3>
                     </div>
                     
-                    <div class="document-list">
-                        <?php if (!empty($messages_recents)): ?>
-                            <?php foreach ($messages_recents as $message): ?>
-                                <div class="message-item">
-                                    <div class="message-header">
-                                        <span class="message-sender"><?php echo htmlspecialchars($message->expediteur_nom . ' ' . $message->expediteur_prenom); ?></span>
-                                        <span class="message-date"><?php echo date('d/m/Y H:i', strtotime($message->date_envoi)); ?></span>
+                    <!-- Navigation par onglets -->
+                    <div class="tabs-navigation">
+                        <button class="tab-btn active" onclick="showMessageTab('recus')">
+                            <i class="fas fa-inbox"></i> Messages reçus <span style="background: rgba(255,255,255,0.3); padding: 2px 8px; border-radius: 12px; font-size: 11px; margin-left: 8px;"><?php echo count($messages_recents); ?></span>
+                        </button>
+                        <button class="tab-btn" onclick="showMessageTab('envoyes')">
+                            <i class="fas fa-paper-plane"></i> Messages envoyés <span style="background: rgba(255,255,255,0.3); padding: 2px 8px; border-radius: 12px; font-size: 11px; margin-left: 8px;"><?php echo count($messages_envoyes_recents); ?></span>
+                        </button>
+                    </div>
+                    
+                    <!-- Contenu des onglets -->
+                    <div id="messages-recus-tab" class="tab-content active">
+                        <div class="document-list">
+                            <?php if (!empty($messages_recents)): ?>
+                                <?php foreach ($messages_recents as $message): ?>
+                                    <div class="message-item">
+                                        <div class="message-header">
+                                            <span class="message-sender">De: <?php echo htmlspecialchars($message->expediteur_nom . ' ' . $message->expediteur_prenom); ?></span>
+                                            <span class="message-date"><?php echo date('d/m/Y H:i', strtotime($message->date_envoi)); ?></span>
+                                        </div>
+                                        <div class="message-preview"><?php echo htmlspecialchars($message->contenu); ?></div>
+                                        <div class="message-actions">
+                                            <button class="btn-reply" onclick="openReplyModal('<?php echo $message->expediteur_email; ?>', '<?php echo htmlspecialchars($message->expediteur_nom . ' ' . $message->expediteur_prenom); ?>')">
+                                                <i class="fas fa-reply"></i> Répondre
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="message-preview"><?php echo htmlspecialchars($message->contenu); ?></div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <div class="empty-message">
+                                    <i class="fas fa-inbox"></i>
+                                    <h3>Aucun message reçu</h3>
+                                    <p>Vous n'avez pas encore reçu de messages. Les nouveaux messages apparaîtront ici.</p>
                                 </div>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <p style="text-align: center; color: #6b7280; padding: 40px;">Aucun message reçu</p>
-                        <?php endif; ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    
+                    <div id="messages-envoyes-tab" class="tab-content" style="display: none;">
+                        <div class="document-list">
+                            <?php if (!empty($messages_envoyes_recents)): ?>
+                                <?php foreach ($messages_envoyes_recents as $message): ?>
+                                    <div class="message-item">
+                                        <div class="message-header">
+                                            <span class="message-sender">À: <?php echo htmlspecialchars($message->destinataire_nom . ' ' . $message->destinataire_prenom); ?></span>
+                                            <span class="message-date"><?php echo date('d/m/Y H:i', strtotime($message->date_envoi)); ?></span>
+                                        </div>
+                                        <div class="message-preview"><?php echo htmlspecialchars($message->contenu); ?></div>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <div class="empty-message">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <h3>Aucun message envoyé</h3>
+                                    <p>Vous n'avez pas encore envoyé de messages. Utilisez le formulaire ci-dessus pour commencer une conversation.</p>
+                                </div>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- SECTION DOCUMENTS -->
-            <div id="documents-section" class="content-section" style="display: none;">
+            <div id="documents-section" class="content-section documents-section" style="display: none;">
                 <div class="page-header">
                     <h1 class="page-title">Gestion des documents</h1>
                     <p class="page-subtitle">Uploadez et téléchargez vos documents</p>
@@ -359,30 +413,80 @@
                     </form>
                 </div>
 
+                <!-- Onglets pour les documents -->
                 <div class="card">
                     <div class="card-header">
                         <div class="card-icon">
-                            <i class="fas fa-download"></i>
+                            <i class="fas fa-file-alt"></i>
                         </div>
-                        <h3 class="card-title">Documents reçus</h3>
+                        <h3 class="card-title">Mes documents</h3>
                     </div>
                     
-                    <div class="document-list">
-                        <?php foreach ($documents_recents as $document): ?>
-                            <div class="document-item">
-                                <div class="document-info">
-                                    <div class="document-title"><?php echo htmlspecialchars($document['titre']); ?></div>
-                                    <div class="document-meta">
-                                        De: <?php echo htmlspecialchars($document['expediteur_nom'] . ' ' . $document['expediteur_prenom']); ?> - 
-                                        <?php echo date('d/m/Y H:i', strtotime($document['date_upload'])); ?> - 
-                                        <?php echo round($document['taille'] / 1024, 1); ?> KB
+                    <!-- Navigation par onglets -->
+                    <div class="tabs-navigation">
+                        <button class="tab-btn active" onclick="showDocumentTab('recus')">
+                            <i class="fas fa-download"></i> Documents reçus <span style="background: rgba(255,255,255,0.3); padding: 2px 8px; border-radius: 12px; font-size: 11px; margin-left: 8px;"><?php echo count($documents_recents); ?></span>
+                        </button>
+                        <button class="tab-btn" onclick="showDocumentTab('envoyes')">
+                            <i class="fas fa-upload"></i> Documents envoyés <span style="background: rgba(255,255,255,0.3); padding: 2px 8px; border-radius: 12px; font-size: 11px; margin-left: 8px;"><?php echo count($documents_envoyes_recents); ?></span>
+                        </button>
+                    </div>
+                    
+                    <!-- Contenu des onglets -->
+                    <div id="documents-recus-tab" class="tab-content active">
+                        <div class="document-list">
+                            <?php if (!empty($documents_recents)): ?>
+                                <?php foreach ($documents_recents as $document): ?>
+                                    <div class="document-item">
+                                        <div class="document-info">
+                                            <div class="document-title"><?php echo htmlspecialchars($document['titre']); ?></div>
+                                            <div class="document-meta">
+                                                De: <?php echo htmlspecialchars($document['expediteur_nom'] . ' ' . $document['expediteur_prenom']); ?> - 
+                                                <?php echo date('d/m/Y H:i', strtotime($document['date_upload'])); ?> - 
+                                                <?php echo round($document['taille'] / 1024, 1); ?> KB
+                                            </div>
+                                        </div>
+                                        <a href="<?= url('documents/download?id=' . $document['id']) ?>" class="btn-download">
+                                            <i class="fas fa-download"></i> Télécharger
+                                        </a>
                                     </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <div class="empty-message">
+                                    <i class="fas fa-file-download"></i>
+                                    <h3>Aucun document reçu</h3>
+                                    <p>Vous n'avez pas encore reçu de documents. Les documents partagés avec vous apparaîtront ici.</p>
                                 </div>
-                                                                    <a href="<?= url('documents/download?id=' . $document['id']) ?>" class="btn-download">
-                                    <i class="fas fa-download"></i> Télécharger
-                                </a>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    
+                    <div id="documents-envoyes-tab" class="tab-content" style="display: none;">
+                        <div class="document-list">
+                            <?php if (!empty($documents_envoyes_recents)): ?>
+                                <?php foreach ($documents_envoyes_recents as $document): ?>
+                                    <div class="document-item">
+                                        <div class="document-info">
+                                            <div class="document-title"><?php echo htmlspecialchars($document['titre']); ?></div>
+                                            <div class="document-meta">
+                                                À: <?php echo htmlspecialchars($document['destinataire_nom'] . ' ' . $document['destinataire_prenom']); ?> - 
+                                                <?php echo date('d/m/Y H:i', strtotime($document['date_upload'])); ?> - 
+                                                <?php echo round($document['taille'] / 1024, 1); ?> KB
+                                            </div>
+                                        </div>
+                                        <a href="<?= url('documents/download?id=' . $document['id']) ?>" class="btn-download">
+                                            <i class="fas fa-download"></i> Re-télécharger
+                                        </a>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <div class="empty-message">
+                                    <i class="fas fa-file-upload"></i>
+                                    <h3>Aucun document envoyé</h3>
+                                    <p>Vous n'avez pas encore partagé de documents. Utilisez le formulaire ci-dessus pour partager vos fichiers.</p>
+                                </div>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1168,6 +1272,76 @@
             showToast('<?php echo addslashes($_SESSION['error_message']); ?>', 'error');
             <?php unset($_SESSION['error_message']); ?>
         <?php endif; ?>
+
+        // Fonctions pour gérer les onglets de messagerie
+        function showMessageTab(tabType) {
+            const messageSection = document.querySelector('.messagerie-section');
+            if (!messageSection) return;
+            
+            const tabButtons = messageSection.querySelectorAll('.tabs-navigation .tab-btn');
+            const tabContents = messageSection.querySelectorAll('.tab-content');
+            
+            // Supprimer la classe active de tous les boutons et contenus de la section messagerie
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                content.style.display = 'none';
+            });
+            
+            // Ajouter la classe active au bouton cliqué
+            event.target.classList.add('active');
+            
+            // Afficher le contenu approprié
+            const targetTab = document.getElementById(`messages-${tabType}-tab`);
+            if (targetTab) {
+                targetTab.classList.add('active');
+                targetTab.style.display = 'block';
+            }
+        }
+
+        // Fonctions pour gérer les onglets de documents
+        function showDocumentTab(tabType) {
+            const documentSection = document.querySelector('.documents-section');
+            if (!documentSection) return;
+            
+            const tabButtons = documentSection.querySelectorAll('.tabs-navigation .tab-btn');
+            const tabContents = documentSection.querySelectorAll('.tab-content');
+            
+            // Supprimer la classe active de tous les boutons et contenus de la section documents
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                content.style.display = 'none';
+            });
+            
+            // Ajouter la classe active au bouton cliqué
+            event.target.classList.add('active');
+            
+            // Afficher le contenu approprié
+            const targetTab = document.getElementById(`documents-${tabType}-tab`);
+            if (targetTab) {
+                targetTab.classList.add('active');
+                targetTab.style.display = 'block';
+            }
+        }
+
+        // Fonction pour ouvrir le modal de réponse
+        function openReplyModal(recipientEmail, recipientName) {
+            // Aller à la section messagerie et pré-remplir le formulaire
+            showSection('messagerie');
+            
+            // Attendre que la section soit affichée puis pré-remplir
+            setTimeout(() => {
+                const emailSelect = document.querySelector('select[name="email_destinataire"]');
+                const messageTextarea = document.querySelector('textarea[name="contenu"]');
+                
+                if (emailSelect && messageTextarea) {
+                    emailSelect.value = recipientEmail;
+                    messageTextarea.focus();
+                    messageTextarea.placeholder = `Répondre à ${recipientName}...`;
+                }
+            }, 100);
+        }
 
         // Fonction pour afficher des notifications toast
         function showToast(message, type = 'info') {

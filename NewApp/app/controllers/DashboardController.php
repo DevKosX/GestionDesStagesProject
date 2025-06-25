@@ -15,7 +15,9 @@ class DashboardController extends Controller {
         
         // Récupérer les données pour le dashboard
         $messages_recents = array_slice(Message::messagesRecus($user_id), 0, 5);
+        $messages_envoyes_recents = array_slice(Message::messagesEnvoyes($user_id), 0, 5);
         $documents_recents = array_slice(Document::getDocumentsRecus($user_id), 0, 5);
+        $documents_envoyes_recents = array_slice(Document::getDocumentsEnvoyes($user_id), 0, 5);
         $evenements_prochains = Evenement::getEvenementsProchains($user_id, $this->role, 10);
         $tous_les_users = Document::getAllUsers();
         
@@ -27,7 +29,9 @@ class DashboardController extends Controller {
         
         $data = [
             'messages_recents' => $messages_recents,
+            'messages_envoyes_recents' => $messages_envoyes_recents,
             'documents_recents' => $documents_recents,
+            'documents_envoyes_recents' => $documents_envoyes_recents,
             'evenements_prochains' => $evenements_prochains,
             'tous_les_users' => $tous_les_users,
             'stats' => [

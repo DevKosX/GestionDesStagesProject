@@ -1,0 +1,366 @@
+/* =======================================================
+   STYLES UNIFORMES BLEUS MODERNES - VERSION HARMONISEE
+   COHERENT AVEC LE DESIGN VISIBLE SUR LES IMAGES
+   ======================================================= */
+
+/* RESET ET OVERRIDES POUR ELIMINER LES CONFLITS */
+.messagerie-section *, .documents-section * {
+    box-sizing: border-box !important;
+}
+
+/* NAVIGATION PAR ONGLETS - STYLE UNIFORME BLEU */
+.messagerie-section .tabs-navigation,
+.documents-section .tabs-navigation {
+    display: flex !important;
+    background: #f8fafc !important;
+    border-radius: 12px !important;
+    padding: 6px !important;
+    margin-bottom: 24px !important;
+    gap: 6px !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+/* BOUTONS ONGLETS - STYLE UNIFORME COMME L'IMAGE */
+.messagerie-section .tab-btn,
+.documents-section .tab-btn {
+    background: transparent !important;
+    border: none !important;
+    padding: 12px 20px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #64748b !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    position: relative !important;
+    flex: 1 !important;
+    justify-content: center !important;
+    min-height: 44px !important;
+}
+
+.messagerie-section .tab-btn:hover,
+.documents-section .tab-btn:hover {
+    background: rgba(59, 130, 246, 0.05) !important;
+    color: #3b82f6 !important;
+}
+
+.messagerie-section .tab-btn.active,
+.documents-section .tab-btn.active {
+    background: #3b82f6 !important;
+    color: white !important;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2) !important;
+    font-weight: 600 !important;
+}
+
+.messagerie-section .tab-btn.active:hover,
+.documents-section .tab-btn.active:hover {
+    background: #2563eb !important;
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* ICONES DES ONGLETS */
+.messagerie-section .tab-btn i,
+.documents-section .tab-btn i {
+    font-size: 16px !important;
+    transition: transform 0.2s ease !important;
+}
+
+.messagerie-section .tab-btn.active i,
+.documents-section .tab-btn.active i {
+    transform: scale(1.05) !important;
+}
+
+/* BADGES DE COMPTEUR - STYLE UNIFORME BLEU */
+.messagerie-section .tab-btn span,
+.documents-section .tab-btn span {
+    background: rgba(0,0,0,0.1) !important;
+    color: #64748b !important;
+    padding: 3px 8px !important;
+    border-radius: 12px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    min-width: 22px !important;
+    text-align: center !important;
+    transition: all 0.2s ease !important;
+}
+
+.messagerie-section .tab-btn.active span,
+.documents-section .tab-btn.active span {
+    background: rgba(255,255,255,0.2) !important;
+    color: white !important;
+    font-weight: 700 !important;
+}
+
+/* CONTENU DES ONGLETS - TRANSITION UNIFORME */
+.messagerie-section .tab-content,
+.documents-section .tab-content {
+    opacity: 0 !important;
+    transform: translateY(8px) !important;
+    transition: all 0.3s ease !important;
+    display: none !important;
+}
+
+.messagerie-section .tab-content.active,
+.documents-section .tab-content.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    display: block !important;
+}
+
+/* ITEMS DE MESSAGES - STYLE UNIFORME BLEU */
+.messagerie-section .message-item {
+    padding: 20px !important;
+    border: 1px solid #e2e8f0 !important;
+    transition: all 0.2s ease !important;
+    border-radius: 12px !important;
+    margin-bottom: 16px !important;
+    background: white !important;
+    position: relative !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+}
+
+.messagerie-section .message-item::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 4px !important;
+    height: 100% !important;
+    background: #3b82f6 !important;
+    border-radius: 2px 0 0 2px !important;
+}
+
+.messagerie-section .message-item:hover {
+    background: #f8fafc !important;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1) !important;
+    border-color: #3b82f6 !important;
+    transform: translateY(-1px) !important;
+}
+
+/* HEADERS DE MESSAGES - STYLE UNIFORME */
+.messagerie-section .message-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 12px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+}
+
+.messagerie-section .message-sender {
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    font-size: 15px !important;
+}
+
+.messagerie-section .message-date {
+    font-size: 12px !important;
+    color: #64748b !important;
+    background: #f1f5f9 !important;
+    padding: 4px 8px !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+}
+
+.messagerie-section .message-preview {
+    color: #475569 !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 16px !important;
+}
+
+/* ACTIONS DE MESSAGES */
+.messagerie-section .message-actions {
+    margin-top: 16px !important;
+    display: flex !important;
+    gap: 10px !important;
+    justify-content: flex-end !important;
+}
+
+/* BOUTON REPONDRE - STYLE UNIFORME VERT */
+.messagerie-section .btn-reply {
+    background: #10b981 !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 16px !important;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2) !important;
+}
+
+.messagerie-section .btn-reply:hover {
+    background: #059669 !important;
+    box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* DOCUMENTS - STYLE UNIFORME COMME LES MESSAGES */
+.documents-section .document-item {
+    padding: 20px !important;
+    border: 1px solid #e2e8f0 !important;
+    transition: all 0.2s ease !important;
+    border-radius: 12px !important;
+    margin-bottom: 16px !important;
+    background: white !important;
+    position: relative !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+}
+
+.documents-section .document-item::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 4px !important;
+    height: 100% !important;
+    background: #3b82f6 !important;
+    border-radius: 2px 0 0 2px !important;
+}
+
+.documents-section .document-item:hover {
+    background: #f8fafc !important;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1) !important;
+    border-color: #3b82f6 !important;
+    transform: translateY(-1px) !important;
+}
+
+.documents-section .document-info {
+    flex: 1 !important;
+}
+
+.documents-section .document-title {
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    margin-bottom: 6px !important;
+    font-size: 15px !important;
+}
+
+.documents-section .document-meta {
+    font-size: 13px !important;
+    color: #64748b !important;
+    line-height: 1.4 !important;
+}
+
+/* BOUTON TELECHARGER - STYLE UNIFORME BLEU COMME LE SITE */
+.documents-section .btn-download {
+    background: #3b82f6 !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 16px !important;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2) !important;
+}
+
+.documents-section .btn-download:hover {
+    background: #2563eb !important;
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3) !important;
+    transform: translateY(-1px) !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+
+/* ETATS VIDES - STYLE UNIFORME ELEGANT */
+.messagerie-section .empty-message,
+.documents-section .empty-message {
+    text-align: center !important;
+    padding: 48px 24px !important;
+    color: #64748b !important;
+    background: #f8fafc !important;
+    border-radius: 12px !important;
+    border: 2px dashed #cbd5e1 !important;
+    margin: 20px 0 !important;
+}
+
+.messagerie-section .empty-message i,
+.documents-section .empty-message i {
+    font-size: 56px !important;
+    margin-bottom: 20px !important;
+    color: #94a3b8 !important;
+}
+
+.messagerie-section .empty-message h3,
+.documents-section .empty-message h3 {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    margin-bottom: 12px !important;
+    color: #334155 !important;
+}
+
+.messagerie-section .empty-message p,
+.documents-section .empty-message p {
+    font-size: 15px !important;
+    opacity: 0.8 !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    line-height: 1.6 !important;
+}
+
+/* RESPONSIVE DESIGN UNIFORME */
+@media (max-width: 768px) {
+    .messagerie-section .tabs-navigation,
+    .documents-section .tabs-navigation {
+        flex-direction: column !important;
+        gap: 4px !important;
+        padding: 4px !important;
+    }
+    
+    .messagerie-section .tab-btn,
+    .documents-section .tab-btn {
+        justify-content: center !important;
+        padding: 12px 16px !important;
+        font-size: 13px !important;
+        min-height: 40px !important;
+    }
+    
+    .messagerie-section .message-item,
+    .documents-section .document-item {
+        padding: 16px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .messagerie-section .empty-message,
+    .documents-section .empty-message {
+        padding: 32px 20px !important;
+    }
+    
+    .messagerie-section .empty-message i,
+    .documents-section .empty-message i {
+        font-size: 40px !important;
+    }
+    
+    .messagerie-section .empty-message h3,
+    .documents-section .empty-message h3 {
+        font-size: 18px !important;
+    }
+    
+    .documents-section .document-item {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 16px !important;
+    }
+    
+    .documents-section .btn-download {
+        align-self: flex-end !important;
+    }
+} 

@@ -175,42 +175,191 @@ body {
     color: #1f2937;
 }
 
-/* MESSAGERIE */
-.message-item {
-    padding: 15px;
-    border-bottom: 1px solid #f3f4f6;
-    transition: background-color 0.3s ease;
+/* STYLES SPECIFIQUES POUR LA MESSAGERIE */
+.messagerie-section .message-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 12px !important;
+    padding-bottom: 8px !important;
+    border-bottom: 1px solid #e5e7eb !important;
 }
 
-.message-item:hover {
-    background-color: #f9fafb;
+.messagerie-section .message-sender {
+    font-weight: 700 !important;
+    color: #1f2937 !important;
+    font-size: 15px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
 }
 
-.message-item:last-child {
-    border-bottom: none;
+.messagerie-section .message-sender::before {
+    content: '👤' !important;
+    font-size: 14px !important;
 }
 
-.message-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
+.messagerie-section .message-date {
+    color: #6b7280 !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    background: #f3f4f6 !important;
+    padding: 4px 10px !important;
+    border-radius: 12px !important;
 }
 
-.message-sender {
-    font-weight: 600;
-    color: #1f2937;
+.messagerie-section .message-preview {
+    color: #374151 !important;
+    line-height: 1.6 !important;
+    font-size: 14px !important;
+    background: rgba(59, 130, 246, 0.05) !important;
+    padding: 12px 16px !important;
+    border-radius: 12px !important;
+    border-left: 3px solid #3b82f6 !important;
+    margin-top: 8px !important;
 }
 
-.message-date {
-    font-size: 12px;
-    color: #6b7280;
+/* STYLES POUR LE CONTENU DES ONGLETS */
+.messagerie-section .tab-content,
+.documents-section .tab-content {
+    opacity: 0 !important;
+    transform: translateY(20px) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: none !important;
 }
 
-.message-preview {
-    color: #4b5563;
-    font-size: 14px;
+.messagerie-section .tab-content.active,
+.documents-section .tab-content.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    display: block !important;
+    animation: slideInUp 0.5s ease-out !important;
 }
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* STYLES SPECIFIQUES POUR LES DOCUMENTS DANS LES ONGLETS */
+.documents-section .document-item {
+    padding: 20px !important;
+    border: 1px solid #e5e7eb !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border-radius: 16px !important;
+    margin-bottom: 16px !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.documents-section .document-item::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 4px !important;
+    height: 100% !important;
+    background: linear-gradient(45deg, #f59e0b, #d97706) !important;
+    border-radius: 0 2px 2px 0 !important;
+}
+
+.documents-section .document-item:hover {
+    background: linear-gradient(135deg, #ffffff 0%, #fef3c7 100%) !important;
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.1) !important;
+    transform: translateY(-2px) !important;
+    border-color: #f59e0b !important;
+}
+
+.documents-section .document-title {
+    font-weight: 700 !important;
+    color: #1f2937 !important;
+    font-size: 16px !important;
+    margin-bottom: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.documents-section .document-title::before {
+    content: '📄' !important;
+    font-size: 16px !important;
+}
+
+.documents-section .document-meta {
+    color: #6b7280 !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+}
+
+/* STYLES SPECIFIQUES POUR LES BOUTONS DE TELECHARGEMENT DANS LES ONGLETS */
+.documents-section .btn-download {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 24px !important;
+    border-radius: 25px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25) !important;
+    text-decoration: none !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.documents-section .btn-download::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent) !important;
+    transition: left 0.6s !important;
+}
+
+.documents-section .btn-download:hover::before {
+    left: 100% !important;
+}
+
+.documents-section .btn-download:hover {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4) !important;
+    transform: translateY(-2px) !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.documents-section .btn-download:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3) !important;
+}
+
+.documents-section .btn-download i {
+    font-size: 12px !important;
+    transition: transform 0.3s ease !important;
+}
+
+.documents-section .btn-download:hover i {
+    transform: scale(1.1) !important;
+}
+
+
+/* Styles anciens supprimés - remplacés par les versions spécifiques */
 
 .btn-compose {
     background: linear-gradient(135deg, #3b82f6, #2563eb);
@@ -305,52 +454,7 @@ body {
     overflow-y: auto;
 }
 
-.document-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px;
-    border-bottom: 1px solid #f3f4f6;
-}
-
-.document-item:last-child {
-    border-bottom: none;
-}
-
-.document-info {
-    flex: 1;
-}
-
-.document-title {
-    font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 4px;
-}
-
-.document-meta {
-    font-size: 12px;
-    color: #6b7280;
-}
-
-.btn-download {
-    background: #3b82f6;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.btn-download:hover {
-    background: #2563eb;
-    color: white;
-}
+/* Anciens styles de documents supprimés - remplacés par les versions spécifiques */
 
 /* CALENDRIER */
 .calendar-header {
@@ -1204,5 +1308,403 @@ body {
     .action-details {
         font-size: 11px;
         margin-left: 20px;
+    }
+}
+
+/* STYLES POUR LES ONGLETS - SPECIFIQUES POUR EVITER LES CONFLITS */
+.messagerie-section .tabs-navigation,
+.documents-section .tabs-navigation {
+    display: flex !important;
+    background: #f8f9fa !important;
+    border-radius: 12px !important;
+    padding: 4px !important;
+    margin-bottom: 25px !important;
+    gap: 2px !important;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05) !important;
+    border-bottom: none !important;
+}
+
+.messagerie-section .tab-btn,
+.documents-section .tab-btn {
+    background: none !important;
+    border: none !important;
+    padding: 14px 24px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #6b7280 !important;
+    border-radius: 10px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    position: relative !important;
+    flex: 1 !important;
+    justify-content: center !important;
+    min-height: 48px !important;
+}
+
+.messagerie-section .tab-btn:hover,
+.documents-section .tab-btn:hover {
+    background: rgba(255, 255, 255, 0.7) !important;
+    color: #374151 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+}
+
+.messagerie-section .tab-btn.active,
+.documents-section .tab-btn.active {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4) !important;
+}
+
+.messagerie-section .tab-btn.active:hover,
+.documents-section .tab-btn.active:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%) !important;
+    box-shadow: 0 12px 28px rgba(59, 130, 246, 0.5) !important;
+}
+
+.messagerie-section .tab-btn i,
+.documents-section .tab-btn i {
+    font-size: 16px !important;
+    transition: transform 0.3s ease !important;
+}
+
+.messagerie-section .tab-btn.active i,
+.documents-section .tab-btn.active i {
+    transform: scale(1.1) !important;
+}
+
+/* STYLES ULTRA-SPECIFIQUES POUR LES ONGLETS MODERNES */
+.messagerie-section .tab-content,
+.documents-section .tab-content {
+    opacity: 0 !important;
+    transform: translateY(20px) !important;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: none !important;
+    animation: none !important;
+}
+
+.messagerie-section .tab-content.active,
+.documents-section .tab-content.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    display: block !important;
+    animation: slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+@keyframes slideInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(-5px) scale(1.01);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* STYLES SPECIFIQUES POUR LES ACTIONS DES MESSAGES */
+.messagerie-section .message-actions {
+    margin-top: 16px !important;
+    display: flex !important;
+    gap: 12px !important;
+    justify-content: flex-end !important;
+}
+
+.messagerie-section .btn-reply {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 25px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.messagerie-section .btn-reply::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent) !important;
+    transition: left 0.6s !important;
+}
+
+.messagerie-section .btn-reply:hover::before {
+    left: 100% !important;
+}
+
+.messagerie-section .btn-reply:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4) !important;
+    transform: translateY(-2px) !important;
+}
+
+.messagerie-section .btn-reply:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+}
+
+.messagerie-section .btn-reply i {
+    font-size: 12px !important;
+    transition: transform 0.3s ease !important;
+}
+
+.messagerie-section .btn-reply:hover i {
+    transform: scale(1.1) !important;
+}
+
+/* STYLES SPECIFIQUES POUR LES MESSAGES DANS LES ONGLETS */
+.messagerie-section .message-item {
+    padding: 20px !important;
+    border: 1px solid #e5e7eb !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border-radius: 16px !important;
+    margin-bottom: 16px !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.messagerie-section .message-item::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 4px !important;
+    height: 100% !important;
+    background: linear-gradient(45deg, #3b82f6, #10b981) !important;
+    border-radius: 0 2px 2px 0 !important;
+}
+
+.messagerie-section .message-item:hover {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%) !important;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.1) !important;
+    transform: translateY(-2px) !important;
+    border-color: #3b82f6 !important;
+}
+
+/* Anciens styles génériques supprimés - remplacés par les versions spécifiques */
+
+/* STYLES ULTRA-SPECIFIQUES POUR LES ÉTATS VIDES MODERNES */
+.messagerie-section .empty-message,
+.documents-section .empty-message {
+    text-align: center !important;
+    padding: 80px 30px !important;
+    color: #6b7280 !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%) !important;
+    border-radius: 24px !important;
+    border: 3px dashed #cbd5e1 !important;
+    margin: 20px 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+}
+
+.messagerie-section .empty-message::before,
+.documents-section .empty-message::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -50% !important;
+    left: -50% !important;
+    width: 200% !important;
+    height: 200% !important;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%) !important;
+    animation: pulse 4s ease-in-out infinite !important;
+}
+
+.messagerie-section .empty-message i,
+.documents-section .empty-message i {
+    font-size: 64px !important;
+    margin-bottom: 24px !important;
+    color: #3b82f6 !important;
+    background: linear-gradient(135deg, #3b82f6, #10b981) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    animation: float 3s ease-in-out infinite !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+.messagerie-section .empty-message h3,
+.documents-section .empty-message h3 {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    margin-bottom: 12px !important;
+    color: #1e293b !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+.messagerie-section .empty-message p,
+.documents-section .empty-message p {
+    font-size: 16px !important;
+    opacity: 0.7 !important;
+    max-width: 280px !important;
+    margin: 0 auto !important;
+    line-height: 1.6 !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+    50% { transform: scale(1.1) rotate(180deg); opacity: 0.1; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ANIMATIONS AVANCEES POUR LES ELEMENTS INTERACTIFS */
+.messagerie-section .message-item,
+.documents-section .document-item {
+    animation: elementAppear 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.messagerie-section .message-item:hover,
+.documents-section .document-item:hover {
+    animation: elementHover 0.3s ease-out !important;
+}
+
+@keyframes elementAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.9);
+        filter: blur(10px);
+    }
+    30% {
+        opacity: 0.3;
+        transform: translateY(20px) scale(0.95);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes elementHover {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-3px) scale(1.02); }
+    100% { transform: translateY(-2px) scale(1.01); }
+}
+
+/* AMELIORATIONS DES MICRO-INTERACTIONS */
+.messagerie-section .tab-btn,
+.documents-section .tab-btn {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.messagerie-section .tab-btn::after,
+.documents-section .tab-btn::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    width: 0 !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, #3b82f6, #10b981) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform: translateX(-50%) !important;
+    border-radius: 2px 2px 0 0 !important;
+}
+
+.messagerie-section .tab-btn.active::after,
+.documents-section .tab-btn.active::after {
+    width: 80% !important;
+}
+
+.messagerie-section .tab-btn:hover::after,
+.documents-section .tab-btn:hover::after {
+    width: 60% !important;
+    background: linear-gradient(90deg, #2563eb, #059669) !important;
+}
+
+/* AMÉLIORATION DES BADGES DE COMPTEUR */
+.messagerie-section .tab-btn span,
+.documents-section .tab-btn span {
+    transition: all 0.3s ease !important;
+}
+
+.messagerie-section .tab-btn.active span,
+.documents-section .tab-btn.active span {
+    background: rgba(255,255,255,0.9) !important;
+    color: #3b82f6 !important;
+    font-weight: 700 !important;
+}
+
+/* RESPONSIVE POUR LES ONGLETS */
+@media (max-width: 768px) {
+    .tabs-navigation {
+        flex-direction: column;
+        gap: 2px;
+    }
+    
+    .tab-btn {
+        border-radius: 6px;
+        justify-content: center;
+        padding: 12px 16px;
+        font-size: 13px;
+    }
+    
+    .message-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn-reply {
+        justify-content: center;
+    }
+    
+    .document-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .btn-download {
+        align-self: flex-end;
+    }
+    
+    /* Adapter les statistiques sur mobile */
+    .dashboard-grid div[style*="grid-template-columns: 1fr 1fr 1fr 1fr"] {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+    
+    .dashboard-grid div[style*="grid-template-columns: 1fr 1fr 1fr 1fr"] > div {
+        padding: 10px !important;
+    }
+    
+    .dashboard-grid div[style*="grid-template-columns: 1fr 1fr 1fr 1fr"] > div > div:first-child {
+        font-size: 18px !important;
+    }
+    
+    .dashboard-grid div[style*="grid-template-columns: 1fr 1fr 1fr 1fr"] > div > div:last-child {
+        font-size: 10px !important;
     }
 } 
