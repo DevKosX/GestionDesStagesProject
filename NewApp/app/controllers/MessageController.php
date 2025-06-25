@@ -2,17 +2,13 @@
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Message.php';
 require_once __DIR__ . '/../core/Controller.php';
+require_once __DIR__ . '/../core/View.php';
 
 class MessageController extends Controller {
     public function index() {
         $this->requireAuth();
-        $user_id = $this->user->Id;
-        $messages_recus = Message::messagesRecus($user_id);
-        $messages_envoyes = Message::messagesEnvoyes($user_id);
-        $this->render('messages/index', [
-            'messages_recus' => $messages_recus,
-            'messages_envoyes' => $messages_envoyes
-        ]);
+        // Rediriger vers le dashboard avec l'onglet messagerie ouvert
+        View::redirect('dashboard#messagerie');
     }
 
     public function envoyer() {
@@ -30,8 +26,7 @@ class MessageController extends Controller {
             }
         }
         // Si pas de POST, rediriger vers le dashboard
-        header('Location: dashboard#messagerie');
-        exit;
+        View::redirect('dashboard#messagerie');
     }
 
     public function repondre() {
@@ -47,7 +42,6 @@ class MessageController extends Controller {
                 $this->redirectWithMessage('dashboard#messagerie', 'error', 'Destinataire ou contenu invalide.');
             }
         }
-        header('Location: dashboard#messagerie');
-        exit;
+        View::redirect('dashboard#messagerie');
     }
 } 

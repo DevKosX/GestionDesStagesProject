@@ -66,8 +66,16 @@ class View {
      * Redirige vers une URL
      */
     public static function redirect($url, $statusCode = 302) {
-        header("Location: " . $url, true, $statusCode);
-        exit;
+        // Inclure les helpers d'URL
+        require_once __DIR__ . '/../helpers/url_helper.php';
+        
+        // Si l'URL ne commence pas par http:// ou https://, utiliser le helper redirect
+        if (!preg_match('#^https?://#', $url)) {
+            redirect($url);
+        } else {
+            header("Location: " . $url, true, $statusCode);
+            exit;
+        }
     }
     
     /**
@@ -77,7 +85,8 @@ class View {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        $_SESSION['flash_' . $type] = $message;
+        // Utiliser les noms de variables que les vues attendent
+        $_SESSION[$type . '_message'] = $message;
     }
     
     /**
@@ -88,7 +97,7 @@ class View {
             session_start();
         }
         
-        $key = 'flash_' . $type;
+        $key = $type . '_message';
         if (isset($_SESSION[$key])) {
             $message = $_SESSION[$key];
             unset($_SESSION[$key]);

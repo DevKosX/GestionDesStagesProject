@@ -1,4 +1,12 @@
-# Sécurité : Empêcher l'accès direct aux fichiers sensibles
+# Configuration Apache pour l'application MVC
+Options -Indexes
+DirectoryIndex public/index.php
+
+# Désactiver l'affichage des erreurs PHP en production
+php_flag display_errors Off
+php_flag log_errors On
+
+# Sécurité - Empêcher l'accès aux fichiers sensibles
 <Files "*.sql">
     Require all denied
 </Files>
@@ -7,12 +15,24 @@
     Require all denied
 </Files>
 
-<Files "config.php">
+<FilesMatch "\.(md|txt)$">
     Require all denied
-</Files>
+</FilesMatch>
 
-# Empêcher l'affichage des répertoires
-Options -Indexes
+# Redirection automatique vers public/ si on accède à la racine
+RewriteEngine On
+
+# Rediriger toutes les requêtes vers public/ sauf si on y est déjà
+RewriteCond %{REQUEST_URI} !^/.*public/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ public/$1 [L]
+
+# Redirection spéciale pour la racine
+RewriteRule ^$ public/ [L]
+
+# Empêcher l'accès direct aux dossiers système
+RewriteRule ^(app|config|routes|storage)/ - [F,L]
 
 # Sécurité des headers
 <IfModule mod_headers.c>
@@ -21,12 +41,22 @@ Options -Indexes
     Header always set X-XSS-Protection "1; mode=block"
 </IfModule>
 
-# Gestion des erreurs
+# Point d'entrée unique MVC - TOUT passe par public/index.php
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
-    # Rediriger toutes les requêtes vers public/index.php
+    # Servir les assets directement depuis public/assets/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_URI} \.(css|js|jpg|jpeg|png|gif|ico|pdf|zip|woff|woff2|ttf|svg)$ [NC]
+    RewriteRule ^(.*)$ public/assets/$1 [L]
+    
+    # Assets existants dans public/assets/
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^public/assets/(.*)$ public/assets/$1 [L]
+    
+    # POINT D'ENTRÉE UNIQUE : Tout le reste va vers public/index.php
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !^/.*public/assets/.*$
     RewriteRule ^(.*)$ public/index.php [QSA,L]
 </IfModule>

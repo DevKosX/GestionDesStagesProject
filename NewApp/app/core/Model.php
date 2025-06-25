@@ -19,7 +19,6 @@ class Model {
             $stmt->execute($params);
             return $stmt;
         } catch (PDOException $e) {
-            error_log("Erreur SQL dans " . get_class($this) . ": " . $e->getMessage());
             return false;
         }
     }

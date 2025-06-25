@@ -68,7 +68,6 @@ class Action {
             $stmt->execute($params);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
-            error_log("Erreur dans getActionsAvecEcheances: " . $e->getMessage());
             return [];
         }
     }

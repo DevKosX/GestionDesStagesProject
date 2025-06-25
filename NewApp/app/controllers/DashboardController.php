@@ -64,7 +64,7 @@ class DashboardController extends Controller {
     }
     
     /**
-     * Récupère les stages d'un étudiant avec informations essentielles
+     * Récupère les stages d'un étudiant avec informations complètes
      */
     private function getStudentStages($user_id) {
         try {
@@ -103,7 +103,7 @@ class DashboardController extends Controller {
                            ELSE 'en_cours'
                        END as statut
                        
-                FROM stage s
+                FROM stage s 
                 LEFT JOIN tuteur_entreprise te ON s.Id_TuteurEntreprise = te.Id_TuteurEntreprise
                 LEFT JOIN entreprise e ON te.Id_Entreprise = e.Id_Entreprise
                 LEFT JOIN utilisateur u_tuteur ON s.Id_Enseignant = u_tuteur.Id
@@ -117,15 +117,8 @@ class DashboardController extends Controller {
             $stmt->execute([$user_id]);
             $stages = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
-            // Debug : Log les résultats pour vérifier
-            error_log("Stages trouvés pour l'utilisateur $user_id : " . count($stages));
-            foreach($stages as $stage) {
-                error_log("Stage ID: {$stage['Id_Stage']}, Semestre: {$stage['numSemestre']}, Mission: {$stage['mission']}");
-            }
-            
             return $stages;
         } catch (Exception $e) {
-            error_log("Erreur dans getStudentStages: " . $e->getMessage());
             return [];
         }
     }

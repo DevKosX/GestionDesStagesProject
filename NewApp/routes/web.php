@@ -1,35 +1,46 @@
 <?php
+// Routes de l'application - Architecture MVC portable
+// Compatible local et production
+
+// Charger les contrôleurs
 require_once __DIR__ . '/../app/controllers/AuthController.php';
 require_once __DIR__ . '/../app/controllers/DashboardController.php';
 require_once __DIR__ . '/../app/controllers/MessageController.php';
 require_once __DIR__ . '/../app/controllers/DocumentController.php';
 
-// Détecte le chemin réel de la requête, sans le chemin de base ni /index.php
-$uri = $_SERVER['REQUEST_URI'];
-$scriptName = dirname($_SERVER['SCRIPT_NAME']);
+// Charger le router
+require_once __DIR__ . '/../app/core/Router.php';
 
-// Extraire seulement le chemin, sans les paramètres GET
-$uriParts = parse_url($uri);
-$path = preg_replace('#^' . preg_quote($scriptName) . '(?:/index\.php)?#', '', $uriParts['path']);
+// Créer l'instance du router
+$router = new Router();
 
-if ($path === '/login') {
-    (new AuthController())->login();
-} elseif ($path === '/logout') {
-    (new AuthController())->logout();
-} elseif ($path === '/dashboard' || $path === '' || $path === '/') {
-    (new DashboardController())->index();
-} elseif ($path === '/messages') {
-    (new MessageController())->index();
-} elseif ($path === '/messages/envoyer') {
-    (new MessageController())->envoyer();
-} elseif ($path === '/messages/repondre') {
-    (new MessageController())->repondre();
-} elseif ($path === '/documents') {
-    (new DocumentController())->index();
-} elseif ($path === '/documents/upload') {
-    (new DocumentController())->upload();
-} elseif ($path === '/documents/download') {
-    (new DocumentController())->download();
-} else {
-    echo 'Page non trouvée';
-} 
+// === ROUTES D'AUTHENTIFICATION ===
+$router->addRoute('/login', 'AuthController', 'login');
+$router->addRoute('/connexion', 'AuthController', 'login');
+$router->addRoute('/logout', 'AuthController', 'logout');
+$router->addRoute('/deconnexion', 'AuthController', 'logout');
+
+// === ROUTES DASHBOARD ===
+$router->addRoute('', 'DashboardController', 'index');        // Page d'accueil
+$router->addRoute('/', 'DashboardController', 'index');       // Page d'accueil
+$router->addRoute('/dashboard', 'DashboardController', 'index');
+$router->addRoute('/tableau-de-bord', 'DashboardController', 'index');
+$router->addRoute('/public', 'DashboardController', 'index');  // Accès via /public/
+
+// === ROUTES MESSAGERIE ===
+$router->addRoute('/messages', 'MessageController', 'index');
+$router->addRoute('/messagerie', 'MessageController', 'index');
+$router->addRoute('/messages/envoyer', 'MessageController', 'envoyer');
+$router->addRoute('/messages/repondre', 'MessageController', 'repondre');
+
+// === ROUTES DOCUMENTS ===
+$router->addRoute('/documents', 'DocumentController', 'index');
+$router->addRoute('/documents/upload', 'DocumentController', 'upload');
+$router->addRoute('/documents/download', 'DocumentController', 'download');
+
+// Rendre le router disponible globalement pour les helpers
+global $router;
+
+// Résoudre la route actuelle
+$router->resolve();
+?> 
