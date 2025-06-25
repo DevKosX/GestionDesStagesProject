@@ -1,9 +1,11 @@
 body, html {
-    height: 100%;
+     background-image: url('../images/image_campus.png'); /* adapte le nom si besoin */
+    background-size: cover;        /* l'image couvre toute la page */
+    background-repeat: no-repeat;  /* pas de répétition */
+    background-position: center;   /* centrée */
+    height: 100vh;
     margin: 0;
-    padding: 0;
-    background: #f3f5f8;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: sans-serif;
 }
 
 .login-bg {
@@ -14,9 +16,9 @@ body, html {
 }
 
 .login-container {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.85);;
     border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     width: 400px;
     max-width: 90vw;
     padding: 0 0 32px 0;
