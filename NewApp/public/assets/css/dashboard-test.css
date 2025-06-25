@@ -45,12 +45,12 @@
 .messagerie-section .tab-btn:hover,
 .documents-section .tab-btn:hover {
     background: rgba(59, 130, 246, 0.05) !important;
-    color: #3b82f6 !important;
+    color: #152d65 !important;
 }
 
 .messagerie-section .tab-btn.active,
 .documents-section .tab-btn.active {
-    background: #3b82f6 !important;
+    background: #152d65 !important;
     color: white !important;
     box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2) !important;
     font-weight: 600 !important;
@@ -58,7 +58,7 @@
 
 .messagerie-section .tab-btn.active:hover,
 .documents-section .tab-btn.active:hover {
-    background: #2563eb !important;
+    background: #152d65 !important;
     box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3) !important;
 }
 
@@ -130,14 +130,14 @@
     left: 0 !important;
     width: 4px !important;
     height: 100% !important;
-    background: #3b82f6 !important;
+    background: #152d65 !important;
     border-radius: 2px 0 0 2px !important;
 }
 
 .messagerie-section .message-item:hover {
     background: #f8fafc !important;
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1) !important;
-    border-color: #3b82f6 !important;
+    border-color: #152d65 !important;
     transform: translateY(-1px) !important;
 }
 
@@ -226,14 +226,14 @@
     left: 0 !important;
     width: 4px !important;
     height: 100% !important;
-    background: #3b82f6 !important;
+    background: #152d65 !important;
     border-radius: 2px 0 0 2px !important;
 }
 
 .documents-section .document-item:hover {
     background: #f8fafc !important;
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1) !important;
-    border-color: #3b82f6 !important;
+    border-color: #152d65 !important;
     transform: translateY(-1px) !important;
 }
 
@@ -256,7 +256,7 @@
 
 /* BOUTON TELECHARGER - STYLE UNIFORME BLEU COMME LE SITE */
 .documents-section .btn-download {
-    background: #3b82f6 !important;
+    background: #152d65 !important;
     color: white !important;
     border: none !important;
     padding: 10px 16px !important;
@@ -273,7 +273,7 @@
 }
 
 .documents-section .btn-download:hover {
-    background: #2563eb !important;
+    background: #152d65 !important;
     box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3) !important;
     transform: translateY(-1px) !important;
     color: white !important;

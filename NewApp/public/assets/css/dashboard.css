@@ -18,7 +18,7 @@ body {
 /* SIDEBAR */
 .sidebar {
     width: 280px;
-    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, #152d65 0%, #152d65 100%);
     color: white;
     padding: 0;
     box-shadow: 2px 0 10px rgba(0,0,0,0.1);
@@ -112,7 +112,7 @@ body {
 .page-title {
     font-size: 28px;
     font-weight: 700;
-    color: #1e40af;
+    color: #152d65;
     margin-bottom: 10px;
 }
 
@@ -159,7 +159,7 @@ body {
 .card-icon {
     width: 40px;
     height: 40px;
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    background: linear-gradient(135deg, #152d65, #152d65);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -215,7 +215,7 @@ body {
     background: rgba(59, 130, 246, 0.05) !important;
     padding: 12px 16px !important;
     border-radius: 12px !important;
-    border-left: 3px solid #3b82f6 !important;
+    border-left: 3px solid #152d65 !important;
     margin-top: 8px !important;
 }
 
@@ -362,7 +362,7 @@ body {
 /* Styles anciens supprimés - remplacés par les versions spécifiques */
 
 .btn-compose {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    background: linear-gradient(135deg, #152d65, #152d65);
     color: white;
     border: none;
     padding: 12px 24px;
@@ -381,7 +381,7 @@ body {
 
 /* DOCUMENTS */
 .upload-zone {
-    border: 2px dashed #3b82f6;
+    border: 2px dashed #152d65;
     border-radius: 12px;
     padding: 40px;
     text-align: center;
@@ -392,13 +392,13 @@ body {
 }
 
 .upload-zone:hover {
-    border-color: #2563eb;
+    border-color: #152d65;
     background: #f0f7ff;
 }
 
 .upload-icon {
     font-size: 48px;
-    color: #3b82f6;
+    color: #152d65;
     margin-bottom: 15px;
 }
 
@@ -429,7 +429,7 @@ body {
 
 .form-input:focus, .form-select:focus {
     outline: none;
-    border-color: #3b82f6;
+    border-color: #152d65;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
@@ -619,17 +619,17 @@ body {
 
 /* Actions normales */
 .event-item.event-action {
-    border-left-color: #3b82f6;
+    border-left-color: #152d65;
     background: linear-gradient(135deg, #f8faff 0%, #e0f2fe 100%);
 }
 
 .event-action .event-icon {
-    background: #3b82f6;
+    background: #152d65;
     color: white;
 }
 
 .event-action .event-date {
-    color: #3b82f6;
+    color: #152d65;
 }
 
 .event-action:hover {
@@ -719,7 +719,7 @@ body {
 }
 
 .filter-btn.active {
-    background: #3b82f6;
+    background: #152d65;
     color: white;
 }
 
@@ -728,7 +728,7 @@ body {
 }
 
 .filter-btn.active:hover {
-    background: #2563eb;
+    background: #152d65;
 }
 
 /* État vide amélioré */
@@ -828,7 +828,7 @@ body {
     left: 50%;
     width: 20px;
     height: 20px;
-    border: 2px solid #3b82f6;
+    border: 2px solid #152d65;
     border-radius: 50%;
     border-top-color: transparent;
     animation: spin 1s linear infinite;
@@ -885,7 +885,7 @@ body {
 
 .status-en_cours {
     background: #dbeafe;
-    color: #1e40af;
+    color: #152d65;
 }
 
 .status-termine {
@@ -978,7 +978,7 @@ body {
 }
 
 .stage-filters .filter-btn.active {
-    background: #3b82f6;
+    background: #152d65;
     color: white;
 }
 
@@ -987,7 +987,7 @@ body {
 }
 
 .stage-filters .filter-btn.active:hover {
-    background: #2563eb;
+    background: #152d65;
 }
 
 /* Responsive pour les stages */
@@ -1042,7 +1042,7 @@ body {
 .stage-section h5 {
     margin: 0;
     padding: 15px 20px;
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    background: linear-gradient(135deg, #152d65, #1d4ed8);
     color: white;
     font-size: 14px;
     font-weight: 600;
@@ -1075,7 +1075,7 @@ body {
     background: #f8fafc;
     padding: 12px;
     border-radius: 6px;
-    border-left: 3px solid #3b82f6;
+    border-left: 3px solid #152d65;
 }
 
 .stage-details .info-label {
@@ -1104,7 +1104,7 @@ body {
 
 .stage-details .info-value small i {
     margin-right: 6px;
-    color: #3b82f6;
+    color: #152d65;
     width: 12px;
 }
 
@@ -1354,7 +1354,7 @@ body {
 
 .messagerie-section .tab-btn.active,
 .documents-section .tab-btn.active {
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+    background: linear-gradient(135deg, #152d65 0%, #1d4ed8 100%) !important;
     color: white !important;
     transform: translateY(-2px) !important;
     box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4) !important;
@@ -1362,7 +1362,7 @@ body {
 
 .messagerie-section .tab-btn.active:hover,
 .documents-section .tab-btn.active:hover {
-    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%) !important;
+    background: linear-gradient(135deg, #152d65 0%, #152d65 100%) !important;
     box-shadow: 0 12px 28px rgba(59, 130, 246, 0.5) !important;
 }
 
@@ -1490,7 +1490,7 @@ body {
     left: 0 !important;
     width: 4px !important;
     height: 100% !important;
-    background: linear-gradient(45deg, #3b82f6, #10b981) !important;
+    background: linear-gradient(45deg, #152d65, #152d65) !important;
     border-radius: 0 2px 2px 0 !important;
 }
 
@@ -1498,7 +1498,7 @@ body {
     background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%) !important;
     box-shadow: 0 8px 25px rgba(59, 130, 246, 0.1) !important;
     transform: translateY(-2px) !important;
-    border-color: #3b82f6 !important;
+    border-color: #152d65 !important;
 }
 
 /* Anciens styles génériques supprimés - remplacés par les versions spécifiques */
@@ -1534,8 +1534,8 @@ body {
 .documents-section .empty-message i {
     font-size: 64px !important;
     margin-bottom: 24px !important;
-    color: #3b82f6 !important;
-    background: linear-gradient(135deg, #3b82f6, #10b981) !important;
+    color: #152d65 !important;
+    background: linear-gradient(135deg, #152d65, #152d65) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
@@ -1627,7 +1627,7 @@ body {
     left: 50% !important;
     width: 0 !important;
     height: 3px !important;
-    background: linear-gradient(90deg, #3b82f6, #10b981) !important;
+    background: linear-gradient(90deg, #152d65, #10b981) !important;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
     transform: translateX(-50%) !important;
     border-radius: 2px 2px 0 0 !important;
@@ -1641,7 +1641,7 @@ body {
 .messagerie-section .tab-btn:hover::after,
 .documents-section .tab-btn:hover::after {
     width: 60% !important;
-    background: linear-gradient(90deg, #2563eb, #059669) !important;
+    background: linear-gradient(90deg, #152d65, #059669) !important;
 }
 
 /* AMÉLIORATION DES BADGES DE COMPTEUR */
@@ -1653,9 +1653,36 @@ body {
 .messagerie-section .tab-btn.active span,
 .documents-section .tab-btn.active span {
     background: rgba(255,255,255,0.9) !important;
-    color: #3b82f6 !important;
+    color: #152d65 !important;
     font-weight: 700 !important;
 }
+
+/* STYLES POUR LES logo uspn */
+/* Conteneur pour le logo */
+.uspn-logo-container {
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+}
+
+/* Image du logo */
+.uspn-logo-container img {
+  width: 160px; /* Plus grand */
+  max-width: 80%;
+  height: auto;
+  transition: transform 0.3s ease;
+  opacity: 0.95;
+}
+
+/* Effet au survol */
+.uspn-logo-container img:hover {
+  transform: scale(1.05);
+}
+
+
 
 /* RESPONSIVE POUR LES ONGLETS */
 @media (max-width: 768px) {
@@ -1707,4 +1734,5 @@ body {
     .dashboard-grid div[style*="grid-template-columns: 1fr 1fr 1fr 1fr"] > div > div:last-child {
         font-size: 10px !important;
     }
+
 } 
