@@ -14,8 +14,7 @@ class AuthController extends Controller {
                 } else {
                     $_SESSION['user'] = $user;
                     $_SESSION['role'] = $role;
-                    header('Location: dashboard');
-                    exit;
+                    $this->redirectWithMessage('dashboard', 'success', 'Connexion réussie');
                 }
             } else {
                 $error = "Identifiants incorrects";
@@ -26,7 +25,8 @@ class AuthController extends Controller {
 
     public function logout() {
         session_destroy();
-        header('Location: login');
-        exit;
+        // Utiliser la méthode View::redirect qui est plus fiable
+        require_once __DIR__ . '/../core/View.php';
+        View::redirect('login');
     }
 } 

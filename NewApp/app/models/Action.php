@@ -20,7 +20,7 @@ class Action {
                     ta.Id_TypeAction,
                     ta.libelle as titre_action,
                     ta.Executant,
-                    ta.Destinataire,
+
                     ta.delaiEnJours,
                     ta.ReferenceDelai,
                     ta.requisDoc,
@@ -40,12 +40,17 @@ class Action {
                             DATE_ADD(s.date_fin, INTERVAL ta.delaiEnJours DAY)
                         WHEN ta.ReferenceDelai = 'date_soutenance' AND s.date_soutenance IS NOT NULL THEN 
                             DATE_SUB(s.date_soutenance, INTERVAL ta.delaiEnJours DAY)
+                        -- Si pas de stage ou pas de date de référence, utiliser une échéance par défaut
+                        WHEN s.Id_Stage IS NULL OR (ta.ReferenceDelai = 'date_debut' AND s.date_debut IS NULL) OR 
+                             (ta.ReferenceDelai = 'date_fin' AND s.date_fin IS NULL) OR 
+                             (ta.ReferenceDelai = 'date_soutenance' AND s.date_soutenance IS NULL) THEN
+                            DATE_ADD(CURDATE(), INTERVAL ta.delaiEnJours DAY)
                         ELSE NULL
                     END as date_echeance
                     
                 FROM action a
                 JOIN typeaction ta ON a.Id_TypeAction = ta.Id_TypeAction
-                JOIN stage s ON a.Id_Stage = s.Id_Stage
+                LEFT JOIN stage s ON a.Id_Stage = s.Id_Stage OR (a.Id_Stage IS NULL AND s.Id_Etudiant = a.Id_Etudiant)
                 JOIN etudiant e ON a.Id_Etudiant = e.Id_Etudiant
                 JOIN utilisateur u ON e.Id_Etudiant = u.Id
                 WHERE 1=1";
@@ -88,10 +93,14 @@ class Action {
                 
                 if ($role === 'eleve') {
                     // Les étudiants ne voient que les actions qu'ils doivent eux-mêmes effectuer
-                    $afficher_action = ($action['Executant'] === 'Etudiant');
+                    // Normaliser l'exécutant en supprimant les espaces et accents
+                    $executant_normalise = trim(str_replace(['É', 'È', 'Ê'], 'E', $action['Executant']));
+                    $afficher_action = (strcasecmp($executant_normalise, 'Etudiant') === 0);
                 } elseif ($role === 'enseignant') {
                     // Les enseignants voient les actions qu'ils doivent effectuer et celles de leurs étudiants
-                    $afficher_action = ($action['Executant'] === 'Tuteur pédagogique' || $action['Executant'] === 'Etudiant');
+                    $executant_normalise = trim(str_replace(['É', 'È', 'Ê'], 'E', $action['Executant']));
+                    $afficher_action = (strcasecmp($executant_normalise, 'Tuteur pedagogique') === 0 || 
+                                      strcasecmp($executant_normalise, 'Etudiant') === 0);
                 } else {
                     // Pour les autres rôles (admin, secrétaire), afficher toutes les actions
                     $afficher_action = true;
@@ -131,7 +140,7 @@ class Action {
                     'date_evenement' => $action['date_echeance'],
                     'type_evenement' => $type_evenement,
                     'executant' => $action['Executant'],
-                    'destinataire' => $action['Destinataire'],
+
                     'est_realise' => $est_realise,
                     'jours_restants' => round($jours_restants),
                     'requisDoc' => $action['requisDoc'],

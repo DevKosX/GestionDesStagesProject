@@ -5,6 +5,7 @@ require_once __DIR__ . '/../models/Message.php';
 require_once __DIR__ . '/../models/Document.php';
 require_once __DIR__ . '/../models/Evenement.php';
 require_once __DIR__ . '/../models/Action.php';
+require_once __DIR__ . '/../models/Notification.php';
 
 class DashboardController extends Controller {
     public function index() {
@@ -21,7 +22,8 @@ class DashboardController extends Controller {
         $evenements_prochains = Evenement::getEvenementsProchains($user_id, $this->role, 10);
         $tous_les_users = Document::getAllUsers();
         
-        // Statistiques
+        // Statistiques (utiliser le système de notifications)
+        $stats_notifications = Notification::getStatsNotifications($user_id, $this->role);
         $total_messages_recus = count(Message::messagesRecus($user_id));
         $total_messages_envoyes = count(Message::messagesEnvoyes($user_id));
         $total_documents_recus = count(Document::getDocumentsRecus($user_id));
@@ -35,10 +37,11 @@ class DashboardController extends Controller {
             'evenements_prochains' => $evenements_prochains,
             'tous_les_users' => $tous_les_users,
             'stats' => [
-                'messages_recus' => $total_messages_recus,
+                'messages_recus' => $stats_notifications['messages_recus'], // Utiliser les notifications intelligentes
                 'messages_envoyes' => $total_messages_envoyes,
-                'documents_recus' => $total_documents_recus,
-                'documents_envoyes' => $total_documents_envoyes
+                'documents_recus' => $stats_notifications['documents_recus'], // Utiliser les notifications intelligentes
+                'documents_envoyes' => $total_documents_envoyes,
+                'evenements_urgents' => $stats_notifications['evenements_urgents'] // Nouveaux événements urgents
             ]
         ];
         
@@ -46,7 +49,7 @@ class DashboardController extends Controller {
         switch($this->role) {
             case 'eleve':
                 $data['mes_stages'] = $this->getStudentStages($user_id);
-                $data['stats']['stages_actifs'] = $this->getActiveStagesCount($user_id);
+                $data['stats']['stages_actifs'] = $stats_notifications['stages_actifs']; // Utiliser les notifications intelligentes
                 break;
                 
             case 'enseignant':

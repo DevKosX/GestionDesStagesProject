@@ -7,6 +7,8 @@ require_once __DIR__ . '/../app/controllers/AuthController.php';
 require_once __DIR__ . '/../app/controllers/DashboardController.php';
 require_once __DIR__ . '/../app/controllers/MessageController.php';
 require_once __DIR__ . '/../app/controllers/DocumentController.php';
+require_once __DIR__ . '/../app/controllers/AdminController.php';
+require_once __DIR__ . '/../app/controllers/NotificationController.php';
 
 // Charger le router
 require_once __DIR__ . '/../app/core/Router.php';
@@ -37,6 +39,26 @@ $router->addRoute('/messages/repondre', 'MessageController', 'repondre');
 $router->addRoute('/documents', 'DocumentController', 'index');
 $router->addRoute('/documents/upload', 'DocumentController', 'upload');
 $router->addRoute('/documents/download', 'DocumentController', 'download');
+
+// === ROUTES NOTIFICATIONS ===
+$router->addRoute('/notifications/marquer-vue', 'NotificationController', 'marquerVue');
+$router->addRoute('/notifications/stats', 'NotificationController', 'getStats');
+
+// === ROUTES ADMINISTRATION ===
+$router->addRoute('/admin', 'AdminController', 'index');
+$router->addRoute('/admin/dashboard', 'AdminController', 'index');
+
+$router->addRoute('/admin/users-by-role', 'AdminController', 'usersByRole');
+$router->addRoute('/admin/create-user', 'AdminController', 'createUser');
+$router->addRoute('/admin/action-types', 'AdminController', 'actionTypes');
+$router->addRoute('/admin/create-action-type', 'AdminController', 'createActionType');
+$router->addRoute('/admin/update-action-type', 'AdminController', 'updateActionType');
+$router->addRoute('/admin/delete-action-type', 'AdminController', 'deleteActionType');
+$router->addRoute('/admin/create-stage', 'AdminController', 'createStage');
+$router->addRoute('/admin/stages', 'AdminController', 'stages');
+$router->addRoute('/admin/update-user', 'AdminController', 'updateUser');
+$router->addRoute('/admin/delete-user', 'AdminController', 'deleteUser');
+// Routes de gestion des types d'actions disponibles - modification/suppression
 
 // Rendre le router disponible globalement pour les helpers
 global $router;

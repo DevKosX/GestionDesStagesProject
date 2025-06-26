@@ -1,0 +1,90 @@
+/* SUPPRESSION FORCEE DE TOUTES LES ANIMATIONS - MESSAGERIE ET DOCUMENTS */
+
+/* Suppression globale de toutes les animations et transitions */
+.messagerie-section *,
+.documents-section * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+}
+
+/* Messages sans aucune animation */
+.messagerie-section .message-item {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+}
+
+.messagerie-section .message-item:hover {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+    filter: none !important;
+}
+
+/* Documents sans aucune animation */
+.documents-section .document-item {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+}
+
+.documents-section .document-item:hover {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+    filter: none !important;
+}
+
+/* Onglets sans animation */
+.messagerie-section .tab-btn,
+.documents-section .tab-btn {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+}
+
+.messagerie-section .tab-btn::before,
+.messagerie-section .tab-btn::after,
+.documents-section .tab-btn::before,
+.documents-section .tab-btn::after {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+}
+
+/* Contenu des onglets sans animation */
+.messagerie-section .tab-content,
+.documents-section .tab-content {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+}
+
+/* Boutons sans animation */
+.messagerie-section .btn-reply,
+.documents-section .btn-download {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+}
+
+.messagerie-section .btn-reply:hover,
+.documents-section .btn-download:hover {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+}
+
+/* Suppression des pseudo-éléments animés */
+.messagerie-section *::before,
+.messagerie-section *::after,
+.documents-section *::before,
+.documents-section *::after {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+} 

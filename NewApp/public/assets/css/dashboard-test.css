@@ -136,9 +136,7 @@
 
 .messagerie-section .message-item:hover {
     background: #f8fafc !important;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1) !important;
     border-color: #152d65 !important;
-    transform: translateY(-1px) !important;
 }
 
 /* HEADERS DE MESSAGES - STYLE UNIFORME */

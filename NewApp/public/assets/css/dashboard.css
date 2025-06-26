@@ -219,64 +219,23 @@ body {
     margin-top: 8px !important;
 }
 
-/* STYLES POUR LE CONTENU DES ONGLETS */
-.messagerie-section .tab-content,
-.documents-section .tab-content {
-    opacity: 0 !important;
-    transform: translateY(20px) !important;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    display: none !important;
-}
+/* CONTENU DES ONGLETS - TOTALEMENT SANS ANIMATIONS */
 
-.messagerie-section .tab-content.active,
-.documents-section .tab-content.active {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-    display: block !important;
-    animation: slideInUp 0.5s ease-out !important;
-}
-
-@keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* STYLES SPECIFIQUES POUR LES DOCUMENTS DANS LES ONGLETS */
+/* STYLES SPECIFIQUES POUR LES DOCUMENTS DANS LES ONGLETS - SANS ANIMATIONS */
 .documents-section .document-item {
     padding: 20px !important;
     border: 1px solid #e5e7eb !important;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    border-radius: 16px !important;
+    border-radius: 8px !important;
     margin-bottom: 16px !important;
-    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%) !important;
-    position: relative !important;
-    overflow: hidden !important;
+    background: #ffffff !important;
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
-}
-
-.documents-section .document-item::before {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 4px !important;
-    height: 100% !important;
-    background: linear-gradient(45deg, #f59e0b, #d97706) !important;
-    border-radius: 0 2px 2px 0 !important;
+    border-left: 4px solid #f59e0b !important;
 }
 
 .documents-section .document-item:hover {
-    background: linear-gradient(135deg, #ffffff 0%, #fef3c7 100%) !important;
-    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.1) !important;
-    transform: translateY(-2px) !important;
+    background: #fef3c7 !important;
     border-color: #f59e0b !important;
 }
 
@@ -301,82 +260,49 @@ body {
     line-height: 1.5 !important;
 }
 
-/* STYLES SPECIFIQUES POUR LES BOUTONS DE TELECHARGEMENT DANS LES ONGLETS */
+/* STYLES SPECIFIQUES POUR LES BOUTONS DE TELECHARGEMENT - SANS ANIMATIONS */
 .documents-section .btn-download {
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    background: #f59e0b !important;
     color: white !important;
     border: none !important;
-    padding: 12px 24px !important;
-    border-radius: 25px !important;
+    padding: 8px 16px !important;
+    border-radius: 4px !important;
     font-size: 13px !important;
-    font-weight: 600 !important;
+    font-weight: 500 !important;
     cursor: pointer !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     display: flex !important;
     align-items: center !important;
-    gap: 8px !important;
-    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25) !important;
+    gap: 6px !important;
     text-decoration: none !important;
-    position: relative !important;
-    overflow: hidden !important;
-}
-
-.documents-section .btn-download::before {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: -100% !important;
-    width: 100% !important;
-    height: 100% !important;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent) !important;
-    transition: left 0.6s !important;
-}
-
-.documents-section .btn-download:hover::before {
-    left: 100% !important;
 }
 
 .documents-section .btn-download:hover {
-    background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
-    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4) !important;
-    transform: translateY(-2px) !important;
+    background: #d97706 !important;
     color: white !important;
     text-decoration: none !important;
-}
-
-.documents-section .btn-download:active {
-    transform: translateY(0) !important;
-    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3) !important;
 }
 
 .documents-section .btn-download i {
     font-size: 12px !important;
-    transition: transform 0.3s ease !important;
-}
-
-.documents-section .btn-download:hover i {
-    transform: scale(1.1) !important;
 }
 
 
 /* Styles anciens supprimés - remplacés par les versions spécifiques */
 
 .btn-compose {
-    background: linear-gradient(135deg, #152d65, #152d65);
+    background: #152d65;
     color: white;
     border: none;
     padding: 12px 24px;
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
     margin-bottom: 20px;
     width: 100%;
 }
 
 .btn-compose:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    background: #1e3a72;
 }
 
 /* DOCUMENTS */
@@ -387,12 +313,10 @@ body {
     text-align: center;
     background: #f8faff;
     margin-bottom: 20px;
-    transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .upload-zone:hover {
-    border-color: #152d65;
     background: #f0f7ff;
 }
 
@@ -424,13 +348,11 @@ body {
     border: 1px solid #d1d5db;
     border-radius: 8px;
     font-size: 14px;
-    transition: border-color 0.3s ease;
 }
 
 .form-input:focus, .form-select:focus {
     outline: none;
     border-color: #152d65;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .btn-upload {
@@ -441,12 +363,10 @@ body {
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
 .btn-upload:hover {
     background: #059669;
-    transform: translateY(-1px);
 }
 
 .document-list {
@@ -1380,37 +1300,17 @@ body {
 /* STYLES ULTRA-SPECIFIQUES POUR LES ONGLETS MODERNES */
 .messagerie-section .tab-content,
 .documents-section .tab-content {
-    opacity: 0 !important;
-    transform: translateY(20px) !important;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
     display: none !important;
-    animation: none !important;
 }
 
 .messagerie-section .tab-content.active,
 .documents-section .tab-content.active {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
     display: block !important;
-    animation: slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
-@keyframes slideInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.95);
-    }
-    50% {
-        opacity: 0.7;
-        transform: translateY(-5px) scale(1.01);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
+/* Keyframe slideInUp supprimée */
 
-/* STYLES SPECIFIQUES POUR LES ACTIONS DES MESSAGES */
+/* STYLES SPECIFIQUES POUR LES ACTIONS DES MESSAGES - SANS ANIMATIONS */
 .messagerie-section .message-actions {
     margin-top: 16px !important;
     display: flex !important;
@@ -1419,129 +1319,63 @@ body {
 }
 
 .messagerie-section .btn-reply {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    background: #10b981 !important;
     color: white !important;
     border: none !important;
-    padding: 10px 20px !important;
-    border-radius: 25px !important;
+    padding: 8px 16px !important;
+    border-radius: 4px !important;
     font-size: 13px !important;
-    font-weight: 600 !important;
+    font-weight: 500 !important;
     cursor: pointer !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     display: flex !important;
     align-items: center !important;
-    gap: 8px !important;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25) !important;
-    position: relative !important;
-    overflow: hidden !important;
-}
-
-.messagerie-section .btn-reply::before {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: -100% !important;
-    width: 100% !important;
-    height: 100% !important;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent) !important;
-    transition: left 0.6s !important;
-}
-
-.messagerie-section .btn-reply:hover::before {
-    left: 100% !important;
+    gap: 6px !important;
 }
 
 .messagerie-section .btn-reply:hover {
-    background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4) !important;
-    transform: translateY(-2px) !important;
-}
-
-.messagerie-section .btn-reply:active {
-    transform: translateY(0) !important;
-    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+    background: #059669 !important;
 }
 
 .messagerie-section .btn-reply i {
     font-size: 12px !important;
-    transition: transform 0.3s ease !important;
 }
 
-.messagerie-section .btn-reply:hover i {
-    transform: scale(1.1) !important;
-}
-
-/* STYLES SPECIFIQUES POUR LES MESSAGES DANS LES ONGLETS */
+/* STYLES SPECIFIQUES POUR LES MESSAGES DANS LES ONGLETS - SANS ANIMATIONS */
 .messagerie-section .message-item {
     padding: 20px !important;
     border: 1px solid #e5e7eb !important;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    border-radius: 16px !important;
+    border-radius: 8px !important;
     margin-bottom: 16px !important;
-    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%) !important;
-    position: relative !important;
-    overflow: hidden !important;
-}
-
-.messagerie-section .message-item::before {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 4px !important;
-    height: 100% !important;
-    background: linear-gradient(45deg, #152d65, #152d65) !important;
-    border-radius: 0 2px 2px 0 !important;
+    background: #ffffff !important;
+    border-left: 4px solid #152d65 !important;
 }
 
 .messagerie-section .message-item:hover {
-    background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%) !important;
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.1) !important;
-    transform: translateY(-2px) !important;
+    background: #f8fafc !important;
     border-color: #152d65 !important;
 }
 
 /* Anciens styles génériques supprimés - remplacés par les versions spécifiques */
 
-/* STYLES ULTRA-SPECIFIQUES POUR LES ÉTATS VIDES MODERNES */
+/* STYLES POUR LES ÉTATS VIDES - SIMPLIFIE */
 .messagerie-section .empty-message,
 .documents-section .empty-message {
     text-align: center !important;
-    padding: 80px 30px !important;
+    padding: 40px 30px !important;
     color: #6b7280 !important;
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%) !important;
-    border-radius: 24px !important;
-    border: 3px dashed #cbd5e1 !important;
+    background: #f8fafc !important;
+    border-radius: 8px !important;
+    border: 2px dashed #cbd5e1 !important;
     margin: 20px 0 !important;
-    position: relative !important;
-    overflow: hidden !important;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
 }
 
-.messagerie-section .empty-message::before,
-.documents-section .empty-message::before {
-    content: '' !important;
-    position: absolute !important;
-    top: -50% !important;
-    left: -50% !important;
-    width: 200% !important;
-    height: 200% !important;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%) !important;
-    animation: pulse 4s ease-in-out infinite !important;
-}
+/* Messages vides sans animations */
 
 .messagerie-section .empty-message i,
 .documents-section .empty-message i {
     font-size: 64px !important;
     margin-bottom: 24px !important;
     color: #152d65 !important;
-    background: linear-gradient(135deg, #152d65, #152d65) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
-    animation: float 3s ease-in-out infinite !important;
-    position: relative !important;
-    z-index: 2 !important;
 }
 
 .messagerie-section .empty-message h3,
@@ -1550,8 +1384,6 @@ body {
     font-weight: 700 !important;
     margin-bottom: 12px !important;
     color: #1e293b !important;
-    position: relative !important;
-    z-index: 2 !important;
 }
 
 .messagerie-section .empty-message p,
@@ -1561,95 +1393,24 @@ body {
     max-width: 280px !important;
     margin: 0 auto !important;
     line-height: 1.6 !important;
-    position: relative !important;
-    z-index: 2 !important;
 }
 
-@keyframes pulse {
-    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
-    50% { transform: scale(1.1) rotate(180deg); opacity: 0.1; }
-}
+/* Keyframes supprimées */
 
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-}
+/* ANIMATIONS SUPPRIMEES - INTERFACE STABLE */
 
-/* ANIMATIONS AVANCEES POUR LES ELEMENTS INTERACTIFS */
-.messagerie-section .message-item,
-.documents-section .document-item {
-    animation: elementAppear 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.messagerie-section .message-item:hover,
-.documents-section .document-item:hover {
-    animation: elementHover 0.3s ease-out !important;
-}
-
-@keyframes elementAppear {
-    0% {
-        opacity: 0;
-        transform: translateY(40px) scale(0.9);
-        filter: blur(10px);
-    }
-    30% {
-        opacity: 0.3;
-        transform: translateY(20px) scale(0.95);
-        filter: blur(5px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-    }
-}
-
-@keyframes elementHover {
-    0% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-3px) scale(1.02); }
-    100% { transform: translateY(-2px) scale(1.01); }
-}
-
-/* AMELIORATIONS DES MICRO-INTERACTIONS */
+/* ONGLETS SANS ANIMATIONS */
 .messagerie-section .tab-btn,
 .documents-section .tab-btn {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
     position: relative !important;
-    overflow: hidden !important;
 }
 
-.messagerie-section .tab-btn::after,
-.documents-section .tab-btn::after {
-    content: '' !important;
-    position: absolute !important;
-    bottom: 0 !important;
-    left: 50% !important;
-    width: 0 !important;
-    height: 3px !important;
-    background: linear-gradient(90deg, #152d65, #10b981) !important;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    transform: translateX(-50%) !important;
-    border-radius: 2px 2px 0 0 !important;
+.messagerie-section .tab-btn.active,
+.documents-section .tab-btn.active {
+    border-bottom: 2px solid #152d65 !important;
 }
 
-.messagerie-section .tab-btn.active::after,
-.documents-section .tab-btn.active::after {
-    width: 80% !important;
-}
-
-.messagerie-section .tab-btn:hover::after,
-.documents-section .tab-btn:hover::after {
-    width: 60% !important;
-    background: linear-gradient(90deg, #152d65, #059669) !important;
-}
-
-/* AMÉLIORATION DES BADGES DE COMPTEUR */
-.messagerie-section .tab-btn span,
-.documents-section .tab-btn span {
-    transition: all 0.3s ease !important;
-}
-
+/* AMÉLIORATION DES BADGES DE COMPTEUR - SANS TRANSITIONS */
 .messagerie-section .tab-btn.active span,
 .documents-section .tab-btn.active span {
     background: rgba(255,255,255,0.9) !important;
@@ -1668,18 +1429,12 @@ body {
   left: 0;
 }
 
-/* Image du logo */
+/* Image du logo - sans animations */
 .uspn-logo-container img {
   width: 160px; /* Plus grand */
   max-width: 80%;
   height: auto;
-  transition: transform 0.3s ease;
   opacity: 0.95;
-}
-
-/* Effet au survol */
-.uspn-logo-container img:hover {
-  transform: scale(1.05);
 }
 
 
