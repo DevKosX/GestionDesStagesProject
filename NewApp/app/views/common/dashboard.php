@@ -746,16 +746,8 @@
                                 <div class="stage-details">
                                     <div class="stage-info">
                                         <div class="info-group">
-                                            <span class="info-label">Semestre :</span>
-                                            <span class="info-value">S<?php echo $stage['numSemestre'] ?? 'N/A'; ?></span>
-                                        </div>
-                                        <div class="info-group">
                                             <span class="info-label">Année universitaire :</span>
-                                            <span class="info-value"><?php echo htmlspecialchars($stage['annee_libelle'] ?? 'N/A'); ?></span>
-                                        </div>
-                                        <div class="info-group">
-                                            <span class="info-label">Département :</span>
-                                            <span class="info-value"><?php echo htmlspecialchars($stage['departement'] ?? 'N/A'); ?></span>
+                                            <span class="info-value"><?php echo htmlspecialchars($stage['annee_libelle'] ?? '2024-2025'); ?></span>
                                         </div>
                                         <div class="info-group">
                                             <span class="info-label">Entreprise :</span>
@@ -894,6 +886,22 @@
                                                     <span class="info-value"><?php echo htmlspecialchars($stage['etudiant_email'] ?? ''); ?></span>
                                                 </div>
                                                 <div class="info-group">
+                                                    <span class="info-label">Tuteur entreprise :</span>
+                                                    <span class="info-value">
+                                                        <?php if (!empty($stage['tuteur_ent_nom'])): ?>
+                                                            <?php echo htmlspecialchars(($stage['tuteur_ent_prenom'] ?? '') . ' ' . ($stage['tuteur_ent_nom'] ?? '')); ?>
+                                                            <?php if (!empty($stage['tuteur_ent_email'])): ?>
+                                                                <br><small><i class="fas fa-envelope"></i> <?php echo htmlspecialchars($stage['tuteur_ent_email']); ?></small>
+                                                            <?php endif; ?>
+                                                            <?php if (!empty($stage['tuteur_ent_telephone'])): ?>
+                                                                <br><small><i class="fas fa-phone"></i> <?php echo htmlspecialchars($stage['tuteur_ent_telephone']); ?></small>
+                                                            <?php endif; ?>
+                                                        <?php else: ?>
+                                                            Non défini
+                                                        <?php endif; ?>
+                                                    </span>
+                                                </div>
+                                                <div class="info-group">
                                                     <span class="info-label">Période :</span>
                                                     <span class="info-value">
                                                         <?php 
@@ -967,6 +975,22 @@
                                                 <div class="info-group">
                                                     <span class="info-label">Contact étudiant :</span>
                                                     <span class="info-value"><?php echo htmlspecialchars($stage['etudiant_email'] ?? ''); ?></span>
+                                                </div>
+                                                <div class="info-group">
+                                                    <span class="info-label">Tuteur entreprise :</span>
+                                                    <span class="info-value">
+                                                        <?php if (!empty($stage['tuteur_ent_nom'])): ?>
+                                                            <?php echo htmlspecialchars(($stage['tuteur_ent_prenom'] ?? '') . ' ' . ($stage['tuteur_ent_nom'] ?? '')); ?>
+                                                            <?php if (!empty($stage['tuteur_ent_email'])): ?>
+                                                                <br><small><i class="fas fa-envelope"></i> <?php echo htmlspecialchars($stage['tuteur_ent_email']); ?></small>
+                                                            <?php endif; ?>
+                                                            <?php if (!empty($stage['tuteur_ent_telephone'])): ?>
+                                                                <br><small><i class="fas fa-phone"></i> <?php echo htmlspecialchars($stage['tuteur_ent_telephone']); ?></small>
+                                                            <?php endif; ?>
+                                                        <?php else: ?>
+                                                            Non défini
+                                                        <?php endif; ?>
+                                                    </span>
                                                 </div>
                                                 <div class="info-group">
                                                     <span class="info-label">Période :</span>
@@ -1046,6 +1070,10 @@
                                         <div class="stage-details">
                                             <div class="stage-info">
                                                 <div class="info-group">
+                                                    <span class="info-label">Année universitaire :</span>
+                                                    <span class="info-value"><?php echo htmlspecialchars($stage['annee_libelle'] ?? '2024-2025'); ?></span>
+                                                </div>
+                                                <div class="info-group">
                                                     <span class="info-label">Entreprise :</span>
                                                     <span class="info-value">
                                                         <?php if (!empty($stage['entreprise_ville'])): ?>
@@ -1056,22 +1084,6 @@
                                                         <?php else: ?>
                                                             Non définie
                                                         <?php endif; ?>
-                                                    </span>
-                                                </div>
-                                                <div class="info-group">
-                                                    <span class="info-label">Tuteur universitaire :</span>
-                                                    <span class="info-value"><?php echo htmlspecialchars(($stage['tuteur_nom'] ?? '') . ' ' . ($stage['tuteur_prenom'] ?? '')); ?></span>
-                                                </div>
-                                                <div class="info-group">
-                                                    <span class="info-label">Période :</span>
-                                                    <span class="info-value">
-                                                        <?php 
-                                                        if ($stage['date_debut'] && $stage['date_fin']) {
-                                                            echo date('d/m/Y', strtotime($stage['date_debut'])) . ' au ' . date('d/m/Y', strtotime($stage['date_fin']));
-                                                        } else {
-                                                            echo 'Dates non définies';
-                                                        }
-                                                        ?>
                                                     </span>
                                                 </div>
                                                 <?php if (isset($stage['note_finale']) && $stage['note_finale']): ?>

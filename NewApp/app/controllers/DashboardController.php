@@ -192,8 +192,8 @@ class DashboardController extends Controller {
                        
                 FROM stage s
                 LEFT JOIN utilisateur u_etudiant ON s.Id_Etudiant = u_etudiant.Id
-                LEFT JOIN utilisateur u_tuteur_ent ON s.Id_TuteurEntreprise = u_tuteur_ent.Id
                 LEFT JOIN tuteur_entreprise te ON s.Id_TuteurEntreprise = te.Id_TuteurEntreprise
+                LEFT JOIN utilisateur u_tuteur_ent ON te.Id_TuteurEntreprise = u_tuteur_ent.Id
                 LEFT JOIN entreprise e ON te.Id_Entreprise = e.Id_Entreprise
                 LEFT JOIN annee an ON s.Id_Annee = an.Id_Annee
                 LEFT JOIN departement dep ON s.Id_Departement = dep.Id_Departement
