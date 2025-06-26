@@ -726,7 +726,7 @@
                                         <div class="card-icon">
                                             <i class="fas fa-graduation-cap"></i>
                                         </div>
-                                        <h3 class="card-title"><?php echo $annee; ?> - <?php echo count($stages_par_annee[$annee]); ?> stage(s)</h3>
+                                        <h3 class="card-title">BUT - <?php echo count($stages_par_annee[$annee]); ?> stage(s)</h3>
                                     </div>
                                     
                                     <div class="stages-list">
