@@ -46,11 +46,11 @@
         
         .form-group input:focus, .form-group select:focus {
             outline: none;
-            border-color: #3498db;
+            border-color: #152d65;
         }
         
         .file-upload-area {
-            border: 2px dashed #3498db;
+            border: 2px dashed #152d65;
             border-radius: 10px;
             padding: 40px;
             text-align: center;
@@ -60,7 +60,7 @@
         
         .file-upload-area:hover {
             background: #f8f9fa;
-            border-color: #2980b9;
+            border-color: #152d65;
         }
         
         .documents-grid {
@@ -80,7 +80,7 @@
             color: #2c3e50;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #3498db;
+            border-bottom: 2px solid #152d65;
         }
         
         .document-item {
@@ -91,7 +91,7 @@
             margin-bottom: 10px;
             background: #f8f9fa;
             border-radius: 8px;
-            border-left: 4px solid #3498db;
+            border-left: 4px solid #152d65;
         }
         
         .document-info {
@@ -125,12 +125,12 @@
         }
         
         .btn-primary {
-            background: #3498db;
+            background: #152d65;
             color: white;
         }
         
         .btn-primary:hover {
-            background: #2980b9;
+            background: #152d65;
         }
         
         .btn-download {

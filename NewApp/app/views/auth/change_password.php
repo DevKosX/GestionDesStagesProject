@@ -33,7 +33,7 @@
         }
 
         .form-title i {
-            color: #3498db;
+            color: #152d65;
             font-size: 28px;
         }
 
@@ -54,7 +54,7 @@
         }
 
         .form-group label i {
-            color: #3498db;
+            color: #152d65;
             width: 16px;
         }
 
@@ -72,7 +72,7 @@
 
         .form-group input:focus {
             outline: none;
-            border-color: #3498db;
+            border-color: #152d65;
             box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
             transform: translateY(-1px);
         }
@@ -84,7 +84,7 @@
         .btn-change {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            background: linear-gradient(135deg, #152d65 0%, #152d65 100%);
             color: white;
             border: none;
             border-radius: 12px;
@@ -98,7 +98,7 @@
         }
 
         .btn-change:hover {
-            background: linear-gradient(135deg, #2980b9 0%, #21618c 100%);
+            background: linear-gradient(135deg, #152d65 0%, #21618c 100%);
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
         }
@@ -155,7 +155,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #3498db, #9b59b6);
+            background: linear-gradient(90deg, #152d65, #9b59b6);
             border-radius: 12px 12px 0 0;
         }
 
@@ -170,7 +170,7 @@
         }
 
         .password-requirements h4 i {
-            color: #3498db;
+            color: #152d65;
         }
 
         .password-requirements ul {
@@ -197,7 +197,7 @@
 
         /* Animation pour l'input actif */
         .form-group input:focus + .input-icon {
-            color: #3498db;
+            color: #152d65;
         }
 
         /* Responsive */
