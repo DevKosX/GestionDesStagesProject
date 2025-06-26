@@ -980,22 +980,6 @@
                                                     <span class="info-value"><?php echo htmlspecialchars($stage['etudiant_email'] ?? ''); ?></span>
                                                 </div>
                                                 <div class="info-group">
-                                                    <span class="info-label">Tuteur entreprise :</span>
-                                                    <span class="info-value">
-                                                        <?php if (!empty($stage['tuteur_ent_nom'])): ?>
-                                                            <?php echo htmlspecialchars(($stage['tuteur_ent_prenom'] ?? '') . ' ' . ($stage['tuteur_ent_nom'] ?? '')); ?>
-                                                            <?php if (!empty($stage['tuteur_ent_email'])): ?>
-                                                                <br><small><i class="fas fa-envelope"></i> <?php echo htmlspecialchars($stage['tuteur_ent_email']); ?></small>
-                                                            <?php endif; ?>
-                                                            <?php if (!empty($stage['tuteur_ent_telephone'])): ?>
-                                                                <br><small><i class="fas fa-phone"></i> <?php echo htmlspecialchars($stage['tuteur_ent_telephone']); ?></small>
-                                                            <?php endif; ?>
-                                                        <?php else: ?>
-                                                            Non défini
-                                                        <?php endif; ?>
-                                                    </span>
-                                                </div>
-                                                <div class="info-group">
                                                     <span class="info-label">Période :</span>
                                                     <span class="info-value">
                                                         <?php 
