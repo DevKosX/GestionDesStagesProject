@@ -59,6 +59,9 @@
                     <?php endif; ?>
                 </a>
                 <?php endif; ?>
+                <a href="<?= url('change-password') ?>" class="nav-item">
+                    <i class="fas fa-key"></i> Changer mot de passe
+                </a>
                 <a href="<?= url('logout') ?>" class="nav-item">
                     <i class="fas fa-sign-out-alt"></i> Déconnexion
                 </a>

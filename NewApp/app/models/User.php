@@ -17,6 +17,24 @@ class User {
         return $stmt->fetchObject('User');
     }
 
+    public static function findById($id) {
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT * FROM utilisateur WHERE Id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetchObject('User');
+    }
+
+    public static function updatePassword($userId, $hashedPassword) {
+        global $pdo;
+        try {
+            $stmt = $pdo->prepare("UPDATE utilisateur SET mot_de_passe = ? WHERE Id = ?");
+            return $stmt->execute([$hashedPassword, $userId]);
+        } catch (Exception $e) {
+            error_log("Erreur updatePassword: " . $e->getMessage());
+            return false;
+        }
+    }
+
     public static function getRole($userId) {
         global $pdo;
         $roles = [

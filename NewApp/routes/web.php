@@ -44,6 +44,10 @@ $router->addRoute('/documents/download', 'DocumentController', 'download');
 $router->addRoute('/notifications/marquer-vue', 'NotificationController', 'marquerVue');
 $router->addRoute('/notifications/stats', 'NotificationController', 'getStats');
 
+// === ROUTES PROFIL ===
+$router->addRoute('/change-password', 'AuthController', 'changePassword');
+$router->addRoute('/changer-mot-de-passe', 'AuthController', 'changePassword');
+
 // === ROUTES ADMINISTRATION ===
 $router->addRoute('/admin', 'AdminController', 'index');
 $router->addRoute('/admin/dashboard', 'AdminController', 'index');

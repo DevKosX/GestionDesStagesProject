@@ -25,6 +25,9 @@
                     <i class="fas fa-plus"></i> Nouveau Type
                 </a>
                 <hr style="margin: 15px 0; border-color: #ddd;">
+                <a href="<?= url('change-password') ?>" class="nav-item">
+                    <i class="fas fa-key"></i> Changer mot de passe
+                </a>
                 <a href="<?= url('logout') ?>" class="nav-item">
                     <i class="fas fa-sign-out-alt"></i> Déconnexion
                 </a>
