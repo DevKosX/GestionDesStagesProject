@@ -77,5 +77,5 @@ L'application permet de gérer le cycle de vie complet d'un stage :
 *   David, Mohamed, Mohamed, Mohamed, Yacine, Moilim
 
 ## Mots de passe
-* Le compte de l'admin est admin est admin@univ.fr et son pot de passe est password
+* Le compte de l'admin est admin@univ.fr et son mot de passe est password
 
