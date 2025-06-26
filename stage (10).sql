@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 26 juin 2025 à 22:32
+-- Généré le : ven. 27 juin 2025 à 00:01
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -136,7 +136,8 @@ INSERT INTO `entreprise` (`Id_Entreprise`, `adresse`, `code_postal`, `ville`, `i
 (6, 'evzdsg', NULL, 'ezggz', NULL, NULL),
 (7, '123 Rue de la Test', NULL, 'Paris', NULL, NULL),
 (8, '123 Rue de la Test', NULL, 'Paris', NULL, NULL),
-(9, '10 rue jean', NULL, 'paris', NULL, NULL);
+(9, '10 rue jean', NULL, 'paris', NULL, NULL),
+(10, 'egzg', NULL, 'ezgz', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -147,6 +148,13 @@ INSERT INTO `entreprise` (`Id_Entreprise`, `adresse`, `code_postal`, `ville`, `i
 CREATE TABLE `etudiant` (
   `Id_Etudiant` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Déchargement des données de la table `etudiant`
+--
+
+INSERT INTO `etudiant` (`Id_Etudiant`) VALUES
+(24);
 
 -- --------------------------------------------------------
 
@@ -233,6 +241,14 @@ CREATE TABLE `stage` (
   `Id_TuteurEntreprise` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Déchargement des données de la table `stage`
+--
+
+INSERT INTO `stage` (`Id_Stage`, `Id_Annee`, `Id_Departement`, `numSemestre`, `Id_Etudiant`, `date_debut`, `date_fin`, `mission`, `date_soutenance`, `salle_Soutenance`, `Id_Enseignant`, `Id_TuteurEntreprise`) VALUES
+(6, 1, 1, 2, 24, '2024-01-15', '2024-03-15', 'Développement d\'une application mobile', '2024-06-10', 'Salle B203', NULL, NULL),
+(7, 2, NULL, NULL, 24, '2025-06-26', '2025-07-09', 'azjbad', '2025-08-01', 'Q109', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -261,13 +277,6 @@ CREATE TABLE `typeaction` (
   `LienModeleDoc` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Déchargement des données de la table `typeaction`
---
-
-INSERT INTO `typeaction` (`Id_TypeAction`, `libelle`, `Executant`, `Destinataire`, `delaiEnJours`, `ReferenceDelai`, `requisDoc`, `LienModeleDoc`) VALUES
-(7, 'permis de conduire', 'Etudiant', NULL, 329, 'date_fin', 1, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -289,7 +298,8 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`Id`, `nom`, `prenom`, `email`, `telephone`, `login`, `mot_de_passe`) VALUES
-(5, 'Admin', 'Super', 'admin@univ.fr', '0656789012', 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+(5, 'Admin', 'Super', 'admin@univ.fr', '0656789012', 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
+(24, 'Dupont', 'Julie', 'julie.dupont@univ.fr', '0601020304', 'jdupont', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
 
 --
 -- Index pour les tables déchargées
@@ -429,7 +439,7 @@ ALTER TABLE `departement`
 -- AUTO_INCREMENT pour la table `entreprise`
 --
 ALTER TABLE `entreprise`
-  MODIFY `Id_Entreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `Id_Entreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `message`
@@ -441,13 +451,13 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT pour la table `stage`
 --
 ALTER TABLE `stage`
-  MODIFY `Id_Stage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id_Stage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `tuteur_entreprise`
 --
 ALTER TABLE `tuteur_entreprise`
-  MODIFY `Id_TuteurEntreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Id_TuteurEntreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT pour la table `typeaction`
@@ -459,7 +469,7 @@ ALTER TABLE `typeaction`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Contraintes pour les tables déchargées
